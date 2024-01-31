@@ -2,85 +2,98 @@ package com.vassarlabs.projectname.page;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.security.PrivateKey;
+import java.time.Duration;
+import java.util.Random;
 
 public class CreateMobApplicationWebAppliation {
 
 
     WebDriver driver;
 
-    private By projectMatBuutton = By.xpath("//mat-card-title[contains(@class,'mat-mdc-card-title')]") ;
-    private String  applicationWidget = "//div[text()='";   //give the xpath as mobile app or web app in condition statement
-    private By appNameField = By.xpath("//mat-label[text()='App Name']");
-    private By shortDescField = By.xpath("//mat-label[text()='Short Description']");
-    private By editLogo = By.xpath("//mat-icon[text()='edit']");
+    private By projectMatBuutton = By.xpath("//mat-card-title[contains(@class,'mat-mdc-card-title')]");
+    private By appNameField = By.xpath("//input[@placeholder='App Name']");
+    private By shortDescFieldlabel = By.xpath("//mat-label[text()='Short Description']");
+    private By shortDescField = By.xpath("//textarea[@placeholder='Write here...']");
+    private By editLogo = By.xpath("//div[@class='mat-ripple icon-img-container']/input");
     private By nextButtonSettings = By.xpath("//span[text()='Next']");
-    private By themesDropdown = By.xpath("//mat-label[text()='select Themes']/../../../following-sibling::div/mat-select");  //use find elements get(0)
-    private By headingsDropdown = By.xpath("//mat-label[text()='Headings']/../../../following-sibling::div/mat-select");
-    private By bodyDropdown = By.xpath("//mat-label[text()='Body']/../../../following-sibling::div/mat-select");
+    private By themesDropdown = By.xpath("//div[contains(@class,'mdc-notched-outline__notch')]/label/mat-label[text()='Select Themes']/../../../following-sibling::div/mat-select/div/div/following-sibling::div");
+    private By themesDropdownValue = By.xpath("//h3[text()='Theme']/parent::form/mat-form-field/div/div/div/following-sibling::div/mat-select/div/div/span/span");
+    private By suggestionForDropdown = By.xpath("//mat-hint[text()='This is required field!']");
+    private By headingsDropdown = By.xpath("//div[contains(@class,'mdc-notched-outline__notch')]/label/mat-label[text()='Headings']/../../../following-sibling::div/mat-select/div/div/following-sibling::div");
+    private By bodyDropdown = By.xpath("//div[contains(@class,'mdc-notched-outline__notch')]/label/mat-label[text()='Body']/../../../following-sibling::div/mat-select/div/div/following-sibling::div");
     private By nextButtonBranding = By.xpath("//span[text()='Next']");
-//    private By toasterMessage = By.xpath("//div[text()=' Sucessfully Created Application ']");
+    //    private By toasterMessage = By.xpath("//div[text()=' Sucessfully Created Application ']");
     private String logoPath = "D:\\MobileWise\\Logo\\Logoimage.jpg";
     private By errorProjectExists = By.xpath("//mat-hint[text()='This Application name already exists!']");
     private By toasterMessages = By.xpath("//div[@id='toast-container']/div/div");
 
+    Random ra = new Random();
+    int rand_int = ra.nextInt(1000);
 
-    public CreateMobApplicationWebAppliation(WebDriver driver){
+    public CreateMobApplicationWebAppliation(WebDriver driver) {
         this.driver = driver;
     }
 
-    public void clickProjectMatButton(){
+    public void clickProjectMatButton() {
         driver.findElement(projectMatBuutton).click();
     }
-    public void clickApplicationType(String application_type){
-        driver.findElement(By.xpath(applicationWidget+application_type+"'")).click();
+
+    public void clickApplicationType(String application_type) {
+        driver.findElement(By.xpath("//div[text()='"+application_type+"']")).click();
     }
 
-    public void updateNameFieldsAndClickNext(String app_name, String app_desc){
+    public void updateNameFields(String app_name, String app_desc) {
         driver.findElement(appNameField).sendKeys(app_name);
+        driver.findElement(shortDescFieldlabel).click();
         driver.findElement(shortDescField).sendKeys(app_desc);
         driver.findElement(editLogo).sendKeys(logoPath);
+    }
+
+    public void clickNextToThemes() {
         driver.findElement(nextButtonSettings).click();
     }
-    public void updateThemeAndClickNext(String themes_dropdown, String headings_dropdown, String body_dropdown) throws Throwable{
 
-         driver.findElement(themesDropdown).click();
-        driver.findElement(By.xpath("//div[contains(@class,'ng-trigger ng-trigger-transformPanel')]/mat-option/span[text()='"+themes_dropdown+"']")).click();
-        driver.findElement(headingsDropdown).click();
-        driver.findElement(By.xpath("//mat-option[contains(@class,'mat-mdc-option mdc-list-item')]/span[text()='"+headings_dropdown+"']")).click();
-        driver.findElement(bodyDropdown).click();
-        driver.findElement(By.xpath("//mat-option[contains(@class,'mat-mdc-option mdc-list-item')]/span[text()='"+body_dropdown+"']")).click();
+    public void updateThemeAndClickNext(String themes_dropdown, String headings_dropdown, String body_dropdown, String suggestion_message) throws Throwable {
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(themesDropdown)));
+        driver.findElement(themesDropdown).click();
+        driver.findElement(By.xpath("//div[contains(@class,'ng-trigger ng-trigger-transformPanel')]/mat-option/span[text()='" + themes_dropdown + "']")).click();
+        if (driver.findElement(themesDropdownValue).getText().equals("Custom Theme")) {
+            String actual_suggestion_message_heading = driver.findElements(suggestionForDropdown).get(0).getText();
+            String actual_suggestion_message_body = driver.findElements(suggestionForDropdown).get(1).getText();
+            Assert.assertEquals(suggestion_message, actual_suggestion_message_heading, "Expected Error Message " + suggestion_message + " But Found : " + actual_suggestion_message_heading);
+            Assert.assertEquals(suggestion_message, actual_suggestion_message_body, "Expected Error Message " + suggestion_message + " But Found : " + actual_suggestion_message_body);
+            driver.findElement(headingsDropdown).click();
+            driver.findElement(By.xpath("//mat-option[contains(@class,'mat-mdc-option mdc-list-item')]/span[text()='" + headings_dropdown + "']")).click();
+            driver.findElement(bodyDropdown).click();
+            driver.findElement(By.xpath("//mat-option[contains(@class,'mat-mdc-option mdc-list-item')]/span[text()='" + body_dropdown + "']")).click();
+            driver.findElement(nextButtonBranding).click();
+        } else {
+            driver.findElement(nextButtonBranding).click();
+        }
 
     }
-    public void validateToasterMessage(String toaster_message){
-        if(driver.findElement(By.xpath(toasterMessages+"[text()=' "+toaster_message+" ']")).isDisplayed()){
-            String toaster = driver.findElement(By.xpath(toasterMessages+"[text()=' "+toaster_message+" ']")).getText();
+
+    public void validateToasterMessage(String toaster_message, String app_name) {
+        if (driver.findElements(By.xpath(toasterMessages + "[text()=' " + toaster_message + " ']")).size() > 0) {
+            String toaster = driver.findElement(By.xpath(toasterMessages + "[text()=' " + toaster_message + " ']")).getText();
             Assert.assertEquals(toaster_message, toaster, "Expected Error Message " + toaster_message + " But Found : " + toaster);
         }
-        if(driver.findElements(errorProjectExists).size()>0){
-            String error = driver.findElement(errorProjectExists).getText();
-            Assert.assertEquals(toaster_message, error, "Expected Error Message " + toaster_message + " But Found : " + error);
-        }
-        else{
+        if (driver.findElements(errorProjectExists).size() > 0) {
+            driver.findElement(appNameField).clear();
+            driver.findElement(appNameField).sendKeys(app_name + "" + rand_int);
+            clickNextToThemes();
+        } else {
             System.out.println("Error in The Code");
         }
-        {
 
-        }
     }
-
-
-
-
-
-
-
-
-
-
-
 
 
 }
