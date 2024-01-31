@@ -46,7 +46,7 @@ public class ApplicationHooks {
 
     @After(order = 0)
     public void quitBrowser() throws InterruptedException {
-        driver.quit();
+//        driver.quit();
     }
 
     @After(order = 1)
@@ -69,7 +69,7 @@ public class ApplicationHooks {
         String coverage = gson.toJson(str);
 
         // Read existing coverage file, if it exists
-        String filePath = "/home/vassar-deepa/Desktop/Stanley_Hatrick/ui/.nyc_output/coverage.json";
+        String filePath = "";
         String existingCoverage = null;
         try {
             existingCoverage = new String(Files.readAllBytes(Paths.get(filePath)));

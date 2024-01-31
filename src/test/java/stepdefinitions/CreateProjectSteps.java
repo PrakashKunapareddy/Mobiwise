@@ -55,8 +55,8 @@ public class CreateProjectSteps {
     }
 
     @And("Edit Created Project description {string} {string} {string} {string}")
-    public void editCreatedProjectDescriptionProject_descriptionNew_project_description(String project_name, String new_project_description,String error_message, String new_project_name) throws Throwable {
-        createProject.editProjectDescription(project_name, new_project_description,error_message,new_project_name);
+    public void editCreatedProjectDescriptionProject_descriptionNew_project_description(String project_name, String new_project_name,String new_project_description,String error_message) throws Throwable {
+        createProject.editProjectDescription(project_name,new_project_name, new_project_description,error_message);
     }
 
     @Then("Click on Delete Icon and Click on Yes button or ESC on Keyboard {string}")
