@@ -12,7 +12,7 @@ public class LoginPage {
 
     private By userName = By.xpath("//input[@placeholder='Username/Email']");
     private By passWord = By.xpath("//input[@placeholder='Password']");
-    private By signInButton = By.xpath("//span[text()=' Sign In ']");
+    private By signInButton = By.xpath("//button//span[text()=' Sign In ']/parent::button");
     private By successMessage = By.xpath("//div[@class='page-header']/div/h2[text()='Projects']");
     private By errorMessageIncorrectPassword = By.xpath("//div/mat-hint[text()='Incorrect Password!']");
     private By errorMessageIncorrectUsername = By.xpath("//div/mat-hint[text()='Invalid Username!']");
@@ -41,7 +41,8 @@ public class LoginPage {
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         Thread.sleep(3000);
-        boolean Enabledcondition = driver.findElement(signInButton).isEnabled();
+        boolean Enabledcondition = Boolean.parseBoolean(driver.findElement(signInButton).getAttribute("disabled"));
+//        boolean Enabledcondition =  driver.findElement(signInButton).isEnabled();
         System.out.println("................" + Enabledcondition);
 
         if (!(driver.findElement(signInButton).isEnabled())) {

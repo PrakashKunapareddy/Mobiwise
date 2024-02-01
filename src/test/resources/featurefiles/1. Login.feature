@@ -12,11 +12,10 @@ Feature: Login Functionality for MobiWise SuperAdmin Login
 
     Examples:
       | username           | password          | expected_output       | valid_username |
-      | "dummy"            | "1234567890"      | "Projects"            | "superadmin"   |
-      | "Mobilewise@123"   | "mobiwise@123   " | "Invalid Username!"   | "superadmin"   |
+      | "dummy"            | "1234567890"      | "Projects"            | "dummy"        |
       | "Invalid Username" | "invalidPassword" | "Invalid Username!"   | "superadmin"   |
       | "dummy"            | "abcd"            | "Incorrect Password!" | "superadmin"   |
-#      | ""                 | "abcd"            | "Invalid Username!"  | "superadmin"   |
-#      | "ABCD"             | ""                | "Invalid Username!"   | "superadmin"   |
-#      | ""                 | ""                | "Invalid Username!"   | "superadmin"   |
+      | ""                 | "abcd"            | "Invalid Username!"   | "superadmin"   |
+      | "ABCD"             | ""                | "Invalid Username!"   | "superadmin"   |
+      | ""                 | ""                | "Invalid Username!"   | "superadmin"   |
 
