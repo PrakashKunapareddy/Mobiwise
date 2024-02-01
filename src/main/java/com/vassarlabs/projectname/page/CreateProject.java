@@ -231,7 +231,8 @@ public class CreateProject {
     public void deleteProjectNo(String new_project_name) throws Throwable {
         if (flag3) {
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-            driver.findElement(By.xpath("//mat-card-title[text()='" + new_project_name + "']/parent::mat-card-content/following-sibling::mat-card-actions/button/span/following-sibling::mat-icon/following-sibling::span[text()=' Delete']")).click();
+            Thread.sleep(3000);
+            driver.findElement(By.xpath("//mat-card-title[text()='"+new_project_name+"']/parent::mat-card-content/following-sibling::mat-card-actions/button/span[text()=' Delete']")).click();
             driver.findElement(deleteProjectPopupNo).click();
         }
     }

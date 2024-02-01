@@ -1,11 +1,13 @@
 package com.vassarlabs.projectname.page;
 
+import com.vassarlabs.projectname.driver.WebdriverInitializer;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import java.awt.*;
 import java.security.PrivateKey;
 import java.time.Duration;
 import java.util.Random;
@@ -15,7 +17,8 @@ public class CreateMobApplicationWebAppliation {
 
     WebDriver driver;
 
-    private By projectMatBuutton = By.xpath("//mat-card-title[contains(@class,'mat-mdc-card-title')]");
+
+    private By projectMatBuutton = By.xpath("//div/mat-card/mat-card-content/mat-card-title");  //use find eles
     private By appNameField = By.xpath("//input[@placeholder='App Name']");
     private By shortDescFieldlabel = By.xpath("//mat-label[text()='Short Description']");
     private By shortDescField = By.xpath("//textarea[@placeholder='Write here...']");
@@ -31,22 +34,46 @@ public class CreateMobApplicationWebAppliation {
     private String logoPath = "D:\\MobileWise\\Logo\\Logoimage.jpg";
     private By errorProjectExists = By.xpath("//mat-hint[text()='This Application name already exists!']");
     private By toasterMessages = By.xpath("//div[@id='toast-container']/div/div");
+    private By breadcrumbHome = By.xpath("//div/nav/ol/li[text()='Home']");
+    private By breadcrumbApplicationpage = By.xpath("//div/nav/ol/li[contains(@class,'breadcrumb-item active')]");
+    private boolean flag = false;
+    private boolean flag1 = false;
+
 
     Random ra = new Random();
     int rand_int = ra.nextInt(1000);
 
-    public CreateMobApplicationWebAppliation(WebDriver driver) {
+    public CreateMobApplicationWebAppliation(WebDriver driver) throws AWTException {
         this.driver = driver;
     }
 
     public void clickProjectMatButton() {
-        driver.findElement(projectMatBuutton).click();
+        driver.findElements(projectMatBuutton).get(0).click();
+        flag = true;
+    }
+
+    public void clickHomeOnBreadcrumb() throws InterruptedException {
+        if(flag){
+            Thread.sleep(3000);
+            driver.findElement(breadcrumbHome).click();
+            Thread.sleep(3000);
+            clickProjectMatButton();
+        }
+    }
+    public void  clickApplicationPageBreadcrumb() throws InterruptedException {
+        if(flag){
+            Thread.sleep(3000);
+           if(driver.findElement(breadcrumbApplicationpage).isDisplayed()){
+               flag1=true;
+           }
+        }
     }
 
     public void clickApplicationType(String application_type) {
-        driver.findElement(By.xpath("//div[text()='"+application_type+"']")).click();
+        if(flag1){
+            driver.findElement(By.xpath("//div[text()='" + application_type + "']")).click();
+        }
     }
-
     public void updateNameFields(String app_name, String app_desc) {
         driver.findElement(appNameField).sendKeys(app_name);
         driver.findElement(shortDescFieldlabel).click();

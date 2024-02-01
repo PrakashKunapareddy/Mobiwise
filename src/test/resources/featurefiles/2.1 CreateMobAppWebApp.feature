@@ -7,6 +7,7 @@ Feature: Adding Mobile Application And Web Application for Created Project In Mo
     When  Clicked on the sign in button
     And  Validate login <expected_output> <valid_username>
     And Clicked on the Project
+    And Click on Breadcrumb
     And Click on the <application_type>
     And Enter <app_name> <app_desc> Upload Logo and Click on Next
     And Update <themes_dropdown> <headings_dropdown> <body_dropdown> <suggestion_message> and Click on Next

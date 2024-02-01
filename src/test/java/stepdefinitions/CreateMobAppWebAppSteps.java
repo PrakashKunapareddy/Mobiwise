@@ -5,10 +5,15 @@ import com.vassarlabs.projectname.page.CreateMobApplicationWebAppliation;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
+import java.awt.*;
+
 public class CreateMobAppWebAppSteps {
 
 
     CreateMobApplicationWebAppliation createMobAppWebApp = new CreateMobApplicationWebAppliation(WebdriverInitializer.getDriver());
+
+    public CreateMobAppWebAppSteps() throws AWTException {
+    }
 
 
     @And("Clicked on the Project")
@@ -37,6 +42,12 @@ public class CreateMobAppWebAppSteps {
     @And("Update {string} {string} {string} {string} and Click on Next")
     public void updateThemes_dropdownHeadings_dropdownBody_dropdownAndClickOnNext(String themes_dropdown, String headings_dropdown, String body_dropdown, String suggestion_message) throws Throwable {
         createMobAppWebApp.updateThemeAndClickNext(themes_dropdown,headings_dropdown,body_dropdown,suggestion_message);
+    }
+
+    @And("Click on Breadcrumb")
+    public void clickOnBreadcrumb() throws InterruptedException {
+        createMobAppWebApp.clickHomeOnBreadcrumb();
+        createMobAppWebApp.clickApplicationPageBreadcrumb();
     }
 }
 
