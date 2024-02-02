@@ -26,9 +26,8 @@ public class CreateProject {
     private By matCreateProjectButton = By.xpath("//div[contains(@class,'row')]/div/mat-card/span[text()='Create Project']");
 
     private By projectName = By.xpath("//input[contains(@class,'mat-mdc-input-element ng-tns')]");
-    private By unchangedProjectName = By.xpath("//div/mat-card/mat-card-content/mat-card-title");
-
     private By projectDesc = By.xpath("//textarea[@placeholder='Project Description']");
+    private By unchangedProjectName = By.xpath("//div/mat-card/mat-card-content/mat-card-title");
     private By saveButton = By.xpath("//span[text()='Save']");
     private By cancelButton = By.xpath("//span[text()='Cancel']");
     //    private By newProjectName = By.xpath("");

@@ -17,37 +17,43 @@ public class CreateMobAppWebAppSteps {
 
 
     @And("Clicked on the Project")
-    public void clickedOnTheProject() {
+    public void clickedOnTheProject() throws InterruptedException {
         createMobAppWebApp.clickProjectMatButton();
     }
 
 
     @And("Click on the {string}")
-    public void clickOnTheApplication_type(String application_type){
+    public void clickOnTheApplication_type(String application_type) {
         createMobAppWebApp.clickApplicationType(application_type);
     }
 
-    @And("Enter {string} {string} Upload Logo and Click on Next")
-    public void enterApp_nameApp_descUploadLogoAndClickOnNext(String app_name, String app_desc) {
-        createMobAppWebApp.updateNameFields(app_name,app_desc);
+    @And("Enter {string} {string} {string} Upload Logo and Click on Next")
+    public void enterApp_nameApp_descUploadLogoAndClickOnNext(String app_name, String application_name_field_message, String app_desc) throws InterruptedException {
+        createMobAppWebApp.updateNameFields(app_name, application_name_field_message, app_desc);
         createMobAppWebApp.clickNextToThemes();
     }
 
-    @Then("Validate Application Created {string}")
-    public void validateApplicationCreatedToaster_message(String toaster_message, String app_name) {
+    @Then("Validate Application Created {string} {string}")
+    public void validateApplicationCreatedToaster_message(String toaster_message, String app_name) throws Throwable {
         createMobAppWebApp.validateToasterMessage(toaster_message, app_name);
 
     }
 
     @And("Update {string} {string} {string} {string} and Click on Next")
     public void updateThemes_dropdownHeadings_dropdownBody_dropdownAndClickOnNext(String themes_dropdown, String headings_dropdown, String body_dropdown, String suggestion_message) throws Throwable {
-        createMobAppWebApp.updateThemeAndClickNext(themes_dropdown,headings_dropdown,body_dropdown,suggestion_message);
+        createMobAppWebApp.updateThemeAndClickNext(themes_dropdown, headings_dropdown, body_dropdown, suggestion_message);
+        createMobAppWebApp.clickNextforBranding();
     }
 
-    @And("Click on Breadcrumb")
-    public void clickOnBreadcrumb() throws InterruptedException {
-        createMobAppWebApp.clickHomeOnBreadcrumb();
+    @And("Click on Breadcrumb {string}")
+    public void clickOnBreadcrumb(String homepage_validation_text) throws InterruptedException {
+        createMobAppWebApp.clickHomeOnBreadcrumb(homepage_validation_text);
         createMobAppWebApp.clickApplicationPageBreadcrumb();
+    }
+
+    @And("Create A Project")
+    public void createAProject() throws Throwable {
+        createMobAppWebApp.createRandomProjects();
     }
 }
 
