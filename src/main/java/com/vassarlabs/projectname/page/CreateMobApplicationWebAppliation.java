@@ -28,6 +28,7 @@ public class CreateMobApplicationWebAppliation {
     private By saveButton = By.xpath("//span[text()='Save']");
     private By appNameField = By.xpath("//input[@placeholder='App Name']");
     private By requiredAppNameField = By.xpath("//div/div/mat-error[text()='Application name is required!']");
+    private By atleast3LettersRequired = By.xpath("//div/div/mat-error[text()=' Application name must be atleast 3 characters.']");
     //    private By shortDescFieldlabel = By.xpath("//mat-label[text()='Short Description']");
     private By shortDescField = By.xpath("//textarea[@formcontrolname='applicationDescription']");
     private By editLogo = By.xpath("//div[@class='mat-ripple icon-img-container']/input");
@@ -125,9 +126,9 @@ public class CreateMobApplicationWebAppliation {
 
     public void updateNameFields(String app_name, String application_name_field_message, String app_desc) throws InterruptedException {
         driver.findElement(appNameField).sendKeys(app_name);
-        driver.findElement(appNameField).sendKeys(" ");
-        driver.findElement(appNameField).click();
-        r.keyPress(KeyEvent.VK_BACK_SPACE);
+//        driver.findElement(appNameField).sendKeys(" ");
+//        driver.findElement(appNameField).click();
+//        r.keyPress(KeyEvent.VK_BACK_SPACE);
         Thread.sleep(3000);
         if (driver.findElements(hintProjectAvailable).size()>0) {
             flag2 = true;
@@ -151,6 +152,13 @@ public class CreateMobApplicationWebAppliation {
             Assert.assertEquals(application_name_field_message, message, "Expected Error Message " + application_name_field_message + " But Found : " + message);
             flag2 = false;
         }
+        if(driver.findElements(atleast3LettersRequired).size()>0){
+            String message = driver.findElement(atleast3LettersRequired).getText();
+            message.trim();
+            Assert.assertEquals(application_name_field_message, message, "Expected Error Message " + application_name_field_message + " But Found : " + message);
+            flag2 = false;
+        }
+
     }
 
     public void clickNextToThemes() {
