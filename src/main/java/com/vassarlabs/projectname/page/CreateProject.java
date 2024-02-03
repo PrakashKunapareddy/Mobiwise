@@ -54,6 +54,7 @@ public class CreateProject {
     private boolean flag6 = false;
     private boolean flag7 = false;
 
+    private boolean flag8 = false;
 
     Robot r = new Robot();
 
@@ -112,21 +113,12 @@ public class CreateProject {
                 driver.findElement(editLogoButton).sendKeys(logoPath1);
                 flag = true;
             }
-
-            String nullData = driver.findElement(projectName).getText();
-            if (nullData.length() > 0) {
-                flag = true;
-            }
         }
         if (driver.findElement(projectName).getText().length() > 0) {
             if (driver.findElements(errorProjectExists).size() > 0) {
                 String errormessage = driver.findElement(By.xpath("//div[contains(@class,'mat-mdc-form-field-error-wrapper')]/mat-error[text()='" + error_message + "']")).getText();
                 Assert.assertEquals(error_message, errormessage, "Expected Error Message " + error_message + " But Found : " + errormessage);
                 Thread.sleep(3000);
-            } else {
-                String s = driver.findElement(projectName).getText();
-                System.out.println(s);
-                flag = true;
             }
         }
 
@@ -141,10 +133,10 @@ public class CreateProject {
         }
     }
 
-    public void clickEnterKey() {
-        r.keyPress(KeyEvent.VK_ENTER);
-        r.keyRelease(KeyEvent.VK_ENTER);
-    }
+//    public void clickEnterKey() {
+//        r.keyPress(KeyEvent.VK_ENTER);
+//        r.keyRelease(KeyEvent.VK_ENTER);
+//    }
 
     public void clickCancleButton() throws Throwable {
         Thread.sleep(2000);
@@ -160,7 +152,7 @@ public class CreateProject {
 //    }
 
     public void checkCreatedProject(String project_name) throws Throwable {
-        if (flag) {
+        if (flag1) {
             Thread.sleep(3000);
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
             String createdProjectName = driver.findElement(By.xpath("//mat-card[contains(@class,'mat-mdc-card mdc-card mat-ripple')]/div/following-sibling::mat-card-content/mat-card-title[text()='" + project_name + "']")).getText();
@@ -176,26 +168,31 @@ public class CreateProject {
         if (flag1) {
             driver.findElement(By.xpath("//mat-card-title[text()='" + project_name + "']/parent::mat-card-content/following-sibling::mat-card-actions//button//span[text()='Edit']")).click();
             Thread.sleep(2000);
-            driver.findElement(projectName).clear();
-            Thread.sleep(2000);
-            driver.findElement(projectName).sendKeys(new_project_name);
-            if (driver.findElement(projectName).getText().equals(null)) {
-                String errormessage = driver.findElement(By.xpath("//div[contains(@class,'mat-mdc-form-field-error-wrapper')]/mat-error[text()='" + error_message + "']")).getText();
-                Assert.assertEquals(error_message, errormessage, "Expected Error Message " + error_message + " But Found : " + errormessage);
-            }
-            if (driver.findElements(errorProjectExists).size() > 0) {
-                String errormessage = driver.findElement(By.xpath("//div[contains(@class,'mat-mdc-form-field-hint-wrapper')]/mat-hint[text()='" + error_message + "']")).getText();
-                Assert.assertEquals(error_message, errormessage, "Expected Error Message " + error_message + " But Found : " + errormessage);
-            }
-
-            if ((driver.findElement(projectName).getText().equals(unchanged))) {
-
-                flag5 = false;
-            }
-
-            if (flag5) {
+            String Projectname = driver.findElement(projectName).getText();
+            Assert.assertEquals(Projectname, project_name, "Expected Error Message " + Projectname + " But Found : " + project_name);
+            flag8 = true;
+            if (flag8) {
+                driver.findElement(projectName).clear();
                 Thread.sleep(2000);
-                clickSaveButton(new_project_name, error_message);
+                driver.findElement(projectName).sendKeys(new_project_name);
+                if (driver.findElement(projectName).getText().equals(null)) {
+                    String errormessage = driver.findElement(By.xpath("//div[contains(@class,'mat-mdc-form-field-error-wrapper')]/mat-error[text()='" + error_message + "']")).getText();
+                    Assert.assertEquals(error_message, errormessage, "Expected Error Message " + error_message + " But Found : " + errormessage);
+                }
+                if (driver.findElements(errorProjectExists).size() > 0) {
+                    String errormessage = driver.findElement(By.xpath("//div[contains(@class,'mat-mdc-form-field-hint-wrapper')]/mat-hint[text()='" + error_message + "']")).getText();
+                    Assert.assertEquals(error_message, errormessage, "Expected Error Message " + error_message + " But Found : " + errormessage);
+                }
+
+                if ((driver.findElement(projectName).getText().equals(unchanged))) {
+
+                    flag5 = false;
+                }
+
+                if (flag5) {
+                    Thread.sleep(2000);
+                    clickSaveButton(new_project_name, error_message);
+                }
             }
         }
     }
@@ -231,7 +228,7 @@ public class CreateProject {
         if (flag3) {
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
             Thread.sleep(3000);
-            driver.findElement(By.xpath("//mat-card-title[text()='"+new_project_name+"']/parent::mat-card-content/following-sibling::mat-card-actions/button/span[text()=' Delete']")).click();
+            driver.findElement(By.xpath("//mat-card-title[text()='" + new_project_name + "']/parent::mat-card-content/following-sibling::mat-card-actions/button/span[text()=' Delete']")).click();
             driver.findElement(deleteProjectPopupNo).click();
         }
     }
