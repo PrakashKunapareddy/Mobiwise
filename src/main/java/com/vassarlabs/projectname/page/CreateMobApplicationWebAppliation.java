@@ -180,17 +180,17 @@ public class CreateMobApplicationWebAppliation {
             String[] themesVerify = all_themes.split("-");
             List<WebElement> dropdownOptions = driver.findElements(By.xpath("//div[@class='cdk-overlay-connected-position-bounding-box']/div/div/mat-option/span[text()]"));
             for (String themeVerification : themesVerify) {
-                boolean isThemeFound = false;
+                boolean ThemeFound = false;
 
-                for (WebElement option : dropdownOptions) {
-                    String themeInDropdown = option.getText();
+                for (WebElement options : dropdownOptions) {
+                    String themeInDropdown = options.getText();
 
                     if (themeVerification.equals(themeInDropdown)) {
-                        isThemeFound = true;
+                        ThemeFound = true;
                         break;
                     }
                 }
-                Assert.assertTrue(isThemeFound, "Expected Error Message " + themeVerification + " not found in the dropdown");
+                Assert.assertTrue(ThemeFound, "Expected Error Message " + themeVerification + " not found in the dropdown");
             }
             driver.findElement(By.xpath("//div[contains(@class,'ng-trigger ng-trigger-transformPanel')]/mat-option/span[text()='" + themes_dropdown + "']")).click();
             if (driver.findElement(themesDropdownValue).getText().equals("Custom Theme")) {

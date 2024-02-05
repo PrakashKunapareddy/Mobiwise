@@ -24,6 +24,7 @@ public class CreateProject {
 
     private By createProjectButton = By.xpath("//button[contains(@class,'mdc-button')]/span[text()=' Create Project ']");
     private By matCreateProjectButton = By.xpath("//div[contains(@class,'row')]/div/mat-card/span[text()='Create Project']");
+    private By addProjectHeading = By.xpath("//div/app-new-project/h1[text()='Add Project']");
 
     private By projectName = By.xpath("//input[contains(@class,'mat-mdc-input-element ng-tns')]");
     private By projectDesc = By.xpath("//textarea[@placeholder='Project Description']");
@@ -31,6 +32,7 @@ public class CreateProject {
     private By saveButton = By.xpath("//span[text()='Save']");
     private By cancelButton = By.xpath("//span[text()='Cancel']");
     //    private By newProjectName = By.xpath("");
+    private By editProjectHeading = By.xpath("//div/app-new-project/h1[text()='Edit Project']");
     private By errorProjectExists = By.xpath("//div/mat-hint[text()='This project name already exists!']");
     private By errorProjectRequired = By.xpath("//div/mat-error[text()=' Project name is required. ']");
     private By editLogoButton = By.xpath("//div[contains(@class,'mat-ripple icon-img-container')]/input");
@@ -71,6 +73,11 @@ public class CreateProject {
         } else {
             driver.findElement(matCreateProjectButton).click();
         }
+        Thread.sleep(3000);
+        String AddProjectHeading = "Add Project";
+        String addProjectHeadingVerify = driver.findElement(addProjectHeading).getText();
+        Assert.assertEquals(AddProjectHeading, addProjectHeadingVerify, "Expected Error Message " + AddProjectHeading + " But Found : " + addProjectHeadingVerify);
+
     }
 
     public void negitiveTestForSave() {
@@ -168,10 +175,18 @@ public class CreateProject {
         if (flag1) {
             driver.findElement(By.xpath("//mat-card-title[text()='" + project_name + "']/parent::mat-card-content/following-sibling::mat-card-actions//button//span[text()='Edit']")).click();
             Thread.sleep(2000);
-            String Projectname = driver.findElement(projectName).getText();
-            Assert.assertEquals(Projectname, project_name, "Expected Error Message " + Projectname + " But Found : " + project_name);
+            String EditProjectHeading = "Edit Project";
+            Thread.sleep(3000);
+            String editProjectHeadingVerify = driver.findElement(editProjectHeading).getText();
+            Assert.assertEquals(EditProjectHeading, editProjectHeadingVerify, "Expected Error Message " + EditProjectHeading + " But Found : " + editProjectHeadingVerify);
+            Thread.sleep(3000);
+            String project_nameVerify = project_name;
+            String Projectname = driver.findElement(projectName).getAttribute("value");
+            System.out.println(Projectname);
+            Assert.assertEquals(Projectname, project_nameVerify, "Expected Error Message " + Projectname + " But Found : " + project_nameVerify);
             flag8 = true;
             if (flag8) {
+                Thread.sleep(3000);
                 driver.findElement(projectName).clear();
                 Thread.sleep(2000);
                 driver.findElement(projectName).sendKeys(new_project_name);

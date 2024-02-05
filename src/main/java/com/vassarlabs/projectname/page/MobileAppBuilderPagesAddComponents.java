@@ -56,19 +56,22 @@ public class MobileAppBuilderPagesAddComponents {
     public void addRandomProjects(String app_name, String application_name_field_message, String app_desc, String themes_dropdown, String headings_dropdown, String body_dropdown, String suggestion_message) throws Throwable {
         Thread.sleep(3000);
         driver.findElement(appNameField).sendKeys(app_name +" "+ rand_int);
+        driver.findElement(appNameField).sendKeys("  ");
         if (driver.findElements(hintProjectAvailable).size() > 0) {
             driver.findElement(shortDescField).sendKeys(app_desc  +" "+ rand_int);
             driver.findElement(editLogo).sendKeys(logoPath);
             Thread.sleep(3000);
             driver.findElement(nextButtonSettings).click();
             flag3 = true;
-        } else {
+        }
+        else {
             driver.findElement(appNameField).sendKeys(app_name + rand_int + "" + rand_int);
             addRandomProjects(app_name, application_name_field_message, app_desc, themes_dropdown, headings_dropdown, body_dropdown, suggestion_message);
         }
         if (flag3) {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
             wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(themesDropdown)));
+            Thread.sleep(3000);
             driver.findElement(themesDropdown).click();
             driver.findElement(By.xpath("//div[contains(@class,'ng-trigger ng-trigger-transformPanel')]/mat-option/span[text()='" + themes_dropdown + "']")).click();
             if (driver.findElement(themesDropdownValue).getText().equals("Custom Theme")) {
