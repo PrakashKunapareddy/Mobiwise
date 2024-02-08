@@ -1,6 +1,10 @@
 package com.vassarlabs.projectname.page;
 
+import com.google.gson.Gson;
 import com.vassarlabs.projectname.driver.WebdriverInitializer;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,10 +15,11 @@ import org.testng.Assert;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.io.FileInputStream;
 import java.security.PrivateKey;
 import java.time.Duration;
+import java.util.*;
 import java.util.List;
-import java.util.Random;
 
 public class CreateMobApplicationWebAppliation {
 
@@ -54,11 +59,20 @@ public class CreateMobApplicationWebAppliation {
     private By breadcrumbHome = By.xpath("//div/nav/ol/li[text()='Home']");
     private By homepage_validation = By.xpath("//div[@class='page-header']/div/h2[text()='Projects']");
     private By breadcrumbApplicationpage = By.xpath("//div/nav/ol/li[contains(@class,'breadcrumb-item active')]");
+    private By primaryColor = By.xpath("//div[@class='color-items']/label/div[@class='content']/div[text()='Primary Color']/following-sibling::div");
+    private By secondaryColor = By.xpath("//div[@class='color-items']/label/div[@class='content']/div[text()='Primary Color']/following-sibling::div");
+    private By defaultBackgroundColor = By.xpath("//div[@class='color-items']/label/div[@class='content']/div[text()='Primary Color']/following-sibling::div");
+    private By defaultTextColor = By.xpath("//div[@class='color-items']/label/div[@class='content']/div[text()='Primary Color']/following-sibling::div");
+    private By headingsDropdownValue = By.xpath("//div/label/mat-label[text()='Headings']/../../../following-sibling::div/mat-select/div/div/span/span");
+    private By bodyDropdownValue = By.xpath("//div/label/mat-label[text()='Body']/../../../following-sibling::div/mat-select/div/div/span/span");
 
+     LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> Headers = new LinkedHashMap<>();
     private boolean flag = false;
     private boolean flag1 = true;
     private boolean flag2 = false;
     private boolean flag3 = false;
+    private boolean flag4 = false;
+
     private boolean flagCreateProject = false;
 
 
@@ -143,7 +157,7 @@ public class CreateMobApplicationWebAppliation {
             Assert.assertEquals(application_name_field_message, message, "Expected Error Message " + application_name_field_message + " But Found : " + message);
         }
         if (driver.findElements(errorProjectExists).size() > 0) {
-            String message = driver.findElement(hintProjectAvailable).getText();
+            String message = driver.findElement(errorProjectExists).getText();
             Assert.assertEquals(application_name_field_message, message, "Expected Error Message " + application_name_field_message + " But Found : " + message);
         }
         if (flag2) {
@@ -166,49 +180,99 @@ public class CreateMobApplicationWebAppliation {
 
     }
 
-    public void clickNextToThemes() {
+    public void clickNextToThemes() throws InterruptedException {
         if (flag2) {
+            Thread.sleep(3000);
             driver.findElement(nextButtonSettings).click();
         }
     }
 
-    public void updateThemeAndClickNext(String themes_dropdown, String headings_dropdown, String body_dropdown, String suggestion_message, String all_themes) throws Throwable {
+    public void compareThemesFromExcel() throws Throwable {
+        String loc = "C:\\Users\\user\\Documents\\Mobiwise\\MobiwiseThemes.xlsx";
+        FileInputStream fs = new FileInputStream(loc);
+        //Creating a workbook
+        XSSFWorkbook workbook = new XSSFWorkbook(fs);
+        Sheet sh = workbook.getSheet("Themes");
+//        Sheet sh = book.getSheet("Themes");
+        Row row = sh.getRow(0);
+        int l_row = sh.getLastRowNum();
+        int l_cell = row.getLastCellNum();
+
+        for (int i = 0; i < l_cell - 1; i++) {
+            String header_key = sh.getRow(0).getCell(0).getStringCellValue();
+            LinkedHashMap<String, ArrayList<String>> Themes = new LinkedHashMap<>();
+            for (int j = 1; j <= l_row - 1; j++) {
+                String themes_key = sh.getRow(j).getCell(0).getStringCellValue();
+                ArrayList<String> values_list = new ArrayList<>();
+                for (int k = 1; k <= l_cell - 1; k++) {
+                    String values = sh.getRow(j).getCell(k).getStringCellValue();
+                    values_list.add(values);
+                }
+                Themes.put(themes_key, values_list);
+            }
+            Headers.put(header_key, Themes);
+        }
+        System.out.println(new Gson().toJson(Headers));
+    }
+
+    public void customThemeFlow(String themes_dropdown, String headings_dropdown, String body_dropdown, String suggestion_message) throws Throwable {
+        Thread.sleep(3000);
+        String actual_suggestion_message_heading = driver.findElements(suggestionForDropdown).get(0).getText();
+        String actual_suggestion_message_body = driver.findElements(suggestionForDropdown).get(1).getText();
+        Assert.assertEquals(suggestion_message, actual_suggestion_message_heading, "Expected Error Message " + suggestion_message + " But Found : " + actual_suggestion_message_heading);
+        Assert.assertEquals(suggestion_message, actual_suggestion_message_body, "Expected Error Message " + suggestion_message + " But Found : " + actual_suggestion_message_body);
+        Thread.sleep(3000);
+        driver.findElement(headingsDropdown).click();
+        driver.findElement(By.xpath("//mat-option[contains(@class,'mat-mdc-option mdc-list-item')]/span[text()='" + headings_dropdown + "']")).click();
+        Thread.sleep(3000);
+        driver.findElement(bodyDropdown).click();
+        driver.findElement(By.xpath("//mat-option[contains(@class,'mat-mdc-option mdc-list-item')]/span[text()='" + body_dropdown + "']")).click();
+        flag3 = true;
+    }
+
+    public void predefinedThemeFlow(String themes_dropdown) throws Throwable {
+        Thread.sleep(1000);
+        compareThemesFromExcel();
+        ArrayList<String> uiCompare = new ArrayList<>();//Array list for Ui values
+        Thread.sleep(3000);
+        uiCompare.add(driver.findElement(primaryColor).getText());
+        uiCompare.add(driver.findElement(secondaryColor).getText());
+        uiCompare.add(driver.findElement(defaultBackgroundColor).getText());
+        uiCompare.add(driver.findElement(defaultTextColor).getText());
+        uiCompare.add(driver.findElement(headingsDropdownValue).getText());
+        uiCompare.add(driver.findElement(bodyDropdownValue).getText());
+        System.out.println(uiCompare.size());
+        for (int i = 0; i <= uiCompare.size()-1; i++) {
+            String UiText = uiCompare.get(i);
+            for (int j = 0; j <= uiCompare.size()-1; j++) {
+                String HashmapText = Headers.get("Select Themes").get(themes_dropdown).get(j);//taken values from Global hashmap
+                if (UiText.equals(HashmapText)) {
+                    Assert.assertEquals(UiText, HashmapText, "Expected Error Message " + UiText + " But Found : " + HashmapText);
+                    break;
+                }
+            }
+
+        }
+        flag3 = true;
+    }
+
+    public void updateThemeAndClickNext(String themes_dropdown, String headings_dropdown, String body_dropdown, String suggestion_message) throws Throwable {
         if (flag2) {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
             wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(themesDropdown)));
+            Thread.sleep(3000);
             driver.findElement(themesDropdown).click();
-            String[] themesVerify = all_themes.split("-");
-            List<WebElement> dropdownOptions = driver.findElements(By.xpath("//div[@class='cdk-overlay-connected-position-bounding-box']/div/div/mat-option/span[text()]"));
-            for (String themeVerification : themesVerify) {
-                boolean ThemeFound = false;
-
-                for (WebElement options : dropdownOptions) {
-                    String themeInDropdown = options.getText();
-
-                    if (themeVerification.equals(themeInDropdown)) {
-                        ThemeFound = true;
-                        break;
-                    }
-                }
-                Assert.assertTrue(ThemeFound, "Expected Error Message " + themeVerification + " not found in the dropdown");
-            }
+            Thread.sleep(3000);
             driver.findElement(By.xpath("//div[contains(@class,'ng-trigger ng-trigger-transformPanel')]/mat-option/span[text()='" + themes_dropdown + "']")).click();
             if (driver.findElement(themesDropdownValue).getText().equals("Custom Theme")) {
-                String actual_suggestion_message_heading = driver.findElements(suggestionForDropdown).get(0).getText();
-                String actual_suggestion_message_body = driver.findElements(suggestionForDropdown).get(1).getText();
-                Assert.assertEquals(suggestion_message, actual_suggestion_message_heading, "Expected Error Message " + suggestion_message + " But Found : " + actual_suggestion_message_heading);
-                Assert.assertEquals(suggestion_message, actual_suggestion_message_body, "Expected Error Message " + suggestion_message + " But Found : " + actual_suggestion_message_body);
-                driver.findElement(headingsDropdown).click();
-                driver.findElement(By.xpath("//mat-option[contains(@class,'mat-mdc-option mdc-list-item')]/span[text()='" + headings_dropdown + "']")).click();
-                driver.findElement(bodyDropdown).click();
-                driver.findElement(By.xpath("//mat-option[contains(@class,'mat-mdc-option mdc-list-item')]/span[text()='" + body_dropdown + "']")).click();
-                flag3 = true;
+                customThemeFlow(themes_dropdown, headings_dropdown, body_dropdown, suggestion_message);
+            } else {
+                predefinedThemeFlow(themes_dropdown);
             }
-            if (!(driver.findElement(themesDropdownValue).getText().equals("Custom Theme"))) {
-                flag3 = true;
-            }
+
         }
     }
+
 
     public void clickNextforBranding() throws InterruptedException {
         if (flag3) {
@@ -229,6 +293,6 @@ public class CreateMobApplicationWebAppliation {
         }
 
     }
-
-
 }
+
+

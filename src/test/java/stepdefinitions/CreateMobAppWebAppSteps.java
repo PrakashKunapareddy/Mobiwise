@@ -39,9 +39,9 @@ public class CreateMobAppWebAppSteps {
 
     }
 
-    @And("Update {string} {string} {string} {string} and Click on Next {string}")
-    public void updateThemes_dropdownHeadings_dropdownBody_dropdownAndClickOnNext(String themes_dropdown, String headings_dropdown, String body_dropdown, String suggestion_message, String all_themes ) throws Throwable {
-        createMobAppWebApp.updateThemeAndClickNext(themes_dropdown, headings_dropdown, body_dropdown, suggestion_message,all_themes);
+    @And("Update {string} {string} {string} {string} and Click on Next")
+    public void updateThemes_dropdownHeadings_dropdownBody_dropdownAndClickOnNext(String themes_dropdown, String headings_dropdown, String body_dropdown, String suggestion_message ) throws Throwable {
+        createMobAppWebApp.updateThemeAndClickNext(themes_dropdown, headings_dropdown, body_dropdown, suggestion_message);
         createMobAppWebApp.clickNextforBranding();
     }
 
