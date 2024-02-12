@@ -46,8 +46,7 @@ public class CreateMobApplicationWebAppliation {
     private By suggestionForDropdown = By.xpath("//mat-hint[text()='This is required field!']");
     private By headingsDropdown = By.xpath("//div[contains(@class,'mdc-notched-outline__notch')]/label/mat-label[text()='Headings']/../../../following-sibling::div/mat-select/div/div/following-sibling::div");
     private By bodyDropdown = By.xpath("//div[contains(@class,'mdc-notched-outline__notch')]/label/mat-label[text()='Body']/../../../following-sibling::div/mat-select/div/div/following-sibling::div");
-    private By nextButtonBranding = By.xpath("//span[text()='Next']");
-    //    private By toasterMessage = By.xpath("//div[text()=' Sucessfully Created Application ']");
+    private By nextButtonBranding = By.xpath("//span[text()='Next']/parent::button");
     private String logoPath = "D:\\MobileWise\\Logo\\logo2.webp";
 
     private String invalidlogoPath = "D:\\MobileWise\\Logo\\stanley.png";
@@ -60,13 +59,13 @@ public class CreateMobApplicationWebAppliation {
     private By homepage_validation = By.xpath("//div[@class='page-header']/div/h2[text()='Projects']");
     private By breadcrumbApplicationpage = By.xpath("//div/nav/ol/li[contains(@class,'breadcrumb-item active')]");
     private By primaryColor = By.xpath("//div[@class='color-items']/label/div[@class='content']/div[text()='Primary Color']/following-sibling::div");
-    private By secondaryColor = By.xpath("//div[@class='color-items']/label/div[@class='content']/div[text()='Primary Color']/following-sibling::div");
-    private By defaultBackgroundColor = By.xpath("//div[@class='color-items']/label/div[@class='content']/div[text()='Primary Color']/following-sibling::div");
-    private By defaultTextColor = By.xpath("//div[@class='color-items']/label/div[@class='content']/div[text()='Primary Color']/following-sibling::div");
+    private By secondaryColor = By.xpath("//div[@class='color-items']/label/div[@class='content']/div[text()='Secondary Color']/following-sibling::div");
+    private By defaultBackgroundColor = By.xpath("//div[@class='color-items']/label/div[@class='content']/div[text()='Default Background Color']/following-sibling::div");
+    private By defaultTextColor = By.xpath("//div[@class='color-items']/label/div[@class='content']/div[text()='Default Text Color']/following-sibling::div");
     private By headingsDropdownValue = By.xpath("//div/label/mat-label[text()='Headings']/../../../following-sibling::div/mat-select/div/div/span/span");
     private By bodyDropdownValue = By.xpath("//div/label/mat-label[text()='Body']/../../../following-sibling::div/mat-select/div/div/span/span");
 
-     LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> Headers = new LinkedHashMap<>();
+    LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> Headers = new LinkedHashMap<>();
     private boolean flag = false;
     private boolean flag1 = true;
     private boolean flag2 = false;
@@ -215,47 +214,6 @@ public class CreateMobApplicationWebAppliation {
         System.out.println(new Gson().toJson(Headers));
     }
 
-    public void customThemeFlow(String themes_dropdown, String headings_dropdown, String body_dropdown, String suggestion_message) throws Throwable {
-        Thread.sleep(3000);
-        String actual_suggestion_message_heading = driver.findElements(suggestionForDropdown).get(0).getText();
-        String actual_suggestion_message_body = driver.findElements(suggestionForDropdown).get(1).getText();
-        Assert.assertEquals(suggestion_message, actual_suggestion_message_heading, "Expected Error Message " + suggestion_message + " But Found : " + actual_suggestion_message_heading);
-        Assert.assertEquals(suggestion_message, actual_suggestion_message_body, "Expected Error Message " + suggestion_message + " But Found : " + actual_suggestion_message_body);
-        Thread.sleep(3000);
-        driver.findElement(headingsDropdown).click();
-        driver.findElement(By.xpath("//mat-option[contains(@class,'mat-mdc-option mdc-list-item')]/span[text()='" + headings_dropdown + "']")).click();
-        Thread.sleep(3000);
-        driver.findElement(bodyDropdown).click();
-        driver.findElement(By.xpath("//mat-option[contains(@class,'mat-mdc-option mdc-list-item')]/span[text()='" + body_dropdown + "']")).click();
-        flag3 = true;
-    }
-
-    public void predefinedThemeFlow(String themes_dropdown) throws Throwable {
-        Thread.sleep(1000);
-        compareThemesFromExcel();
-        ArrayList<String> uiCompare = new ArrayList<>();//Array list for Ui values
-        Thread.sleep(3000);
-        uiCompare.add(driver.findElement(primaryColor).getText());
-        uiCompare.add(driver.findElement(secondaryColor).getText());
-        uiCompare.add(driver.findElement(defaultBackgroundColor).getText());
-        uiCompare.add(driver.findElement(defaultTextColor).getText());
-        uiCompare.add(driver.findElement(headingsDropdownValue).getText());
-        uiCompare.add(driver.findElement(bodyDropdownValue).getText());
-        System.out.println(uiCompare.size());
-        for (int i = 0; i <= uiCompare.size()-1; i++) {
-            String UiText = uiCompare.get(i);
-            for (int j = 0; j <= uiCompare.size()-1; j++) {
-                String HashmapText = Headers.get("Select Themes").get(themes_dropdown).get(j);//taken values from Global hashmap
-                if (UiText.equals(HashmapText)) {
-                    Assert.assertEquals(UiText, HashmapText, "Expected Error Message " + UiText + " But Found : " + HashmapText);
-                    break;
-                }
-            }
-
-        }
-        flag3 = true;
-    }
-
     public void updateThemeAndClickNext(String themes_dropdown, String headings_dropdown, String body_dropdown, String suggestion_message) throws Throwable {
         if (flag2) {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -273,23 +231,64 @@ public class CreateMobApplicationWebAppliation {
         }
     }
 
+    public void customThemeFlow(String themes_dropdown, String headings_dropdown, String body_dropdown, String suggestion_message) throws Throwable {
+        Thread.sleep(3000);
+        String actual_suggestion_message_heading = driver.findElements(suggestionForDropdown).get(0).getText();
+        String actual_suggestion_message_body = driver.findElements(suggestionForDropdown).get(1).getText();
+        Assert.assertEquals(suggestion_message, actual_suggestion_message_heading, "Expected Error Message " + suggestion_message + " But Found : " + actual_suggestion_message_heading);
+        Assert.assertEquals(suggestion_message, actual_suggestion_message_body, "Expected Error Message " + suggestion_message + " But Found : " + actual_suggestion_message_body);
+        Thread.sleep(3000);
+        driver.findElement(headingsDropdown).click();
+        driver.findElement(By.xpath("//mat-option[contains(@class,'mat-mdc-option mdc-list-item')]/span[text()='" + headings_dropdown + "']")).click();
+        Thread.sleep(3000);
+        driver.findElement(bodyDropdown).click();
+        driver.findElement(By.xpath("//mat-option[contains(@class,'mat-mdc-option mdc-list-item')]/span[text()='" + body_dropdown + "']")).click();
+        flag3 = true;
+    }
 
-    public void clickNextforBranding() throws InterruptedException {
-        if (flag3) {
+    public void predefinedThemeFlow(String themes_dropdown) throws Throwable {
+        Thread.sleep(3000);
+        System.out.println("Predefined Theme Flow");
+        compareThemesFromExcel();
+        ArrayList<String> uiCompare = new ArrayList<>();//Array list for Ui values
+        Thread.sleep(3000);
+        uiCompare.add(driver.findElement(primaryColor).getText());
+        uiCompare.add(driver.findElement(secondaryColor).getText());
+        uiCompare.add(driver.findElement(defaultBackgroundColor).getText());
+        uiCompare.add(driver.findElement(defaultTextColor).getText());
+        uiCompare.add(driver.findElement(headingsDropdownValue).getText());
+        uiCompare.add(driver.findElement(bodyDropdownValue).getText());
+        System.out.println(uiCompare.size());
+        System.out.println("Predefined Theme Flow");
+        for (int i = 0; i <= uiCompare.size() - 1; i++) {
+            String UiText = uiCompare.get(i);
+            for (int j = 0; j <= uiCompare.size() - 1; j++) {
+                String HashmapText = Headers.get("Select Themes").get(themes_dropdown).get(j);//taken values from Global hashmap
+                if (UiText.equals(HashmapText)) {
+                    Assert.assertEquals(UiText, HashmapText, "Expected Error Message " + UiText + " But Found : " + HashmapText);
+                    break;
+                }
+            }
+
+        }
+        flag3 = true;
+    }
+
+
+    public void clickNextforBranding() throws Throwable {
+        if (flag3 || flag2) {
             Thread.sleep(3000);
             driver.findElement(nextButtonBranding).click();
         }
     }
 
     public void validateToasterMessage(String toaster_message, String app_name) throws Throwable {
-        if (flag2 && flag3) {
+        if (flag3) {
             Thread.sleep(3000);
             if (driver.findElements(By.xpath("//div[@id='toast-container']/div/div[text()=' " + toaster_message + " ']")).size() > 0) {
                 String toaster = driver.findElement(By.xpath("//div[@id='toast-container']/div/div[text()=' " + toaster_message + " ']")).getText();
                 Assert.assertEquals(toaster_message, toaster, "Expected Error Message " + toaster_message + " But Found : " + toaster);
             }
-        } else {
-            System.out.println("Error in The Code");
         }
 
     }

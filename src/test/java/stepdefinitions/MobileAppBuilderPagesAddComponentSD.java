@@ -6,11 +6,14 @@ import com.vassarlabs.projectname.page.MobileAppBuilderPagesAddComponents;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
+import java.awt.*;
 
 
 public class MobileAppBuilderPagesAddComponentSD {
     MobileAppBuilderPagesAddComponents mobileAppBuilderPagesAddComponents = new MobileAppBuilderPagesAddComponents(WebdriverInitializer.getDriver());
 
+    public MobileAppBuilderPagesAddComponentSD() throws Throwable {
+    }
 
 
     @And("Click on the Pages Module, Click on the Landing Page and click on the Add Component Button")

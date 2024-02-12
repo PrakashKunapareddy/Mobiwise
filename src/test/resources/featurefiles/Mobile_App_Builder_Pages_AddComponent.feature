@@ -6,7 +6,7 @@ Feature: Adding Mobile Application And Web Application for Created Project In Mo
 
     Given Entered a valid <username> <password>
     When  Clicked on the sign in button
-    And  Validate login <expected_output> <valid_username>
+    And  Validate login <expected_output>
     And Create A Project
     And Clicked on the Project
     And Click on the <application_type>
@@ -17,5 +17,5 @@ Feature: Adding Mobile Application And Web Application for Created Project In Mo
     Then Verify the <component> on the screen builder
 
     Examples:
-      | username | password     | expected_output | valid_username | application_type | app_name      | application_name_field_message | app_desc                       | themes_dropdown | headings_dropdown | body_dropdown | suggestion_message        | toaster_message                    | components_panel | component |
-      | "dummy"  | "1234567890" | "Projects"      | "dummy"        | " Mobile App "   | "Demo Mobile" | "Application name available."  | "Demo Application Description" | "Custom Theme"  | "Roboto Flex"     | "Roboto Flex" | "This is required field!" | "Sucessfully Created Application " | "Form Fields"    | "Scanner" |
+      | username | password     | expected_output | application_type | app_name      | application_name_field_message | app_desc                       | themes_dropdown | headings_dropdown | body_dropdown | suggestion_message        | toaster_message                    | components_panel | component |
+      | "dummy"  | "1234567890" | "Projects"      | " Mobile App "   | "Demo Mobile" | "Application name available."  | "Demo Application Description" | "Custom Theme"  | "Roboto Flex"     | "Roboto Flex" | "This is required field!" | "Sucessfully Created Application " | "Form Fields"    | "Scanner" |

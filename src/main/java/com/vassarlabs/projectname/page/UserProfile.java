@@ -146,12 +146,12 @@ public class UserProfile {
         }
     }
 
-    public void loginAgain(String username, String new_password, String expected_output, String valid_username) throws Throwable {
+    public void loginAgain(String username, String new_password, String expected_output) throws Throwable {
         if (loginFlag && succesfulChangePasswordFlag) {
             newLogin.enterUsername(username);
             newLogin.enterPassword(new_password);
             newLogin.clickSignInButton();
-            newLogin.validateLogin(expected_output, valid_username);
+            newLogin.validateLogin(expected_output);
         }
     }
 

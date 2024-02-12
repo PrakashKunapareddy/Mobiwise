@@ -6,9 +6,6 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.Assert;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 public class LoginStepDefnitions {
 
@@ -27,9 +24,9 @@ public class LoginStepDefnitions {
 
     }
 
-    @Then("Validate login {string} {string}")
-    public void validate_login_(String expected_output, String valid_username) throws Throwable {
-        loginPage.validateLogin(expected_output, valid_username);
+    @Then("Validate login {string}")
+    public void validate_login_(String expected_output) throws Throwable {
+        loginPage.validateLogin(expected_output);
     }
 
 

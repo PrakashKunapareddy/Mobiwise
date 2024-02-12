@@ -4,7 +4,7 @@ Feature: Adding Project Functionality for MobiWise Application
 
     Given Entered a valid <username> <password>
     When  Clicked on the sign in button
-    And  Validate login <expected_output> <valid_username>
+    And  Validate login <expected_output>
     And Clicked on Create Project Button
     And Save button should be in Disable mode by default
     And Enter <project_name> <project_description> <error_message> <error_message_image>
@@ -18,15 +18,15 @@ Feature: Adding Project Functionality for MobiWise Application
 
 
     Examples:
-      | username | password     | expected_output | valid_username | project_name | project_description    | new_project_name | new_project_description | error_message                       | error_message_image                                                                                                        |
-      | "dummy"  | "1234567890" | "Projects"      | "dummy"        | "Demo"       | "Demo Description"     | "New Demo"       | "New Demo Description"  | ""                                  | "The selected image does not conform to recommended standards, which may impact the rendering of the icon within the app." |
-      | "dummy"  | "1234567890" | "Projects"      | "dummy"        | "Project"    | "Demo Description"     | "New Project"    | "New Demo Description"  | "This project name already exists!" | "The selected image does not conform to recommended standards, which may impact the rendering of the icon within the app." |
-      | "dummy"  | "1234567890" | "Projects"      | "dummy"        | "Demo4"      | "Demo Description"     | "New Demo4"      | "New Demo Description"  | "This project name already exists!" | "The selected image does not conform to recommended standards, which may impact the rendering of the icon within the app." |
-      | "dummy"  | "1234567890" | "Projects"      | "dummy"        | "Demo0"      | "Demo Description"     | "Demo0"          | "New Demo Description"  | "This project name already exists!" | "The selected image does not conform to recommended standards, which may impact the rendering of the icon within the app." |
-      | "dummy"  | "1234567890" | "Projects"      | "dummy"        | ""           | "New Demo Description" | "New Demo1"      | "new description"       | " Project name is required."        | "The selected image does not conform to recommended standards, which may impact the rendering of the icon within the app." |
-      | "dummy"  | "1234567890" | "Projects"      | "dummy"        | "New Demo"   | "New Demo Description" | ""               | ""                      | "This proj ect name already exists!" | "The selected image does not conform to recommended standards, which may impact the rendering of the icon within the app." |
-      | "dummy"  | "1234567890" | "Projects"      | "dummy"        | "Demo2"      | "Demo Description"     | ""               | "Description"           | " Project name is required."        | "The selected image does not conform to recommended standards, which may impact the rendering of the icon within the app." |
-      | "dummy"  | "1234567890" | "Projects"      | "dummy"        | "Demo3"      | ""                     | "Demo0"          | ""                      | "This project name already exists!" | "The selected image does not conform to recommended standards, which may impact the rendering of the icon within the app." |
+      | username | password     | expected_output | project_name | project_description    | new_project_name | new_project_description | error_message                        | error_message_image                                                                                                        |
+      | "dummy"  | "1234567890" | "Projects"      | "Demo"       | "Demo Description"     | "New Demo"       | "New Demo Description"  | ""                                   | "The selected image does not conform to recommended standards, which may impact the rendering of the icon within the app." |
+      | "dummy"  | "1234567890" | "Projects"      | "Project"    | "Demo Description"     | "New Project"    | "New Demo Description"  | "This project name already exists!"  | "The selected image does not conform to recommended standards, which may impact the rendering of the icon within the app." |
+      | "dummy"  | "1234567890" | "Projects"      | "Demo4"      | "Demo Description"     | "New Demo4"      | "New Demo Description"  | "This project name already exists!"  | "The selected image does not conform to recommended standards, which may impact the rendering of the icon within the app." |
+      | "dummy"  | "1234567890" | "Projects"      | "Demo0"      | "Demo Description"     | "Demo0"          | "New Demo Description"  | "This project name already exists!"  | "The selected image does not conform to recommended standards, which may impact the rendering of the icon within the app." |
+      | "dummy"  | "1234567890" | "Projects"      | ""           | "New Demo Description" | "New Demo1"      | "new description"       | " Project name is required."         | "The selected image does not conform to recommended standards, which may impact the rendering of the icon within the app." |
+      | "dummy"  | "1234567890" | "Projects"      | "New Demo"   | "New Demo Description" | ""               | ""                      | "This proj ect name already exists!" | "The selected image does not conform to recommended standards, which may impact the rendering of the icon within the app." |
+      | "dummy"  | "1234567890" | "Projects"      | "Demo2"      | "Demo Description"     | ""               | "Description"           | " Project name is required."         | "The selected image does not conform to recommended standards, which may impact the rendering of the icon within the app." |
+      | "dummy"  | "1234567890" | "Projects"      | "Demo3"      | ""                     | "Demo0"          | ""                      | "This project name already exists!"  | "The selected image does not conform to recommended standards, which may impact the rendering of the icon within the app." |
 
 
 

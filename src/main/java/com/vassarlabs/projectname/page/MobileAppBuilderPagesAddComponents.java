@@ -1,5 +1,6 @@
 package com.vassarlabs.projectname.page;
 
+import com.vassarlabs.projectname.driver.WebdriverInitializer;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,6 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import java.awt.*;
 import java.time.Duration;
 import java.util.Random;
 
@@ -43,13 +45,15 @@ public class MobileAppBuilderPagesAddComponents {
     private By componentOnTheScreenBuilder = By.xpath("//div[contains(@class,'cdk-drop-list mb-section-container')]/div/div/lib-widget-filter/div/md-filled-button");
     private boolean flag3 = false;
     private boolean flag4 = false;
+    CreateMobApplicationWebAppliation createMobAppWebApp = new CreateMobApplicationWebAppliation(WebdriverInitializer.getDriver());
+
 
     private Actions act;
     Random ra = new Random();
     int rand_int = ra.nextInt(1000);
 
 
-    public MobileAppBuilderPagesAddComponents(WebDriver driver) {
+    public MobileAppBuilderPagesAddComponents(WebDriver driver) throws AWTException {
         this.driver = driver;
     }
 
@@ -85,6 +89,10 @@ public class MobileAppBuilderPagesAddComponents {
                 driver.findElement(By.xpath("//mat-option[contains(@class,'mat-mdc-option mdc-list-item')]/span[text()='" + body_dropdown + "']")).click();
                 Thread.sleep(3000);
                 driver.findElement(nextButtonBranding).click();
+            }
+            else{
+                createMobAppWebApp.predefinedThemeFlow(themes_dropdown);
+                createMobAppWebApp.clickNextforBranding();
             }
         }
     }

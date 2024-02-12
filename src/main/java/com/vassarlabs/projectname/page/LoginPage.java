@@ -53,7 +53,7 @@ public class LoginPage {
 
     }
 
-    public void validateLogin(String expected_output, String valid_username) throws Throwable {
+    public void validateLogin(String expected_output) throws Throwable {
         if (flag) {
             Thread.sleep(2000);
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));

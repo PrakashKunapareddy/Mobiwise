@@ -37,8 +37,8 @@ public class UserProfileSD {
         userProfile.verifytoasterChangePassword(toaster_message);
     }
 
-    @And("Login again with New Password {string} {string} {string} {string}")
-    public void loginAgainWithNewPasswordUsernameNew_passwordExpected_outputValid_username(String username, String new_password, String expected_output, String valid_username) throws Throwable {
-        userProfile.loginAgain(username, new_password, expected_output, valid_username);
+    @And("Login again with New Password {string} {string} {string}")
+    public void loginAgainWithNewPasswordUsernameNew_passwordExpected_outputValid_username(String username, String new_password, String expected_output) throws Throwable {
+        userProfile.loginAgain(username, new_password, expected_output);
     }
 }
