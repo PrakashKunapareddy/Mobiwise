@@ -16,7 +16,7 @@ public class UserProfileSD {
 
     @And("Update password {string} {string} and click Submit {string} {string} {string}")
     public void updatePasswordNew_passwordConfirm_passwordAndClickSubmitNew_password_error_messageConfirm_password_errorPassword_suggestion_message(String new_password, String confirm_password, String new_password_error_message, String confirm_password_error, String password_suggestion_message) throws Throwable {
-        userProfile.validateNewPasswordAndConfirmPassword(new_password,confirm_password,new_password_error_message,confirm_password_error,password_suggestion_message);
+        userProfile.validateNewPasswordAndConfirmPassword(new_password, confirm_password, new_password_error_message, confirm_password_error, password_suggestion_message);
 
     }
 
@@ -35,5 +35,10 @@ public class UserProfileSD {
     @And("Verify Successful Password Change {string}")
     public void verifySuccessfulPasswordChange(String toaster_message) throws Throwable {
         userProfile.verifytoasterChangePassword(toaster_message);
+    }
+
+    @And("Login again with New Password {string} {string} {string} {string}")
+    public void loginAgainWithNewPasswordUsernameNew_passwordExpected_outputValid_username(String username, String new_password, String expected_output, String valid_username) throws Throwable {
+        userProfile.loginAgain(username, new_password, expected_output, valid_username);
     }
 }
