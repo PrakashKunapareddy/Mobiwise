@@ -133,7 +133,6 @@ public class ThemesModule {
                 }
             }
         }
-        clickApplyButton(toaster_message_themes_apply);
     }
 
     public void themeIsNotCustomTheme(String themes_change, String toaster_message_themes_apply) throws Throwable {
@@ -152,7 +151,6 @@ public class ThemesModule {
         uiCompare.add(driver.findElement(bodyTextColor).getText());
         uiCompare.add(driver.findElement(headingsDropdownValue).getText());
         uiCompare.add(driver.findElement(bodyDropdownValue).getText());
-        clickApplyButton(toaster_message_themes_apply);
         for (int i = 0; i <= uiCompare.size() - 1; i++) {
             String UiText = uiCompare.get(i);
             for (int j = 0; j <= uiCompare.size() - 1; j++) {
@@ -163,17 +161,22 @@ public class ThemesModule {
                 }
             }
         }
+        storePresetThemeData();
         clickResetButton();
         comparePreviousThemeAfterReset();
-    }
 
-    public void comparePreviousThemeAfterReset() {
+    }
+    public void storePresetThemeData(){
         presentTheme.add(driver.findElement(primaryColor).getText());
         presentTheme.add(driver.findElement(OnPrimary).getText());
         presentTheme.add(driver.findElement(backgroundColor).getText());
         presentTheme.add(driver.findElement(bodyTextColor).getText());
         presentTheme.add(driver.findElement(headingsDropdownValue).getText());
         presentTheme.add(driver.findElement(bodyDropdownValue).getText());
+        System.out.println(presentTheme);
+    }
+
+    public void comparePreviousThemeAfterReset() {
         for (int i = 0; i <= presentTheme.size() - 1; i++) {
             String presentText = presentTheme.get(i);
             for (int j = 0; j <= previousTheme.size() - 1; j++) {

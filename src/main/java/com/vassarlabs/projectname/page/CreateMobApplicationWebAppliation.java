@@ -108,7 +108,7 @@ public class CreateMobApplicationWebAppliation {
 
     public void clickProjectMatButton() throws Throwable {
         Thread.sleep(3000);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.findElements(projectMatBuutton).get(0).click();
         flag = true;
     }
