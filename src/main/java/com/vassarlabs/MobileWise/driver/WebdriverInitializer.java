@@ -1,4 +1,4 @@
-package com.vassarlabs.projectname.driver;
+package com.vassarlabs.MobileWise.driver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;

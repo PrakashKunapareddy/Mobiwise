@@ -1,12 +1,9 @@
-package com.vassarlabs.projectname.page;
+package com.vassarlabs.MobileWise.page;
 
-import com.vassarlabs.projectname.driver.WebdriverInitializer;
+import com.vassarlabs.MobileWise.driver.WebdriverInitializer;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class UserProfile {
     WebDriver driver;

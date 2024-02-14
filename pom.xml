@@ -207,6 +207,11 @@
             <artifactId>selenium-api</artifactId>
             <version>4.10.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-api</artifactId>
+            <version>4.16.1</version>
+        </dependency>
         <!--		&lt;!&ndash;  https://mvnrepository.com/artifact/io.rest-assured/json-schema-validator  &ndash;&gt;-->
         <!--		<dependency>-->
         <!--			<groupId>io.rest-assured</groupId>-->

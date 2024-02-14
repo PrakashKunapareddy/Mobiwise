@@ -1,7 +1,7 @@
 package stepdefinitions;
 
-import com.vassarlabs.projectname.driver.WebdriverInitializer;
-import com.vassarlabs.projectname.page.LoginPage;
+import com.vassarlabs.MobileWise.driver.WebdriverInitializer;
+import com.vassarlabs.MobileWise.page.LoginPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -13,7 +13,7 @@ public class LoginStepDefnitions {
 
 
     @Given("Entered a valid {string} {string}")
-    public void entered_a_valid_(String username, String password) throws InterruptedException {
+    public void entered_a_valid (String username,String password) throws Throwable {
         loginPage.enterUsername(username);
         loginPage.enterPassword(password);
     }

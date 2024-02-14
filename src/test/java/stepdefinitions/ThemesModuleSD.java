@@ -1,12 +1,8 @@
 package stepdefinitions;
 
-import com.vassarlabs.projectname.driver.WebdriverInitializer;
-import com.vassarlabs.projectname.page.ThemesModule;
-import com.vassarlabs.projectname.page.UserProfile;
+import com.vassarlabs.MobileWise.driver.WebdriverInitializer;
+import com.vassarlabs.MobileWise.page.ThemesModule;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Then;
-
-import java.awt.*;
 
 public class ThemesModuleSD {
     ThemesModule themesModule = new ThemesModule(WebdriverInitializer.getDriver());

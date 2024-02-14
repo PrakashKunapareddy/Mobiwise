@@ -1,7 +1,7 @@
 package stepdefinitions;
 
-import com.vassarlabs.projectname.driver.WebdriverInitializer;
-import com.vassarlabs.projectname.page.CreateProject;
+import com.vassarlabs.MobileWise.driver.WebdriverInitializer;
+import com.vassarlabs.MobileWise.page.CreateProject;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -60,7 +60,7 @@ public class CreateProjectSteps {
     }
 
     @Then("Click on Delete Icon and Click on Yes button or ESC on Keyboard {string}")
-    public void clickOnDeleteIconAndClickOnYesButtonOrESCOnKeyboardNew_project_name(String new_project_name) throws InterruptedException {
+    public void clickOnDeleteIconAndClickOnYesButtonOrESCOnKeyboardNew_project_name(String new_project_name) throws Throwable {
         createProject.deleteProjectYes(new_project_name);
 
     }

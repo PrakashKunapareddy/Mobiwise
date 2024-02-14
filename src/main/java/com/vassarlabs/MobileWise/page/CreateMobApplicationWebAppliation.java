@@ -1,25 +1,19 @@
-package com.vassarlabs.projectname.page;
+package com.vassarlabs.MobileWise.page;
 
 import com.google.gson.Gson;
-import com.vassarlabs.projectname.driver.WebdriverInitializer;
 import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.io.FileInputStream;
-import java.security.PrivateKey;
 import java.time.Duration;
 import java.util.*;
-import java.util.List;
 
 public class CreateMobApplicationWebAppliation {
 
@@ -27,7 +21,7 @@ public class CreateMobApplicationWebAppliation {
     WebDriver driver;
 
 
-    private By projectMatBuutton = By.xpath("//div/mat-card/mat-card-content/mat-card-title");  //use find eles
+    private By projectMatBuutton = By.xpath("//div/mat-card/mat-card-content/mat-card-title[contains(@class,'mat-mdc-card-title mat-mdc-tooltip-trigger ellipsis-input')]");  //use find eles
     private By createProjectButton = By.xpath("//button[contains(@class,'mdc-button')]/span[text()=' Create Project ']");
     private By matCreateProjectButton = By.xpath("//div[contains(@class,'row')]/div/mat-card/span[text()='Create Project']");
     private By projectName = By.xpath("//input[contains(@class,'mat-mdc-input-element ng-tns')]");
@@ -108,7 +102,9 @@ public class CreateMobApplicationWebAppliation {
 
     public void clickProjectMatButton() throws Throwable {
         Thread.sleep(3000);
-//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        Thread.sleep(3000);
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(projectMatBuutton)));
         driver.findElements(projectMatBuutton).get(0).click();
         flag = true;
     }

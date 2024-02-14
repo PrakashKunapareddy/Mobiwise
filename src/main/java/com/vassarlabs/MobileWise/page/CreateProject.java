@@ -1,22 +1,12 @@
-package com.vassarlabs.projectname.page;
+package com.vassarlabs.MobileWise.page;
 
-import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.security.Key;
 import java.time.Duration;
-import java.util.Random;
 
 
 public class CreateProject {
@@ -45,6 +35,7 @@ public class CreateProject {
 
     private By deleteProjectPopupYes = By.xpath("//button/span[text()='Yes']");
     private By deleteProjectPopupNo = By.xpath("//button/span[text()='No']");
+    private By toasterProjectDelete = By.xpath("//div[text()=' Sucessfully Deleted Project ']");
     //    private By errorMessageNullProjectName = By.xpath("//div[contains(@class,'mat-mdc-form-field-error-wrapper')]/mat-error[text()='");
 //    private By errorMessageExistingProject = By.xpath("//div[contains(@class,'mat-mdc-form-field-hint-wrapper')]/mat-hint[text()='");
     private boolean flag = false;
@@ -248,7 +239,7 @@ public class CreateProject {
         }
     }
 
-    public void deleteProjectYes(String new_project_name) throws InterruptedException {
+    public void deleteProjectYes(String new_project_name) throws Throwable {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         if (flag3) {
             if (driver.findElement(By.xpath("//mat-card-title[text()='" + new_project_name + "']")).getText().equals("New Demo")) {
@@ -258,7 +249,19 @@ public class CreateProject {
                 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
                 driver.findElement(By.xpath("//mat-card-title[text()='" + new_project_name + "']/parent::mat-card-content/following-sibling::mat-card-actions/button/span/following-sibling::mat-icon/following-sibling::span[text()=' Delete']")).click();
                 driver.findElement(deleteProjectPopupYes).click();
+                validateDeletedProject(new_project_name);
             }
+        }
+    }
+
+    public void validateDeletedProject(String new_project_name) {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        if (driver.findElements(toasterProjectDelete).size() > 0) {
+            boolean projectDeletedflag = !(driver.findElement(By.xpath("//mat-card[contains(@class,'mat-mdc-card mdc-card mat-ripple')]/div/following-sibling::mat-card-content/mat-card-title[text()='" + new_project_name + "']")).isDisplayed());
+            Assert.assertTrue(projectDeletedflag);
+            String toaster = "Sucessfully Deleted Project";
+            String deleteToaster = driver.findElement(toasterProjectDelete).getText().trim();
+            Assert.assertEquals(toaster, deleteToaster, "Expected Error Message " + toaster + " But Found : " + deleteToaster);
         }
     }
 }

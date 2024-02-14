@@ -1,6 +1,6 @@
-package com.vassarlabs.projectname.page;
+package com.vassarlabs.MobileWise.page;
 
-import com.vassarlabs.projectname.driver.WebdriverInitializer;
+import com.vassarlabs.MobileWise.driver.WebdriverInitializer;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,6 +17,8 @@ import java.util.Random;
 public class MobileAppBuilderPagesAddComponents {
 
     WebDriver driver;
+    Actions act;
+
     private By appNameField = By.xpath("//input[@placeholder='App Name']");
     private By shortDescField = By.xpath("//textarea[@formcontrolname='applicationDescription']");
     private By editLogo = By.xpath("//div[@class='mat-ripple icon-img-container']/input");
@@ -48,34 +50,34 @@ public class MobileAppBuilderPagesAddComponents {
     CreateMobApplicationWebAppliation createMobAppWebApp = new CreateMobApplicationWebAppliation(WebdriverInitializer.getDriver());
 
 
-    private Actions act;
     Random ra = new Random();
     int rand_int = ra.nextInt(1000);
 
 
-    public MobileAppBuilderPagesAddComponents(WebDriver driver) throws AWTException {
+    public MobileAppBuilderPagesAddComponents(WebDriver driver) throws Throwable {
         this.driver = driver;
+        act = new Actions(this.driver);
     }
 
     public void addRandomProjects(String app_name, String application_name_field_message, String app_desc, String themes_dropdown, String headings_dropdown, String body_dropdown, String suggestion_message) throws Throwable {
         Thread.sleep(3000);
-        driver.findElement(appNameField).sendKeys(app_name +" "+ rand_int);
+        driver.findElement(appNameField).sendKeys(app_name + " " + rand_int);
         driver.findElement(appNameField).sendKeys("  ");
         if (driver.findElements(hintProjectAvailable).size() > 0) {
-            driver.findElement(shortDescField).sendKeys(app_desc  +" "+ rand_int);
+            driver.findElement(shortDescField).sendKeys(app_desc + " " + rand_int);
             driver.findElement(editLogo).sendKeys(logoPath);
             Thread.sleep(3000);
             driver.findElement(nextButtonSettings).click();
             flag3 = true;
-        }
-        else {
+        } else {
             driver.findElement(appNameField).sendKeys(app_name + rand_int + "" + rand_int);
             addRandomProjects(app_name, application_name_field_message, app_desc, themes_dropdown, headings_dropdown, body_dropdown, suggestion_message);
         }
         if (flag3) {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-            wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(themesDropdown)));
             Thread.sleep(3000);
+            wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(themesDropdown)));
+            Thread.sleep(5000);
             driver.findElement(themesDropdown).click();
             driver.findElement(By.xpath("//div[contains(@class,'ng-trigger ng-trigger-transformPanel')]/mat-option/span[text()='" + themes_dropdown + "']")).click();
             if (driver.findElement(themesDropdownValue).getText().equals("Custom Theme")) {
@@ -89,8 +91,7 @@ public class MobileAppBuilderPagesAddComponents {
                 driver.findElement(By.xpath("//mat-option[contains(@class,'mat-mdc-option mdc-list-item')]/span[text()='" + body_dropdown + "']")).click();
                 Thread.sleep(3000);
                 driver.findElement(nextButtonBranding).click();
-            }
-            else{
+            } else {
                 createMobAppWebApp.predefinedThemeFlow(themes_dropdown);
                 createMobAppWebApp.clickNextforBranding();
             }
@@ -104,15 +105,15 @@ public class MobileAppBuilderPagesAddComponents {
         Thread.sleep(3000);
         driver.findElement(addPageTextfield).sendKeys("Demo");
         driver.findElement(addPageEntityTextfield).sendKeys("Demo");
-        flag4=true;
-        if(flag4){
+        flag4 = true;
+        if (flag4) {
             Thread.sleep(3000);
             driver.findElement(addPageSaveButton).click();
         }
         Thread.sleep(3000);
         driver.findElement(By.xpath("//span[text()='Demo']")).click();
         Thread.sleep(3000);
-       driver.findElement(addComponentsButton).click();
+        driver.findElement(addComponentsButton).click();
     }
 
     public void addComponentToScreenBuilder(String components_panel, String component) {

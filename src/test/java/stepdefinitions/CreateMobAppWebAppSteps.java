@@ -1,7 +1,7 @@
 package stepdefinitions;
 
-import com.vassarlabs.projectname.driver.WebdriverInitializer;
-import com.vassarlabs.projectname.page.CreateMobApplicationWebAppliation;
+import com.vassarlabs.MobileWise.driver.WebdriverInitializer;
+import com.vassarlabs.MobileWise.page.CreateMobApplicationWebAppliation;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 

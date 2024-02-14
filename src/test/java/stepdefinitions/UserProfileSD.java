@@ -1,8 +1,7 @@
 package stepdefinitions;
 
-import com.vassarlabs.projectname.driver.WebdriverInitializer;
-import com.vassarlabs.projectname.page.CreateProject;
-import com.vassarlabs.projectname.page.UserProfile;
+import com.vassarlabs.MobileWise.driver.WebdriverInitializer;
+import com.vassarlabs.MobileWise.page.UserProfile;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 

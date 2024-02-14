@@ -1,8 +1,8 @@
-package com.vassarlabs.projectname.page;
+package com.vassarlabs.MobileWise.page;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import com.vassarlabs.projectname.driver.WebdriverInitializer;
+import com.vassarlabs.MobileWise.driver.WebdriverInitializer;
 import org.testng.Assert;
 
 import java.awt.*;
@@ -162,6 +162,8 @@ public class ThemesModule {
             }
         }
         storePresetThemeData();
+        driver.findElement(By.xpath("Select Heading Font")).click();
+        driver.findElement(By.xpath("//span[text()='Rock 3D']")).click();
         clickResetButton();
         comparePreviousThemeAfterReset();
 

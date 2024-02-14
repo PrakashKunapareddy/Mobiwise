@@ -1,4 +1,4 @@
-package com.vassarlabs.projectname.utils;
+package com.vassarlabs.MobileWise.utils;
 
 public class Constants {
 

@@ -1,12 +1,9 @@
 package stepdefinitions;
 
-import com.vassarlabs.projectname.driver.WebdriverInitializer;
-import com.vassarlabs.projectname.page.CreateMobApplicationWebAppliation;
-import com.vassarlabs.projectname.page.MobileAppBuilderPagesAddComponents;
+import com.vassarlabs.MobileWise.driver.WebdriverInitializer;
+import com.vassarlabs.MobileWise.page.MobileAppBuilderPagesAddComponents;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
-
-import java.awt.*;
 
 
 public class MobileAppBuilderPagesAddComponentSD {

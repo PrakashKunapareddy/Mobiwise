@@ -1,4 +1,4 @@
-package com.vassarlabs.projectname.utils;
+package com.vassarlabs.MobileWise.utils;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

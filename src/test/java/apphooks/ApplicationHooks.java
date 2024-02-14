@@ -1,12 +1,12 @@
 package apphooks;
 
-import com.vassarlabs.projectname.driver.WebdriverInitializer;
+import com.vassarlabs.MobileWise.driver.WebdriverInitializer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.vassarlabs.projectname.utils.ConfigReader;
-import com.vassarlabs.projectname.utils.Constants;
+import com.vassarlabs.MobileWise.utils.ConfigReader;
+import com.vassarlabs.MobileWise.utils.Constants;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;

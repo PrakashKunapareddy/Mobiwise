@@ -1,4 +1,4 @@
-package com.vassarlabs.projectname.page;
+package com.vassarlabs.MobileWise.page;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
