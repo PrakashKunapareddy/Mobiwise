@@ -53,7 +53,7 @@ public class CreateMobApplicationWebAppliation {
     private By homepage_validation = By.xpath("//div[@class='page-header']/div/h2[text()='Projects']");
     private By breadcrumbApplicationpage = By.xpath("//div/nav/ol/li[contains(@class,'breadcrumb-item active')]");
     private By primaryColor = By.xpath("//div[@class='color-items']/label/div[@class='content']/div[text()='Primary Color']/following-sibling::div");
-    private By secondaryColor = By.xpath("//div[@class='color-items']/label/div[@class='content']/div[text()='Secondary Color']/following-sibling::div");
+    private By secondaryColor = By.xpath("//div[@class='color-items']/label/div[@class='content']/div[text()='On Primary']/following-sibling::div");
     private By defaultBackgroundColor = By.xpath("//div[@class='color-items']/label/div[@class='content']/div[text()='Default Background Color']/following-sibling::div");
     private By defaultTextColor = By.xpath("//div[@class='color-items']/label/div[@class='content']/div[text()='Default Text Color']/following-sibling::div");
     private By headingsDropdownValue = By.xpath("//div/label/mat-label[text()='Headings']/../../../following-sibling::div/mat-select/div/div/span/span");

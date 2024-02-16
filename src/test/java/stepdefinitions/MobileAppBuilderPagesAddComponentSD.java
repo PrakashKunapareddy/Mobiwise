@@ -21,7 +21,7 @@ public class MobileAppBuilderPagesAddComponentSD {
 
 
     @And("Click on the {string} and drag the {string} to the screen builder")
-    public void clickOnTheComponents_panelAndDragTheComponentToTheScreenBuilder(String components_panel, String component) {
+    public void clickOnTheComponents_panelAndDragTheComponentToTheScreenBuilder(String components_panel, String component) throws Throwable {
         mobileAppBuilderPagesAddComponents.addComponentToScreenBuilder(components_panel, component);
     }
 
