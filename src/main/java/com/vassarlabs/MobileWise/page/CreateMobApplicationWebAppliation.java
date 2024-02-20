@@ -79,12 +79,12 @@ public class CreateMobApplicationWebAppliation {
 
     public void createRandomProjects() throws Throwable {
         Thread.sleep(2000);
-        if (driver.findElements(createProjectButton).size() > 0) {
+        if (driver.findElements(createProjectButton).size()>0) {
             Thread.sleep(2000);
             driver.findElement(createProjectButton).click();
             flagCreateProject = true;
         }
-        if (driver.findElements(matCreateProjectButton).size() > 0) {
+        if (driver.findElements(matCreateProjectButton).size()>0) {//size>0
             Thread.sleep(2000);
             driver.findElement(matCreateProjectButton).click();
             flagCreateProject = true;
@@ -145,13 +145,13 @@ public class CreateMobApplicationWebAppliation {
 //        driver.findElement(appNameField).click();
 //        r.keyPress(KeyEvent.VK_BACK_SPACE);
         Thread.sleep(3000);
-        if (driver.findElements(hintProjectAvailable).size() > 0) {
+        if (!driver.findElements(hintProjectAvailable).isEmpty()) {
             flag2 = true;
             Thread.sleep(3000);
             String message = driver.findElement(hintProjectAvailable).getText();
             Assert.assertEquals(application_name_field_message, message, "Expected Error Message " + application_name_field_message + " But Found : " + message);
         }
-        if (driver.findElements(errorProjectExists).size() > 0) {
+        if (!driver.findElements(errorProjectExists).isEmpty()) {//size>0
             String message = driver.findElement(errorProjectExists).getText();
             Assert.assertEquals(application_name_field_message, message, "Expected Error Message " + application_name_field_message + " But Found : " + message);
         }
@@ -161,12 +161,12 @@ public class CreateMobApplicationWebAppliation {
         } else {
             driver.findElement(shortDescField).click();
         }
-        if (driver.findElements(requiredAppNameField).size() > 0) {
+        if (!driver.findElements(requiredAppNameField).isEmpty()) {//size>0
             String message = driver.findElement(requiredAppNameField).getText();
             Assert.assertEquals(application_name_field_message, message, "Expected Error Message " + application_name_field_message + " But Found : " + message);
             flag2 = false;
         }
-        if (driver.findElements(atleast3LettersRequired).size() > 0) {
+        if (!driver.findElements(atleast3LettersRequired).isEmpty()) {//size>0
             String message = driver.findElement(atleast3LettersRequired).getText();
             message.trim();
             Assert.assertEquals(application_name_field_message, message, "Expected Error Message " + application_name_field_message + " But Found : " + message);

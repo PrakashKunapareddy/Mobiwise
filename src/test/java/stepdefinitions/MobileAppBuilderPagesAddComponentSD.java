@@ -20,9 +20,9 @@ public class MobileAppBuilderPagesAddComponentSD {
     }
 
 
-    @And("Click on the {string} and drag the {string} to the screen builder")
-    public void clickOnTheComponents_panelAndDragTheComponentToTheScreenBuilder(String components_panel, String component) throws Throwable {
-        mobileAppBuilderPagesAddComponents.addComponentToScreenBuilder(components_panel, component);
+    @And("Click on the {string} and drag the {string} to the screen builder {string} {string}")
+    public void clickOnTheComponents_panelAndDragTheComponentToTheScreenBuilder(String components_panel, String component, String offset_value_x,String offset_value_y) throws Throwable {
+        mobileAppBuilderPagesAddComponents.addComponentToScreenBuilder(components_panel, component,offset_value_x,offset_value_y);
     }
 
     @Then("Verify the {string} on the screen builder")
@@ -31,8 +31,15 @@ public class MobileAppBuilderPagesAddComponentSD {
     }
 
     @And("Enter {string} {string} {string} and Click next {string} {string} {string} {string} and Click on Next")
-    public void enterApp_nameApplication_name_field_messageApp_descAndClickNextThemes_dropdownHeadings_dropdownBody_dropdownSuggestion_messageAndClickOnNext(String app_name, String application_name_field_message, String app_desc,String themes_dropdown, String headings_dropdown,String body_dropdown,String suggestion_message) throws Throwable {
-        mobileAppBuilderPagesAddComponents.addRandomProjects(app_name,application_name_field_message,app_desc, themes_dropdown,  headings_dropdown,  body_dropdown,  suggestion_message);
+    public void enterApp_nameApplication_name_field_messageApp_descAndClickNextThemes_dropdownHeadings_dropdownBody_dropdownSuggestion_messageAndClickOnNext(String app_name, String application_name_field_message, String app_desc, String themes_dropdown, String headings_dropdown, String body_dropdown, String suggestion_message) throws Throwable {
+        mobileAppBuilderPagesAddComponents.addRandomProjects(app_name, application_name_field_message, app_desc, themes_dropdown, headings_dropdown, body_dropdown, suggestion_message);
+
+    }
+
+    @Then("Delete The component from The Screen Builder {string}")
+    public void deleteTheComponentFromTheScreenBuilder(String component) throws Throwable {
+        mobileAppBuilderPagesAddComponents.deleteComponentFromTheScreenBuilder(component);
+        mobileAppBuilderPagesAddComponents.deleteNavbarFromTheScreenBuilder(component);
 
     }
 }

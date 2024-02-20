@@ -15,55 +15,57 @@ import java.beans.JavaBean;
 public class WebdriverInitializer {
 //	public WebDriver driver;
 
-	public static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<>();
+    public static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<>();
 
-	/**
-	 * This method is used to initialize the thradlocal driver on the basis of given
-	 * browser
-	 *
-	 * @param browser
-	 * @return this will return tldriver.
-	 */
-	public WebDriver init_driver(String browser) {
+    /**
+     * This method is used to initialize the thradlocal driver on the basis of given
+     * browser
+     *
+     * @param browser
+     * @return this will return tldriver.
+     */
+    public WebDriver init_driver(String browser) {
 
-		System.out.println("browser value is: " + browser);
+        System.out.println("browser value is: " + browser);
 
-		if (browser.equals("chrome")) {
-			ChromeOptions options = new ChromeOptions();
-			options.addArguments("--remote-allow-origins=*");
-			options.addArguments("window-size=1400,800");
-//			options.addArguments("headless");
+        if (browser.equals("chrome")) {
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("--remote-allow-origins=*");
+            options.addArguments("window-size=1400,800");
+//            options.addArguments("headless");
+            WebDriverManager.chromedriver().clearDriverCache().setup();
+            WebDriverManager.chromedriver().clearResolutionCache().setup();
 
-			WebDriverManager.chromedriver().setup();
-			tlDriver.set(new ChromeDriver(options));
+            WebDriverManager.chromedriver().setup();
+            tlDriver.set(new ChromeDriver(options));
 
-		} else if (browser.equals("firefox")) {
-			WebDriverManager.firefoxdriver().setup();
-			tlDriver.set(new FirefoxDriver());
-		} else if (browser.equals("safari")) {
-			tlDriver.set(new SafariDriver());
-		} else if (browser.equals("edge")) {
-			EdgeOptions edgeOptions = new EdgeOptions();
-			edgeOptions.addArguments("--headless");
-			tlDriver.set(new EdgeDriver(edgeOptions));
-		}
-		else {
-			System.out.println("Please pass the correct browser value: " + browser);
-		}
 
-		getDriver().manage().deleteAllCookies();
-		getDriver().manage().window().maximize();
-		return getDriver();
+        } else if (browser.equals("firefox")) {
+            WebDriverManager.firefoxdriver().setup();
+            tlDriver.set(new FirefoxDriver());
+        } else if (browser.equals("safari")) {
+            tlDriver.set(new SafariDriver());
+        } else if (browser.equals("edge")) {
+            EdgeOptions edgeOptions = new EdgeOptions();
+            edgeOptions.addArguments("--headless");
+            tlDriver.set(new EdgeDriver(edgeOptions));
+        } else {
+            System.out.println("Please pass the correct browser value: " + browser);
+        }
 
-	}
+        getDriver().manage().deleteAllCookies();
+        getDriver().manage().window().maximize();
+        return getDriver();
 
-	/**
-	 * this is used to get the driver with ThreadLocal
-	 *
-	 * @return
-	 */
-	public static synchronized WebDriver getDriver() {
+    }
 
-		return tlDriver.get();
-	}
+    /**
+     * this is used to get the driver with ThreadLocal
+     *
+     * @return
+     */
+    public static synchronized WebDriver getDriver() {
+
+        return tlDriver.get();
+    }
 }
