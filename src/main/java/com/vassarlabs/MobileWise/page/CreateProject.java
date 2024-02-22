@@ -88,6 +88,7 @@ public class CreateProject {
             Assert.assertEquals(error_message, errormessage, "Expected Error Message " + error_message + " But Found : " + errormessage);
             Thread.sleep(3000);
             flag = false;
+
         } else if (driver.findElements(errorProjectExists).size() > 0) {
             String errormessage = driver.findElement(By.xpath("//div[contains(@class,'mat-mdc-form-field-hint-wrapper')]/mat-hint[text()='" + error_message + "']")).getText();
             Assert.assertEquals(error_message, errormessage, "Expected Error Message " + error_message + " But Found : " + errormessage);
@@ -117,6 +118,7 @@ public class CreateProject {
                 String errormessage = driver.findElement(By.xpath("//div[contains(@class,'mat-mdc-form-field-error-wrapper')]/mat-error[text()='" + error_message + "']")).getText();
                 Assert.assertEquals(error_message, errormessage, "Expected Error Message " + error_message + " But Found : " + errormessage);
                 Thread.sleep(3000);
+                flag = false;
             }
         }
 
@@ -184,6 +186,7 @@ public class CreateProject {
                 if (driver.findElement(projectName).getText().equals(null)) {
                     String errormessage = driver.findElement(By.xpath("//div[contains(@class,'mat-mdc-form-field-error-wrapper')]/mat-error[text()='" + error_message + "']")).getText();
                     Assert.assertEquals(error_message, errormessage, "Expected Error Message " + error_message + " But Found : " + errormessage);
+                    flag = false;
                 }
                 if (driver.findElements(errorProjectExists).size() > 0) {
                     String errormessage = driver.findElement(By.xpath("//div[contains(@class,'mat-mdc-form-field-hint-wrapper')]/mat-hint[text()='" + error_message + "']")).getText();

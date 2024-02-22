@@ -50,6 +50,8 @@ public class MobileAppBuilderPagesAddComponents {
     private By deleteComponent = By.xpath("//div[contains(@class,'mobile-canvas-container')]//div[contains(@class,'mobile-canvas ng-star-inserted')]//div//div[contains(@class,'cdk-drop-list')]//lib-widget-filter/div/../..//button[@mattooltip='Delete Widget']");
     private boolean flag3 = false;
     private boolean flag4 = false;
+    private boolean flagultipleComponents = true;
+
     private boolean componentIsonTheScreenBuilderFlag = false;
 
     CreateMobApplicationWebAppliation createMobAppWebApp = new CreateMobApplicationWebAppliation(WebdriverInitializer.getDriver());
@@ -76,6 +78,13 @@ public class MobileAppBuilderPagesAddComponents {
             flag3 = true;
         } else {
             driver.findElement(appNameField).sendKeys(app_name + rand_int + "" + rand_int);
+            if (driver.findElements(hintProjectAvailable).size() > 0) {
+                driver.findElement(shortDescField).sendKeys(app_desc + " " + rand_int);
+                driver.findElement(editLogo).sendKeys(logoPath);
+                Thread.sleep(3000);
+                driver.findElement(nextButtonSettings).click();
+                flag3 = true;
+            }
             addRandomProjects(app_name, application_name_field_message, app_desc, themes_dropdown, headings_dropdown, body_dropdown, suggestion_message);
         }
         if (flag3) {
@@ -125,11 +134,18 @@ public class MobileAppBuilderPagesAddComponents {
         Thread.sleep(3000);
         int offsetvalueX = Integer.parseInt(offset_value_x);
         int offsetvalueY = Integer.parseInt(offset_value_y);
-        WebElement Source = driver.findElement(By.xpath("//div[text()='" + component + "']"));
-        WebElement Target = driver.findElement(screenBuilder);
-        act.moveToElement(Source).clickAndHold().perform();
-        act.moveByOffset(offsetvalueX, offsetvalueY).release().perform();
-//        act.moveToElement(Target).release().perform();
+        String[] Component = component.trim().split(",");
+        if (Component.length > 1) {
+            flagultipleComponents = false;
+        }
+        for (int i = 0; i <= Component.length - 1; i++) {
+            WebElement Source = driver.findElement(By.xpath("//div[text()='" + Component[i] + "']"));
+            Thread.sleep(10000);
+            WebElement Target = driver.findElement(screenBuilder);
+            act.moveToElement(Source).clickAndHold().perform();
+            act.moveByOffset(500, 0).perform();
+            act.moveToElement(Target).release().perform();
+        }
     }
 
     public void verifyAddedComponent(String component) throws InterruptedException {
@@ -148,41 +164,44 @@ public class MobileAppBuilderPagesAddComponents {
                     String title = "Title";
                     Assert.assertEquals(component_name, title, "Expected Error Message " + title + " But Found : " + component_name);
                 }
-                componentIsonTheScreenBuilderFlag = true;
+
             }
 
         } else {
-            if (driver.findElements(componentOnTheScreenBuilder).size() > 0) {
-                driver.findElement(componentOnTheScreenBuilder).click();
-                String[] component_name = driver.findElement(propertiesNavbarHeading).getText().trim().split(" ");
-                if (component_name.length > 2) {
-                    String Component_name = component_name[0] + " " + component_name[1];
-                    Assert.assertEquals(component, Component_name, "Expected Error Message " + component + " But Found : " + Component_name);
-                } else {
-                    Assert.assertEquals(component, component_name[0], "Expected Error Message " + component + " But Found : " + component_name[0]);
+            if (flagultipleComponents) {
+                if (driver.findElements(componentOnTheScreenBuilder).size() > 0) {
+                    driver.findElement(componentOnTheScreenBuilder).click();
+                    String[] component_name = driver.findElement(propertiesNavbarHeading).getText().trim().split(" ");
+                    if (component_name.length > 2) {
+                        String Component_name = component_name[0] + " " + component_name[1];
+                        Assert.assertEquals(component, Component_name, "Expected Error Message " + component + " But Found : " + Component_name);
+                    } else {
+                        Assert.assertEquals(component, component_name[0], "Expected Error Message " + component + " But Found : " + component_name[0]);
+                    }
+
                 }
-                componentIsonTheScreenBuilderFlag = true;
             }
         }
     }
 
     public void deleteNavbarFromTheScreenBuilder(String component) throws Throwable {
         if (component.equals("Navbar")) {
-            if (componentIsonTheScreenBuilderFlag) {
-                Thread.sleep(3000);
-                driver.findElement(deleteComponentNavbar).click();
-            }
+
+            Thread.sleep(3000);
+            driver.findElement(deleteComponentNavbar).click();
+
         }
     }
 
     public void deleteComponentFromTheScreenBuilder(String component) throws Throwable {
         if (!(component.equals("Navbar"))) {
-            if (componentIsonTheScreenBuilderFlag) {
+            if (flagultipleComponents) {
                 Thread.sleep(6000);
                 act.moveToElement(driver.findElement(componentOnTheScreenBuilder)).perform();
                 Thread.sleep(3000);
                 driver.findElement(deleteComponent).click();
             }
+
         }
     }
 //    WebElement shadowHost = driver.findElement(componentOnTheScreenBuilder);

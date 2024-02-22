@@ -24,18 +24,11 @@ public class PropertiesSideBarSD {
     }
 
 
-    @And("Click On Update Components button")
-    public void clickOnUpdateComponentsButton() {
-    }
 
-    @Then("Verify the Components Properties")
-    public void verifyTheComponentsProperties() {
-    }
-
-
-    @And("Edit {string} Of the components in different panels and click on Update Component Button {string} {string}")
-    public void editPropertiesOfTheComponentsInDifferentPanelsAndClickOnUpdateComponentButton(String properties,String panels, String values) {
-
+    @And("Edit {string} Of the components in different panels and click on Update Component Button {string} {string} {string}")
+    public void editPropertiesOfTheComponentsInDifferentPanelsAndClickOnUpdateComponentButton(String properties, String panels, String values_comp, String component) throws Throwable {
+        propertiesSidebar.editPropertiesOfComponent(properties, panels, values_comp, component);
+        propertiesSidebar.clickOnUpdateComponentButton();
     }
 
 
