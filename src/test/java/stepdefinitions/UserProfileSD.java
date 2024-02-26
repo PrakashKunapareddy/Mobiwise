@@ -40,4 +40,9 @@ public class UserProfileSD {
     public void loginAgainWithNewPasswordUsernameNew_passwordExpected_outputValid_username(String username, String new_password, String expected_output) throws Throwable {
         userProfile.loginAgain(username, new_password, expected_output);
     }
+
+    @Then("validate back button after logout")
+    public void validateBackButtonAfterLogout()throws Throwable {
+        userProfile.validateBackButton();
+    }
 }

@@ -25,11 +25,15 @@ public class PropertiesSideBarSD {
 
 
 
-    @And("Edit {string} Of the components in different panels and click on Update Component Button {string} {string} {string}")
-    public void editPropertiesOfTheComponentsInDifferentPanelsAndClickOnUpdateComponentButton(String properties, String panels, String values_comp, String component) throws Throwable {
-        propertiesSidebar.editPropertiesOfComponent(properties, panels, values_comp, component);
-        propertiesSidebar.clickOnUpdateComponentButton();
+    @And("Edit {string} Of the components in different panels and click on Update Component Button {string} {string} {string} {string}")
+    public void editPropertiesOfTheComponentsInDifferentPanelsAndClickOnUpdateComponentButton(String properties, String panels, String values_comp, String component,String page_name) throws Throwable {
+        propertiesSidebar.editPropertiesOfComponent(properties, panels, values_comp, component,page_name);
+
     }
 
 
+    @And("Add Page to The Application {string} {string}")
+    public void addPageToTheApplicationPage_nameEntity_name(String page_name,String entity_name)throws Throwable {
+     propertiesSidebar.addPageForNavigation(page_name,entity_name);
+    }
 }

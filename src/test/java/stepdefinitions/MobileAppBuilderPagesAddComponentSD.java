@@ -21,8 +21,8 @@ public class MobileAppBuilderPagesAddComponentSD {
 
 
     @And("Click on the {string} and drag the {string} to the screen builder {string} {string}")
-    public void clickOnTheComponents_panelAndDragTheComponentToTheScreenBuilder(String components_panel, String component, String offset_value_x,String offset_value_y) throws Throwable {
-        mobileAppBuilderPagesAddComponents.addComponentToScreenBuilder(components_panel, component,offset_value_x,offset_value_y);
+    public void clickOnTheComponents_panelAndDragTheComponentToTheScreenBuilder(String component_panel, String component, String offset_value_x,String offset_value_y) throws Throwable {
+        mobileAppBuilderPagesAddComponents.addComponentToScreenBuilder(component_panel, component,offset_value_x,offset_value_y);
     }
 
     @Then("Verify the {string} on the screen builder")

@@ -156,7 +156,12 @@ public class CreateMobApplicationWebAppliation {
             Assert.assertEquals(application_name_field_message, message, "Expected Error Message " + application_name_field_message + " But Found : " + message);
         }
         if (flag2) {
+            int len = app_desc.length()-1;
             driver.findElement(shortDescField).sendKeys(app_desc);
+            if(driver.findElements(By.xpath("//mat-hint")).size()>0) {
+                String [] shortDescLen = driver.findElement(By.xpath("//mat-hint")).getText().trim().split("/");
+                Assert.assertEquals(shortDescLen[0], len, "Expected Error Message " + shortDescLen[0] + " But Found : " + len);
+            }
             driver.findElement(editLogo).sendKeys(logoPath);
         } else {
             driver.findElement(shortDescField).click();

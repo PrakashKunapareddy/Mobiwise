@@ -19,6 +19,7 @@ public class LoginPage {
     private By forgotPassword = By.xpath(" //span[text()=' Forgot Password? ']");
     private By forgotPasswordUsername = By.xpath("//mat-label[text()='Username']/../../../following-sibling::div/input");
     private By forgotPasswordSubmit = By.xpath("//span[text()=' Submit ']/parent::button");
+    private By noaccessForResorsesLogin = By.xpath("//h3[text()='List Of Applications & Resources']");
     private boolean flag = true;
 
     public LoginPage(WebDriver driver) {
@@ -71,15 +72,13 @@ public class LoginPage {
                 String success = driver.findElement(successMessage).getText();
                 System.out.println(success);
                 Assert.assertEquals(expected_output, success, "Expected Error Message " + expected_output + " But Found : " + success);
+                if(driver.findElements(noaccessForResorsesLogin).size()>0){
+                    String noAccess = driver.findElement(noaccessForResorsesLogin).getText().trim();
+                    Assert.assertEquals(expected_output, noAccess, "Expected Error Message " + expected_output + " But Found : " + noAccess);
+                }
             }
         } else {
             System.out.println("Empty Username Or Password field");
         }
     }
-//    public void forgotPassword(String valid_username){
-//        driver.findElement(forgotPassword).click();
-//        driver.findElement(forgotPasswordUsername).sendKeys(valid_username);
-//        driver.findElement(forgotPasswordSubmit).click();
-//
-//    }
 }

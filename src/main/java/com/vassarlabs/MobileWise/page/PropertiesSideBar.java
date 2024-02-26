@@ -10,6 +10,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
 import java.io.FileInputStream;
+import java.sql.Statement;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -19,6 +20,7 @@ public class PropertiesSideBar {
     private By backArrowPropertiesBar = By.xpath("//mat-toolbar[contains(@class,'mat-toolbar sidemenu-toolbar')]//button//mat-icon[text()='arrow_back']/parent::button");
     private By componentSideBarHeading = By.xpath("//mat-toolbar[contains(@class,'mat-toolbar sidemenu-toolbar')]//button//mat-icon[text()='arrow_back']//following::span[contains(@class,'title')]");
     private By componentOnTheScreenBuilder = By.xpath("//div[contains(@class,'mobile-canvas-container')]//div[contains(@class,'mobile-canvas ng-star-inserted')]//div//div[contains(@class,'cdk-drop-list')]//lib-widget-filter/div");
+    private By SaveComponentFilledButton = By.xpath("//div[contains(@class,'mobile-canvas-container')]//div[contains(@class,'mobile-canvas ng-star-inserted')]//div//div[contains(@class,'cdk-drop-list')]//lib-widget-filter/div/md-filled-button");
     private By displayTypeDropdown = By.xpath("//mat-label[text()='Display Type']/parent::label/parent::div/parent::div/following::div/mat-select/div/div//span/span/../../following-sibling::div[contains(@class,'mat-mdc-select-arrow-wrapper')]");
     private By displayTypeDropdownValue = By.xpath("//mat-label[text()='Display Type']/../../../following-sibling::div/mat-select/div/div/span/span");
     private By labelTextField = By.xpath("//mat-label[text()='Label']/../../../following-sibling::div/input[@formcontrolname='label']");
@@ -33,15 +35,20 @@ public class PropertiesSideBar {
     private By formattingStylesItalicIcon = By.xpath("//mat-icon[text()='format_italic']/parent::button");
     private By formattingStylesInput = By.xpath("//input[@id='fontSizeInput']");
     private By dataTypeDropdown = By.xpath("//mat-label[text()=' Data Type']/../../../following-sibling::div/mat-select/div/div/following-sibling::div");
+    private By dropdownTypeDropdown = By.xpath("//mat-label[text()='DropDown Type']/../../../following-sibling::div/mat-select/div/div/following-sibling::div");
     private By dataTypeDropdownValue = By.xpath("//mat-label[text()=' Data Type']/../../../following-sibling::div//div/div/span/span");
     private By placeHolderTextField = By.xpath("//input[@formcontrolname='placeholder']");
     private By radioButtonComponent = By.xpath("//div[contains(@class,'mobile-canvas-container')]//div[contains(@class,'mobile-canvas ng-star-inserted')]//div//div[contains(@class,'cdk-drop-list')]//lib-widget-filter/div/label/following-sibling::div[@role='radiogroup']");
+    private By navbarComponentNavIcon1 = By.xpath("//div[contains(@class,'mobile-canvas-container')]//div[contains(@class,'mobile-canvas ng-star-inserted')]//div//div[contains(@class,'cdk-drop-list')]/..//div//mat-toolbar/div[@class='toolbar-start']/button");
+    private By navbarComponentNavtitle = By.xpath("//div[contains(@class,'mobile-canvas-container')]//div[contains(@class,'mobile-canvas ng-star-inserted')]//div//div[contains(@class,'cdk-drop-list')]/..//div//mat-toolbar/div[@class='toolbar-title']");
+    private By navbarComponentNavIcon2 = By.xpath("//div[contains(@class,'mobile-canvas-container')]//div[contains(@class,'mobile-canvas ng-star-inserted')]//div//div[contains(@class,'cdk-drop-list')]/..//div//mat-toolbar/div[@class='toolbar-end']");
     private By radioButtonTitleTextField = By.xpath("//mat-expansion-panel/mat-expansion-panel-header/span/mat-panel-title[text()=' Input Properties ']/../../following-sibling::div//input[@formcontrolname='title']");
     private By radioButtonValuesTextField = By.xpath("//mat-expansion-panel/mat-expansion-panel-header/span/mat-panel-title[text()=' Input Properties ']/../../following-sibling::div//mat-label[text()='Label']/../../../following-sibling::div/input");
     private By radioButtonAddValue = By.xpath("//button//span[text()=' Add Value ']//parent::button");
     private By radioButtonDeleteValues = By.xpath("//mat-expansion-panel/mat-expansion-panel-header/span/mat-panel-title[text()=' Input Properties ']/../../following-sibling::div//mat-label[text()='Label']/../../../following-sibling::div/mat-icon[text()='delete']");
     private By fileTypedropdown = By.xpath("//mat-label[text()='Files types']/../../../following-sibling::div/mat-select/div/div/following-sibling::div");
     private By maxSizeTextField = By.xpath("//input[@formcontrolname='maxSize']");
+    private By navbarTitleField = By.xpath("//mat-panel-title[text()=' Nav Title Properties ']/../../following-sibling::div//input[@formcontrolname='label']");
     private By previewToggle = By.xpath("//span[text()='Preview File']/../../button[@role='switch']");
     private By previewToggleImagePickerImage = By.xpath("//span[text()='Preview Image']/../../button[@role='switch']");
     private By previewVideoImagePicker = By.xpath("//span[text()='Preview Video']/../../button[@role='switch']");
@@ -50,6 +57,7 @@ public class PropertiesSideBar {
     private By autoRotatetoggleImagePicker = By.xpath("//span[text()='Auto-rotate']/../../button[@role='switch']");
     private By fileCompressiontoggle = By.xpath("//span[text()='File Compression']/../../button[@role='switch']");
     private By uploadTypeDropDown = By.xpath("//mat-label[text()='Upload Type']/../../../following-sibling::div//div/following-sibling::div");
+    private By navbarDisplayiconDropdown = By.xpath("//mat-label[text()='Display Icon']/../../../following-sibling::div//div/following-sibling::div");
     private By allowedImageType = By.xpath("//mat-label[text()='Allowed Image Types']//parent::label//parent::div/../following-sibling::div/mat-select/div/div/following-sibling::div");
     private By allowedVideoType = By.xpath("//mat-label[text()='Allowed Video Types']//parent::label//parent::div/../following-sibling::div/mat-select/div/div/following-sibling::div");
     private By maxVideoSizeImagePicker = By.xpath("//input[@formcontrolname='maxVideoSize']");
@@ -63,6 +71,25 @@ public class PropertiesSideBar {
     private By selectPanelInputProperties = By.xpath("//mat-expansion-panel-header[contains(@class,'mat-expansion-panel-header mat-focus-indicator')]/span/mat-panel-title/div/div");
     private By selectPanel = By.xpath("//mat-expansion-panel-header[contains(@class,'mat-expansion-panel-header mat-focus-indicator')]/span/mat-panel-title");
     private By clickActionsPanelAndValidationPanel = By.xpath("//mat-expansion-panel-header[contains(@class,'mat-expansion-panel-header mat-focus-indicator')]/span/mat-panel-title/span");
+    private By selectActionTypeDropdown = By.xpath("//mat-label[text()='Select Action Type']/../../../following-sibling::div/mat-select/div/div/following-sibling::div");
+    private By addPageButton = By.xpath("//button/span[text()=' Add Page']");
+    private By addPageTextfield = By.xpath("//input[@placeholder='Page Name']");
+    private By addPageEntityTextfield = By.xpath("//input[@placeholder='Entity Name']");
+    private By addPageSaveButton = By.xpath("//button/span[text()='Save']");
+    private By validationsDropdown = By.xpath("//mat-label[text()='Validation Type']/../../../following-sibling::div/mat-select/div/div/following-sibling::div");
+    private By selctPageDropdownClickActions = By.xpath("//mat-label[text()='Select Page']/../../../following-sibling::div/mat-select/div/div/following-sibling::div");
+    private By saveButtonForClickActions = By.xpath("//mat-label[text()='Select Page']/../../../../../../../following-sibling::div/button/span[text()='Save']");
+    private By messagefieldvalidations = By.xpath("//input[@formcontrolname='requiredMessage']");
+    private By addValidationbutton = By.xpath("//span[text()=' Add Validation ']//parent::button");
+    private By manualdataLables = By.xpath("//span[text()=' Add Value ']/parent::button/preceding-sibling::form//div//input");
+    private By addValueButton = By.xpath("//span[text()=' Add Value ']/parent::button");
+    private By saveValueButton = By.xpath("//span[text()='Save Values']/parent::button");
+    private By validationpanelExpand = By.xpath("//span[text()=' Validation']/parent::mat-panel-title//parent::span//parent::mat-expansion-panel-header");
+    private By clickActionsPanel = By.xpath("//mat-expansion-panel-header[contains(@class,'mat-expansion-panel-header mat-focus-indicator')]/span/mat-panel-title/span[text()=' Click Actions']");
+    private By validationsPanel = By.xpath("//mat-expansion-panel-header[contains(@class,'mat-expansion-panel-header mat-focus-indicator')]/span/mat-panel-title/span[text()=' Validation']");
+    private By dataSourcePanelDropdownOnly = By.xpath("//mat-expansion-panel-header[contains(@class,'mat-expansion-panel-header mat-focus-indicator')]/span/mat-panel-title/span[text()=' Data Source']");
+    private By dropdownTypeDataSorce = By.xpath("//mat-label[text()=' Drop Down Type']/../../../following-sibling::div/mat-select[@role='combobox']/div/div/following-sibling::div");
+
     private boolean sideBarExistsFlag = false;
     private boolean panelsarePresentFlag = false;
     Actions act;
@@ -74,6 +101,17 @@ public class PropertiesSideBar {
     public PropertiesSideBar(WebDriver driver) throws Throwable {
         this.driver = driver;
         act = new Actions(this.driver);
+    }
+
+    public void addPageForNavigation(String page_name, String entity_name) throws Throwable {
+        Thread.sleep(5000);
+        driver.findElement(addPageButton).click();
+        Thread.sleep(2000);
+        driver.findElement(addPageTextfield).sendKeys(page_name);
+        Thread.sleep(2000);
+        driver.findElement(addPageEntityTextfield).sendKeys(entity_name);
+        Thread.sleep(2000);
+        driver.findElement(addPageSaveButton).click();
     }
 
     public void verifyComponentSidebarofComponent(String component) throws Throwable {
@@ -106,94 +144,343 @@ public class PropertiesSideBar {
 
     public void panelsInTheComponentSideBar(String panels) throws Throwable {
         Thread.sleep(3000);
-        driver.findElement(componentOnTheScreenBuilder).click();
-        if (!(driver.findElements(componentSideBarHeading).isEmpty())) {
-            String heading = driver.findElement(componentSideBarHeading).getText().trim();
-            int size = driver.findElements(By.xpath("//span[text()='" + heading + "']//parent::mat-toolbar//following::div//mat-panel-title")).size();
-            for (int i = 0; i <= size - 1; i++) {
-                Panels.add(driver.findElements(By.xpath("//span[text()='" + heading + "']//parent::mat-toolbar//following::div//mat-panel-title")).get(i).getText().trim());
-            }
-            System.out.println(Panels);
-            String[] panel = panels.split(",");
-            for (int i = 0; i <= panel.length - 1; i++) {
-                if (Panels.contains(panel[i])) {
-                    Assert.assertEquals(panel[i], Panels.get(i), "Expected Error Message " + panel[i] + " But Found : " + Panels.get(i));
-                    panelsarePresentFlag = true;
+        if (driver.findElements(componentOnTheScreenBuilder).size() > 0) {
+            driver.findElement(componentOnTheScreenBuilder).click();
+            if (!(driver.findElements(componentSideBarHeading).isEmpty())) {
+                String heading = driver.findElement(componentSideBarHeading).getText().trim();
+                int size = driver.findElements(By.xpath("//span[text()='" + heading + "']//parent::mat-toolbar//following::div//mat-panel-title")).size();
+                for (int i = 0; i <= size - 1; i++) {
+                    Panels.add(driver.findElements(By.xpath("//span[text()='" + heading + "']//parent::mat-toolbar//following::div//mat-panel-title")).get(i).getText().trim());
+                }
+                System.out.println(Panels);
+                String[] panel = panels.split(",");
+                for (int i = 0; i <= panel.length - 1; i++) {
+                    if (Panels.contains(panel[i])) {
+                        Assert.assertEquals(panel[i], Panels.get(i), "Expected Error Message " + panel[i] + " But Found : " + Panels.get(i));
+                        panelsarePresentFlag = true;
+                    }
                 }
             }
         }
     }
 
-    public void editPropertiesOfComponent(String properties, String panels, String values_comp, String component) throws Throwable {
+    public void editPropertiesOfComponent(String properties, String panels, String values_comp, String component, String page_name) throws Throwable {
         Thread.sleep(3000);
+        String[] Component = component.split(",");
+        String[] values = values_comp.split("~");
+        String[] panel = panels.split("~");
+        int length = Component.length-1;
+        for (int c = 0; c <= length; c++) {
+            if (Component[c].equals("Navbar")) {
+                editNavbarComponentStylingButtonAndTitle(values[c], component, page_name);
+               length =  length-1;
+            }
+        }
         if (panelsarePresentFlag) {
-            String[] Component = component.split(",");
-            String[] values = values_comp.split("~");
-            for (int c = 0; c <= Component.length - 1; c++) {
-                String[] fields = properties.split(",");
-                String[] panelsToExpand = panels.split(",");
-                int len = panelsToExpand.length - 1;
-                for (int i = 0; i <= driver.findElements(selectPanel).size() - 1; i++) {
-                    if (panelsToExpand[0].equals("Input Properties") || panelsToExpand[0].equals("Address Properties")) {
-                        if (driver.findElements(selectPanelInputProperties).get(i).getText().trim().equals(panelsToExpand[0])) {
-                            editRadioButtonComponent(values[c], component);
-                            thicknessTextFieldSeparator(values[c]);
-                            editFilePickerComponent(values[c], component);
-                            uploadTyppeDropdownImagePicker(values[c], component);
-                            editDisplayTypeDropdowns(values[c]);
-                            editLabelTextfield(values[c], Component[c]);
-                            editImageForImageComponent();
-                            editTextTextfield(values[c], component);
-                            editPositionDropdown(values[c]);
-                            editPlaceHolderTextField(values[c]);
-                            editDataTypeDropDown(values[c]);
-                            editTopMarginTextField(values[c], Component[c]);
-                            editSelectDateFormatDropdownAndDateRanges(values[c], component);
-                            editGeofenceShapeandGeofenceTypedropdowns(values[c], component);
-                            editFormattingStyles(values[c], component);
-                        }
-                    } else {
-                        if (driver.findElements(selectPanel).get(i).getText().trim().equals(panelsToExpand[0])) {
-                            editRadioButtonComponent(values[c], component);
-                            thicknessTextFieldSeparator(values[c]);
-                            editFilePickerComponent(values[c], component);
-                            uploadTyppeDropdownImagePicker(values[c], component);
-                            editDisplayTypeDropdowns(values[c]);
-                            editLabelTextfield(values[c], Component[c]);
-                            editImageForImageComponent();
-                            editTextTextfield(values[c], component);
-                            editPositionDropdown(values[c]);
-                            editPlaceHolderTextField(values[c]);
-                            editDataTypeDropDown(values[c]);
-                            editTopMarginTextField(values[c], Component[c]);
-                            editSelectDateFormatDropdownAndDateRanges(values[c], component);
-                            editGeofenceShapeandGeofenceTypedropdowns(values[c], component);
-                            editFormattingStyles(values[c], component);
-                        }
-
-                    }
+            for (int c = 0; c <= length; c++) {
+                if (c == 0) {
+                    driver.findElements(componentOnTheScreenBuilder).get(c).click();
+                    driver.findElements(componentOnTheScreenBuilder).get(c).click();
+                } else {
+                    driver.findElements(componentOnTheScreenBuilder).get(c).click();
                 }
-                if (len >= 1) {
-                    for (int i = 1; i <= len; i++) {
-                        if (driver.findElement(clickActionsPanelAndValidationPanel).getText().trim().equals(panelsToExpand[i])) {
-
-                        }
-                    }
-
+                String[] fields = properties.split(",");
+                String[] panelsToExpand = panel[c].split(",");
+                int len = panelsToExpand.length - 1;
+                int sizeSelectpanel = driver.findElements(selectPanel).size();
+                int sizeSelectPanelInputProperties = driver.findElements(selectPanelInputProperties).size();
+                if (Component[c].equals("Radio Button")) {
+                    editRadioButtonComponent(values[c], component, panels, page_name);
+                }
+                if (Component[c].equals("Scanner")) {
+                    editDisplayTypeDropdowns(values[c]);
+                    editLabelTextfield(values[c], Component[c]);
+                    editTopMarginTextField(values[c], Component[c]);
+                    clickOnUpdateComponentButton();
+                    clickActionsAndValidationsforAnyComponent(values[c], component, panels, page_name);
+                }
+                if (Component[c].equals("Text") || Component[c].equals("Save")) {
+                    editTextTextfield(values[c], component);
+                    editPositionDropdown(values[c]);
+                    editTopMarginTextField(values[c], Component[c]);
+                    editFormattingStyles(values[c], component);
+                    clickOnUpdateComponentButton();
+                    clickActionsAndValidationsforAnyComponent(values[c], component, panels, page_name);
+                }
+                if (Component[c].equals("Image")) {
+                    editImageForImageComponent();
+                    editTopMarginTextField(values[c], Component[c]);
+                    clickOnUpdateComponentButton();
+                    clickActionsAndValidationsforAnyComponent(values[c], component, panels, page_name);
+                }
+                if (Component[c].equals("Check Box") || Component[c].equals("Geotag")) {
+                    editLabelTextfield(values[c], Component[c]);
+                    editTopMarginTextField(values[c], Component[c]);
+                    clickOnUpdateComponentButton();
+                    clickActionsAndValidationsforAnyComponent(values[c], component, panels, page_name);
+                }
+                if (Component[c].equals("Separator")) {
+                    thicknessTextFieldSeparator(values[c]);
+                    editTopMarginTextField(values[c], Component[c]);
+                    clickOnUpdateComponentButton();
+                }
+                if (Component[c].equals("File Picker")) {
+                    editDisplayTypeDropdowns(values[c]);
+                    editLabelTextfield(values[c], Component[c]);
+                    editTopMarginTextField(values[c], Component[c]);
+                    editFilePickerComponent(values[c], component);
+                    clickOnUpdateComponentButton();
+                    clickActionsAndValidationsforAnyComponent(values[c], component, panels, page_name);
+                }
+                if (Component[c].equals("Media Upload")) {
+                    editDisplayTypeDropdowns(values[c]);
+                    editLabelTextfield(values[c], Component[c]);
+                    editTopMarginTextField(values[c], Component[c]);
+                    uploadTyppeDropdownImagePicker(values[c], component);
+                    clickOnUpdateComponentButton();
+                    clickActionsAndValidationsforAnyComponent(values[c], component, panels, page_name);
+                }
+                if (Component[c].equals("Date Picker")) {
+                    editDisplayTypeDropdowns(values[c]);
+                    editLabelTextfield(values[c], Component[c]);
+                    editTopMarginTextField(values[c], Component[c]);
+                    clickOnUpdateComponentButton();
+                    clickActionsAndValidationsforAnyComponent(values[c], component, panels, page_name);
+                }
+                if (Component[c].equals("Range Picker")) {
+                    editDisplayTypeDropdowns(values[c]);
+                    editLabelTextfield(values[c], Component[c]);
+                    editTopMarginTextField(values[c], Component[c]);
+                    editSelectDateFormatDropdownAndDateRanges(values[c], component);
+                    clickOnUpdateComponentButton();
+                    clickActionsAndValidationsforAnyComponent(values[c], component, panels, page_name);
+                }
+                if (Component[c].equals("Geofence")) {
+                    editLabelTextfield(values[c], Component[c]);
+                    editTopMarginTextField(values[c], Component[c]);
+                    editGeofenceShapeandGeofenceTypedropdowns(values[c], component);
+                    clickOnUpdateComponentButton();
+                    clickActionsAndValidationsforAnyComponent(values[c], component, panels, page_name);
+                }
+                if (Component[c].equals("Text Field") || Component[c].equals("Address")) {
+                    editDisplayTypeDropdowns(values[c]);
+                    editLabelTextfield(values[c], Component[c]);
+                    editDataTypeDropDown(values[c]);
+                    editPlaceHolderTextField(values[c]);
+                    editTopMarginTextField(values[c], Component[c]);
+                    clickOnUpdateComponentButton();
+                    clickActionsAndValidationsforAnyComponent(values[c], component, panels, page_name);
+                }
+                if (Component[c].equals("Drop Down")) {
+                    editDisplayTypeDropdowns(values[c]);
+                    editLabelTextfield(values[c], Component[c]);
+                    editDropdownType(values[c], component);
+                    editTopMarginTextField(values[c], Component[c]);
+                    clickOnUpdateComponentButton();
+                    clickActionsAndValidationsforAnyComponent(values[c], component, panels, page_name);
                 }
             }
+        }
+    }
 
-
+    public void clickActionsAndValidationsforAnyComponent(String values, String component, String panels, String page_name) throws Throwable {
+        String[] panel = panels.split("~");
+        String[] Component = component.split(",");
+        for (int c = 1; c <= panel.length - 1; c++) {
+            if (driver.findElements(clickActionsPanel).size() > 0) {
+                System.out.println("Click Actions");
+                if (driver.findElement(clickActionsPanel).getText().trim().equals("Click Actions")) {
+                    clickActionsSelect(panel[c], component, values, page_name);
+                }
+            }
+            if (driver.findElements(validationsPanel).size() > 0) {
+                System.out.println("validations");
+                if (driver.findElement(validationsPanel).getText().trim().equals("Validation")) {
+                    validationTypeSelect(values, panel[c], component);
+                }
+            }
+            if (driver.findElements(dataSourcePanelDropdownOnly).size() > 0) {
+                System.out.println("Data Source");
+                if (driver.findElement(dataSourcePanelDropdownOnly).getText().trim().equals("Data Source")) {
+                    dropdownSourcedropdownManual(values, component);
+                }
+            }
+            break;
         }
     }
 
 
-    public void editNavbarComponentStylingButtonAndTitle(String values, String component) throws Throwable {
+    public void clickActionsSelect(String panel, String component, String values, String page_name) throws Throwable {
+        Thread.sleep(2000);
+        String[] Component = component.split(",");
+        for (int c = 0; c <= Component.length - 1; c++) {
+            if (Component[c].equals("Navbar") || Component[c].equals("Image") || Component[c].equals("Text") || Component[c].equals("Check Box") || Component[c].equals("Radio Button") || Component[c].equals("Save")) {
+                String[] value = panel.split(",");
+                String[] options = values.split(",");
+                String[] navOptions = options[3].split("_");
+                Thread.sleep(3000);
+                driver.findElement(clickActionsPanel).click();
+                if (driver.findElements(selectActionTypeDropdown).size() > 0) {
+                    Thread.sleep(3000);
+                    driver.findElement(selectActionTypeDropdown).click();
+                    if (driver.findElements(By.xpath("//mat-option[@role='option']/span[text()=' " + navOptions[0] + "']")).size() > 0) {
+                        driver.findElement(By.xpath("//mat-option[@role='option']/span[text()=' " + navOptions[0] + "']")).click();
+                        selectPageForNavigation(page_name, navOptions[1]);
+                    } else {
+                        driver.findElement(selectActionTypeDropdown).click();
+                    }
+                }
+            }
+            break;
+        }
+    }
+
+    public void selectPageForNavigation(String page_name, String navOptions) throws Throwable {
+        Thread.sleep(3000);
+        driver.findElement(selctPageDropdownClickActions).click();
+        if (driver.findElements(By.xpath("//mat-option[@role='option']/span[text()='" + navOptions + "']")).size() > 0) {
+            driver.findElement(By.xpath("//mat-option[@role='option']/span[text()='" + navOptions + "']")).click();
+            driver.findElement(saveButtonForClickActions).click();
+        } else {
+            driver.findElement(selctPageDropdownClickActions).click();
+            driver.findElement(By.xpath("//span[text()='Cancel']//parent::button")).click();
+        }
+    }
+
+    public void validationTypeSelect(String values, String panel, String component) throws Throwable {
+        Thread.sleep(2000);
+        String[] Component = component.split(",");
+        for (int c = 0; c <= Component.length - 1; c++) {
+            if (!(Component[c].equals("Navbar") || (Component[c].equals("Drop Down") || Component[c].equals("Image") || Component[c].equals("Text") || Component[c].equals("Save") || Component[c].equals("Separator")))) {
+                String[] value = panel.split(",");
+                String[] options = values.split(",");
+                if ((Component[c].equals("Check Box") || Component[c].equals("Radio Button"))) {
+                    driver.findElement(By.xpath("//mat-expansion-panel-header[contains(@class,'mat-expansion-panel-header mat-focus-indicator')]/span/mat-panel-title/span[text()=' " + value[2] + "']")).click();
+                    validationTypedropdown(values);
+                } else {
+                    driver.findElement(By.xpath("//mat-expansion-panel-header[contains(@class,'mat-expansion-panel-header mat-focus-indicator')]/span/mat-panel-title/span[text()=' " + value[1] + "']")).click();
+                    validationTypedropdown(values);
+
+                }
+            }
+            break;
+        }
+    }
+
+    public void validationTypedropdown(String values) throws Throwable {
+        Thread.sleep(3000);
+        boolean expanded = Boolean.parseBoolean(driver.findElement(validationpanelExpand).getAttribute("aria-expanded"));
+        if(expanded==false){
+            driver.findElement(validationpanelExpand).click();
+            expanded = Boolean.parseBoolean(driver.findElement(validationpanelExpand).getAttribute("aria-expanded"));
+        }
+        if (expanded) {
+            driver.findElement(validationsDropdown).click();
+            String[] options = values.split(",");
+            String[] validations = options[options.length - 1].split("_");
+            for (int i = 0; i <= validations.length - 1; i = i + 2) {
+                if (i >= 1) {
+                    driver.findElement(validationsDropdown).click();
+                }
+                if (driver.findElements(By.xpath("//mat-option[@role='option']/span[text()=' " + validations[i] + "']")).size() > 0) {
+                    Thread.sleep(3000);
+                    driver.findElement(By.xpath("//mat-option[@role='option']/span[text()=' " + validations[i] + "']")).click();
+                    Thread.sleep(3000);
+                    driver.findElement(messagefieldvalidations).sendKeys(validations[i + 1]);
+                    Thread.sleep(2000);
+                    driver.findElement(addValidationbutton).click();
+                }
+            }
+        }
+    }
+
+    public void dropdownSourcedropdownManual(String values, String component) throws Throwable {
+        Thread.sleep(3000);
+        String[] Component = component.split(",");
+        String[] value = values.split(",");
+        for (int c = 0; c <= Component.length - 1; c++) {
+            if (Component[c].equals("Drop Down")) {
+                String[] options = value[5].split("_");
+                driver.findElement(By.xpath("//mat-expansion-panel-header[contains(@class,'mat-expansion-panel-header mat-focus-indicator')]/span/mat-panel-title/span[text()=' Data Source']")).click();
+                Thread.sleep(3000);
+                driver.findElement(dropdownTypeDataSorce).click();
+                if (driver.findElements(By.xpath("//mat-option[@role='option']/span[text()='" + options[0] + "']")).size() > 0) {
+                    driver.findElement(By.xpath("//mat-option[@role='option']/span[text()='" + options[0] + "']")).click();
+                    if (options[0].equals("Manual")) {
+                        for (int o = 1; 0 <= options.length - 1; o++) {
+                            Thread.sleep(2000);
+                            driver.findElement(manualdataLables).sendKeys(options[o]);
+                            if (driver.findElement(manualdataLables).getAttribute("value").length() > 0) {
+                                Thread.sleep(2000);
+                                driver.findElement(addValueButton).click();
+                            }
+                        }
+                        driver.findElement(saveValueButton).click();
+                    }
+                }
+
+            }
+        }
+
+    }
+
+
+    public void editNavbarComponentStylingButtonAndTitle(String values, String component, String page_name) throws Throwable {
         Thread.sleep(2000);
         String[] Component = component.split(",");
         for (int c = 0; c <= Component.length - 1; c++) {
             if (Component[c].equals("Navbar")) {
-//                driver.findElement()
+                if (driver.findElements(navbarComponentNavtitle).size() > 0) {
+                    driver.findElement(navbarComponentNavIcon1).click();
+                    driver.findElement(navbarComponentNavIcon1).click();
+                    String[] value = values.split(",");
+                    driver.findElement(navbarDisplayiconDropdown).click();
+                    driver.findElement(By.xpath("//mat-option[@value='" + value[0] + "']")).click();
+                    clickOnUpdateComponentButton();
+                    if (value[0].equals("arrow_back")) {
+                        driver.findElement(By.xpath("//mat-expansion-panel-header[contains(@class,'mat-expansion-panel-header mat-focus-indicator')]/span/mat-panel-title/span[text()=' Click Actions']")).click();
+                    }
+                    String[] nav = value[1].split("_");
+                    if (driver.findElements(selectActionTypeDropdown).size() > 0) {
+                        driver.findElement(selectActionTypeDropdown).click();
+                        if (driver.findElements(By.xpath("//mat-option[@role='option']/span[text()=' " + nav[0] + "']")).size() > 0) {
+                            driver.findElement(By.xpath("//mat-option[@role='option']/span[text()=' " + nav[0] + "']")).click();
+                            driver.findElement(selctPageDropdownClickActions).click();
+                            if (driver.findElements(By.xpath("//mat-option[@role='option']/span[text()='" + nav[1] + "']")).size() > 0) {
+                                driver.findElement(By.xpath("//mat-option[@role='option']/span[text()='" + nav[1] + "']")).click();
+                                driver.findElement(saveButtonForClickActions).click();
+                            }
+                        }
+                    }
+                    driver.findElement(navbarComponentNavtitle).click();
+                    driver.findElement(navbarTitleField).clear();
+                    driver.findElement(navbarTitleField).sendKeys(value[2]);
+                    clickOnUpdateComponentButton();
+                    String[] navicon2 = value[3].split("_");
+                    boolean toggleExpected = Boolean.parseBoolean(navicon2[0]);
+                    Thread.sleep(4000);
+                    boolean toggleNavicon2 = Boolean.parseBoolean(driver.findElement(By.xpath("//span[text()='Landing']/../../../following-sibling::div//p[text()='Nav Icon 2']/..//button")).getAttribute("aria-checked"));
+                    if (toggleExpected) {
+                        driver.findElement(By.xpath("//span[text()='Landing']/../../../following-sibling::div//p[text()='Nav Icon 2']/..//button")).click();
+                        driver.findElement(navbarComponentNavIcon2).click();
+                        driver.findElement(navbarDisplayiconDropdown).click();
+                        driver.findElement(By.xpath("//mat-option[@value='" + navicon2[1] + "']")).click();
+                        driver.findElement(By.xpath("//mat-expansion-panel-header[contains(@class,'mat-expansion-panel-header mat-focus-indicator')]/span/mat-panel-title/span[text()=' Click Actions']")).click();
+                        if (driver.findElements(selectActionTypeDropdown).size() > 0) {
+                            driver.findElement(selectActionTypeDropdown).click();
+                            String[] ca = navicon2[2].split("-");
+                            if (driver.findElements(By.xpath("//mat-option[@role='option']/span[text()=' " + ca[0] + "']")).size() > 0) {
+                                driver.findElement(By.xpath("//mat-option[@role='option']/span[text()=' " + ca[0] + "']")).click();
+                                driver.findElement(selctPageDropdownClickActions).click();
+                                if (driver.findElements(By.xpath("//mat-option[@role='option']/span[text()='" + ca[1] + "']")).size() > 0) {
+                                    driver.findElement(By.xpath("//mat-option[@role='option']/span[text()='" + ca[1] + "']")).click();
+                                    driver.findElement(saveButtonForClickActions).click();
+                                }
+                            }
+                        }
+
+                    }
+                }
             }
         }
 
@@ -361,6 +648,19 @@ public class PropertiesSideBar {
                 }
             }
         }
+    }
+
+    public void editDropdownType(String values, String component) throws Throwable {
+        Thread.sleep(3000);
+        String[] Component = component.split(",");
+        for (int c = 0; c <= Component.length - 1; c++) {
+            if (Component[c].equals("Drop Down")) {
+                String[] value = values.split(",");
+                driver.findElement(dropdownTypeDropdown).click();
+                driver.findElement(By.xpath("//mat-option[@value='" + value[2] + "']")).click();
+            }
+        }
+
     }
 
     public void editDataTypeDropDown(String values) throws Throwable {
@@ -592,11 +892,13 @@ public class PropertiesSideBar {
     }
 
 
-    public void editRadioButtonComponent(String values, String component) throws Throwable {
+    public void editRadioButtonComponent(String values, String component, String panels, String page_name) throws Throwable {
         Thread.sleep(3000);
+        String[] panel = panels.split("~");
         String[] Component = component.split(",");
         for (int c = 0; c <= Component.length - 1; c++) {
             if (Component[c].equals("Radio Button")) {
+                String[] panelsToExpand = panel[c].split(",");
                 if (driver.findElements(radioButtonComponent).size() > 0) {
                     driver.findElement(radioButtonComponent).click();
                     String[] value = values.split(",");
@@ -630,8 +932,18 @@ public class PropertiesSideBar {
                                     driver.findElement(radioButtonDeleteValues).click();
                                 }
                             }
-
-
+                        }
+                    }
+                    clickOnUpdateComponentButton();
+                    if (driver.findElements(clickActionsPanelAndValidationPanel).size() > 0) {
+                        System.out.println("Click Actions");
+                    }
+                    for (int k = 0; k <= driver.findElements(clickActionsPanelAndValidationPanel).size() - 1; k++) {
+                        if (driver.findElements(clickActionsPanelAndValidationPanel).get(k).getText().trim().equals("Click Actions")) {
+                            clickActionsSelect(panel[c], component, values, page_name);
+                        }
+                        if (driver.findElements(clickActionsPanelAndValidationPanel).get(k).getText().trim().equals("Validation")) {
+                            validationTypeSelect(values, panel[c], component);
                         }
                     }
                 }

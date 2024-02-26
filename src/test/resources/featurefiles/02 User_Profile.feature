@@ -12,6 +12,7 @@ Feature: UserProfile functionality in Mobile-wise
     And Verify Successful Password Change <toaster_message>
     And Login again with New Password <username> <new_password> <expected_output>
     Then Validate Logout action <verify_logout>
+    Then validate back button after logout
 
     Examples:
       | username  | password       | expected_output | new_password    | confirm_password | verify_logout         | list_option1      | list_option2 | new_password_error_message                                                 | confirm_password_error   | password_suggestion_message                                                                                                                               | toaster_message                 |

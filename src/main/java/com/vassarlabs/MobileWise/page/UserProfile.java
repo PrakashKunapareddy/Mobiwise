@@ -96,10 +96,9 @@ public class UserProfile {
                 driver.findElement(changePasswordField).click();
                 if (driver.findElements(confirmPasswordFieldError).size() > 0) {
                     if (driver.findElements(confirmPasswordFieldError).size() > 1) {
-                         message = driver.findElements(confirmPasswordFieldError).get(1).getText();
-                    }
-                    else{
-                         message = driver.findElement(confirmPasswordFieldError).getText();
+                        message = driver.findElements(confirmPasswordFieldError).get(1).getText();
+                    } else {
+                        message = driver.findElement(confirmPasswordFieldError).getText();
                     }
                     Thread.sleep(3000);
                     driver.findElement(changePasswordField).click();
@@ -165,7 +164,20 @@ public class UserProfile {
             driver.findElement(logOutUserProfile).click();
             Thread.sleep(3000);
             String message = driver.findElement(loginPageText).getText();
+            String logoutUrl = driver.getCurrentUrl();
+            String url = "https://dev.mobilewise.vassardigital.ai/login";
+            Assert.assertEquals(logoutUrl, url, "Expected Error Message " + url + " But Found : " + logoutUrl);
             Assert.assertEquals(verify_logout, message, "Expected Error Message " + verify_logout + " But Found : " + message);
+
         }
+    }
+
+    public void validateBackButton() throws Throwable {
+        Thread.sleep(3000);
+        driver.navigate().back();
+        Thread.sleep(2000);
+        String logoutUrl = driver.getCurrentUrl();
+        String url = "https://dev.mobilewise.vassardigital.ai/login";
+        Assert.assertEquals(logoutUrl, url, "Expected Error Message " + url + " But Found : " + logoutUrl);
     }
 }
