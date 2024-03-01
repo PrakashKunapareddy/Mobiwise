@@ -78,9 +78,8 @@ public class CreateMobApplicationWebAppliation {
     }
 
     public void createRandomProjects() throws Throwable {
-        Thread.sleep(2000);
+
         if (driver.findElements(createProjectButton).size()>0) {
-            Thread.sleep(2000);
             driver.findElement(createProjectButton).click();
             flagCreateProject = true;
         }
@@ -92,18 +91,15 @@ public class CreateMobApplicationWebAppliation {
         if (flagCreateProject) {
             Thread.sleep(2000);
             driver.findElement(projectName).sendKeys("Project " + rand_int);
-            Thread.sleep(2000);
             driver.findElement(projectDesc).sendKeys("Project Description " + rand_int);
-            Thread.sleep(2000);
             driver.findElement(saveButton).click();
         }
 
     }
 
     public void clickProjectMatButton() throws Throwable {
-        Thread.sleep(3000);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        Thread.sleep(3000);
+        Thread.sleep(5000);
         wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(projectMatBuutton)));
         driver.findElements(projectMatBuutton).get(0).click();
         flag = true;
@@ -133,21 +129,18 @@ public class CreateMobApplicationWebAppliation {
 
     public void clickApplicationType(String application_type) throws InterruptedException {
         if (flag1) {
-            Thread.sleep(3000);
+            Thread.sleep(7000);
             driver.findElement(By.xpath("//div[text()='" + application_type + "']")).click();
         }
     }
 
     public void updateNameFields(String app_name, String application_name_field_message, String app_desc) throws InterruptedException {
-        Thread.sleep(3000);
         driver.findElement(appNameField).sendKeys(app_name);
 //        driver.findElement(appNameField).sendKeys(" ");
 //        driver.findElement(appNameField).click();
 //        r.keyPress(KeyEvent.VK_BACK_SPACE);
-        Thread.sleep(3000);
         if (!driver.findElements(hintProjectAvailable).isEmpty()) {
             flag2 = true;
-            Thread.sleep(3000);
             String message = driver.findElement(hintProjectAvailable).getText();
             Assert.assertEquals(application_name_field_message, message, "Expected Error Message " + application_name_field_message + " But Found : " + message);
         }

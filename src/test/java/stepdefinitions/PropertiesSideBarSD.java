@@ -36,4 +36,6 @@ public class PropertiesSideBarSD {
     public void addPageToTheApplicationPage_nameEntity_name(String page_name,String entity_name)throws Throwable {
      propertiesSidebar.addPageForNavigation(page_name,entity_name);
     }
+
+
 }

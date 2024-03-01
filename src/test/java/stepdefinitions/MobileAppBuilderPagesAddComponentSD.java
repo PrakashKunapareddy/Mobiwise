@@ -13,10 +13,9 @@ public class MobileAppBuilderPagesAddComponentSD {
     }
 
 
-    @And("Click on the Pages Module, Click on the Landing Page and click on the Add Component Button")
-    public void clickOnThePagesModuleClickOnTheLandingPageAndClickOnTheAddComponentButton() throws Throwable {
-        mobileAppBuilderPagesAddComponents.clickOnLandingPageAndClickOnAddComponentsButton();
-
+    @And("Click on the Pages Module, Click on the {string} and click on the Add Component Button")
+    public void clickOnThePagesModuleClickOnTheWork_pageAndClickOnTheAddComponentButton(String work_pages) throws Throwable {
+        mobileAppBuilderPagesAddComponents.clickOnLandingPageAndClickOnAddComponentsButton(work_pages);
     }
 
 
@@ -42,5 +41,7 @@ public class MobileAppBuilderPagesAddComponentSD {
         mobileAppBuilderPagesAddComponents.deleteNavbarFromTheScreenBuilder(component);
 
     }
+
+
 }
 
