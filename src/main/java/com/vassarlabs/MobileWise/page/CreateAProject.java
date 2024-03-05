@@ -13,6 +13,15 @@ import java.util.ArrayList;
 public class CreateAProject {
     WebDriver driver;
     Actions act;
+    private By addComponentsButton = By.xpath("//span[text()=' Add Component ']");
+    private By navbarComponentNavIcon1 = By.xpath("//div[contains(@class,'mobile-canvas-container')]//div[contains(@class,'mobile-canvas ng-star-inserted')]//div//div[contains(@class,'cdk-drop-list')]/..//div//mat-toolbar/div[@class='toolbar-start']/button");
+    private By navbarComponentNavtitle = By.xpath("//div[contains(@class,'mobile-canvas-container')]//div[contains(@class,'mobile-canvas ng-star-inserted')]//div//div[contains(@class,'cdk-drop-list')]/..//div//mat-toolbar/div[@class='toolbar-title']");
+    private By navbarDisplayiconDropdown = By.xpath("//mat-label[text()='Display Icon']/../../../following-sibling::div//div/following-sibling::div");
+    private By selectActionTypeDropdown = By.xpath("//mat-label[text()='Select Action Type']/../../../following-sibling::div/mat-select/div/div/following-sibling::div");
+    private By selctPageDropdownClickActions = By.xpath("//mat-label[text()='Select Page']/../../../following-sibling::div/mat-select/div/div/following-sibling::div");
+    private By saveButtonForClickActions = By.xpath("//mat-label[text()='Select Page']/../../../../../../../following-sibling::div/button/span[text()='Save']");
+    private By navbarTitleField = By.xpath("//mat-panel-title[text()=' Nav Title Properties ']/../../following-sibling::div//input[@formcontrolname='label']");
+    private By updateComponentButton = By.xpath("//button//span[text()='Update component']");
     private By screenBuilder = By.xpath("//div[contains(@class,'mobile-canvas-container')]//div[contains(@class,'mobile-canvas ng-star-inserted')]//div//div[contains(@class,'cdk-drop-list')]");
     PropertiesSideBar addProperties = new PropertiesSideBar(WebdriverInitializer.getDriver());
     MobileAppBuilderPagesAddComponents addComponentsToScreenBuilder = new MobileAppBuilderPagesAddComponents(WebdriverInitializer.getDriver());
@@ -35,16 +44,10 @@ public class CreateAProject {
                 Thread.sleep(3000);
                 WebElement panelHeader = driver.findElement(By.xpath("//mat-expansion-panel-header[contains(@class,'mat-expansion-panel-header mat-focus-indicator')]/span/mat-panel-title/span[text()='" + pagesRotate[j] + "']"));
                 panelHeader.click();
-                Thread.sleep(3000);
-                Point startPoint = panelHeader.getLocation();
-                int xOffset = 1500;
-                int yOffset = 0;
-                Actions act = new Actions(driver);
-                act.moveToElement(panelHeader).moveByOffset(startPoint.getX() + xOffset, startPoint.getY() + yOffset).click().build().perform();
-
+                Thread.sleep(2000);
+                driver.findElement(addComponentsButton).click();
                 String[] components_panels = components_panelsSelect[j].split(",");
                 String[] Component = components[j].split(",");
-
                 for (int comp = 0; comp < components_panels.length; comp++) {
                     Thread.sleep(2000);
                     boolean expanded = Boolean.parseBoolean(driver.findElement(By.xpath("//span[text()='" + components_panels[comp] + "']/parent::mat-panel-title/parent::span/parent::mat-expansion-panel-header")).getAttribute("aria-expanded"));
@@ -53,10 +56,9 @@ public class CreateAProject {
                         driver.findElement(By.xpath("//span[text()='" + components_panels[comp] + "']")).click();
                         expanded = Boolean.parseBoolean(driver.findElement(By.xpath("//span[text()='" + components_panels[comp] + "']/parent::mat-panel-title/parent::span/parent::mat-expansion-panel-header")).getAttribute("aria-expanded"));
                     }
-
                     if (expanded) {
                         addComponentsToScreenBuilder.ComponentsVerifyForFields();
-                        for (int i = Component.length - 1; i >= 0; i--) {
+                        for (int i = 0; i < Component.length; i++){
                             String ComponentPresent = Component[i];
                             if (addComponentsToScreenBuilder.Fields.get(components_panels[comp]).contains(ComponentPresent)) {
                                 Thread.sleep(3000);
@@ -68,31 +70,39 @@ public class CreateAProject {
                                 act.moveToElement(Source).clickAndHold().perform();
                                 act.moveToElement(Target).moveByOffset(0, yOffsetValue).release().perform();
                                 System.out.println(ComponentPresent);
-                                addProperties.verifyComponentSidebarofComponent(component);
                             }
                         }
-
                     }
+                    WebElement Source = driver.findElement(By.xpath("//div[text()='Navbar']"));
+                    Thread.sleep(5000);
+                    WebElement Target = driver.findElement(screenBuilder);
+                    Point initialTargetLocation = Target.getLocation();
+                    int yOffsetValue = initialTargetLocation.getY() - 500;
+                    act.moveToElement(Source).clickAndHold().perform();
+                    act.moveToElement(Target).moveByOffset(0, yOffsetValue).release().perform();
+                    System.out.println("Added Navbar");
                 }
+                if (driver.findElements(navbarComponentNavtitle).size() > 0) {
+                    driver.findElement(navbarComponentNavIcon1).click();
+                    Thread.sleep(2000);
+                    driver.findElement(navbarComponentNavIcon1).click();
+                    driver.findElement(navbarDisplayiconDropdown).click();
+                    driver.findElement(By.xpath("//mat-option[@value='menu']")).click();
+                    driver.findElement(updateComponentButton).click();
+                    driver.findElement(navbarComponentNavtitle).click();
+                    driver.findElement(navbarTitleField).clear();
+                    driver.findElement(navbarTitleField).sendKeys("Homepage");
+                    Thread.sleep(2000);
+                    driver.findElement(updateComponentButton).click();
+                }
+                addProperties.editPropertiesOfComponent(properties, panels, values_comp, component, page_name);
             } else {
-                Thread.sleep(3000);
-                driver.findElement(By.xpath("//mat-expansion-panel-header[contains(@class,'mat-expansion-panel-header mat-focus-indicator')]/span/mat-panel-title/span[text()='" + pagesRotate[j] + "']")).click();
-                Thread.sleep(3000);
                 WebElement panelHeader = driver.findElement(By.xpath("//mat-expansion-panel-header[contains(@class,'mat-expansion-panel-header mat-focus-indicator')]/span/mat-panel-title/span[text()='" + pagesRotate[j] + "']"));
                 panelHeader.click();
-
-                driver.findElement(By.xpath("//mat-expansion-panel-header[contains(@class,'mat-expansion-panel-header mat-focus-indicator')]/span/mat-panel-title/span[text()='" + pagesRotate[j] + "']")).click();
-                driver.findElement(By.xpath("//span[text()='" + pagesRotate[j] + "']/../../../following-sibling::div/div//label/span[text()='Disable Navbar']/../../button")).click();
-                Thread.sleep(3000);
-                Point startPoint = panelHeader.getLocation();
-                int xOffset = 1500;
-                int yOffset = 0;
-                Actions act = new Actions(driver);
-                act.moveToElement(panelHeader).moveByOffset(startPoint.getX() + xOffset, startPoint.getY() + yOffset).click().build().perform();
-
+                Thread.sleep(2000);
+                driver.findElement(addComponentsButton).click();
                 String[] components_panels = components_panelsSelect[j].split(",");
                 String[] Component = components[j].split(",");
-
                 for (int comp = 0; comp < components_panels.length; comp++) {
                     Thread.sleep(2000);
                     boolean expanded = Boolean.parseBoolean(driver.findElement(By.xpath("//span[text()='" + components_panels[comp] + "']/parent::mat-panel-title/parent::span/parent::mat-expansion-panel-header")).getAttribute("aria-expanded"));
@@ -101,10 +111,9 @@ public class CreateAProject {
                         driver.findElement(By.xpath("//span[text()='" + components_panels[comp] + "']")).click();
                         expanded = Boolean.parseBoolean(driver.findElement(By.xpath("//span[text()='" + components_panels[comp] + "']/parent::mat-panel-title/parent::span/parent::mat-expansion-panel-header")).getAttribute("aria-expanded"));
                     }
-
                     if (expanded) {
                         addComponentsToScreenBuilder.ComponentsVerifyForFields();
-                        for (int i = Component.length - 1; i >= 0; i--) {
+                        for (int i = 0; i < Component.length; i++){
                             String ComponentPresent = Component[i];
                             if (addComponentsToScreenBuilder.Fields.get(components_panels[comp]).contains(ComponentPresent)) {
                                 Thread.sleep(3000);
@@ -116,17 +125,82 @@ public class CreateAProject {
                                 act.moveToElement(Source).clickAndHold().perform();
                                 act.moveToElement(Target).moveByOffset(0, yOffsetValue).release().perform();
                                 System.out.println(ComponentPresent);
-                                addProperties.verifyComponentSidebarofComponent(component);
                             }
                         }
-
                     }
                 }
-                Thread.sleep(2000);
+                addProperties.editPropertiesOfComponent(properties, panels, values_comp, component, page_name);
                 driver.findElement(By.xpath("//span[text()='" + pagesRotate[j] + "']/../../../following-sibling::div/div//label/span[text()='Enable Navbar']/../../button")).click();
+                if (pagesRotate[j].equals("Page1")) {
+                    if (driver.findElements(navbarComponentNavtitle).size() > 0) {
+                        driver.findElement(navbarComponentNavIcon1).click();
+                        driver.findElement(navbarComponentNavIcon1).click();
+                        driver.findElement(navbarDisplayiconDropdown).click();
+                        driver.findElement(By.xpath("//mat-option[@value='arrow_back']")).click();
+                        addProperties.clickOnUpdateComponentButton();
+                        driver.findElement(By.xpath("//mat-expansion-panel-header[contains(@class,'mat-expansion-panel-header mat-focus-indicator')]/span/mat-panel-title/span[text()=' Click Actions']")).click();
+                        if (driver.findElements(selectActionTypeDropdown).size() > 0) {
+                            driver.findElement(selectActionTypeDropdown).click();
+                            driver.findElement(By.xpath("//mat-option[@role='option']/span[text()=' Navigation']")).click();
+                            driver.findElement(selctPageDropdownClickActions).click();
+                            if (driver.findElements(By.xpath("//mat-option[@role='option']/span[text()='Landing']")).size() > 0) {
+                                driver.findElement(By.xpath("//mat-option[@role='option']/span[text()='Landing']")).click();
+                                driver.findElement(saveButtonForClickActions).click();
+                            }
+                        }
+                        driver.findElement(navbarComponentNavtitle).click();
+                        driver.findElement(navbarTitleField).clear();
+                        driver.findElement(navbarTitleField).sendKeys("Add User");
+                        addProperties.clickOnUpdateComponentButton();
+                    }
+                }
+                if (pagesRotate[j].equals("Page2")) {
+                    if (driver.findElements(navbarComponentNavtitle).size() > 0) {
+                        driver.findElement(navbarComponentNavIcon1).click();
+                        driver.findElement(navbarComponentNavIcon1).click();
+                        driver.findElement(navbarDisplayiconDropdown).click();
+                        driver.findElement(By.xpath("//mat-option[@value='arrow_back']")).click();
+                        addProperties.clickOnUpdateComponentButton();
+                        driver.findElement(By.xpath("//mat-expansion-panel-header[contains(@class,'mat-expansion-panel-header mat-focus-indicator')]/span/mat-panel-title/span[text()=' Click Actions']")).click();
+                        if (driver.findElements(selectActionTypeDropdown).size() > 0) {
+                            driver.findElement(selectActionTypeDropdown).click();
+                            driver.findElement(By.xpath("//mat-option[@role='option']/span[text()=' Navigation']")).click();
+                            driver.findElement(selctPageDropdownClickActions).click();
+                            if (driver.findElements(By.xpath("//mat-option[@role='option']/span[text()='Page1']")).size() > 0) {
+                                driver.findElement(By.xpath("//mat-option[@role='option']/span[text()='Page1']")).click();
+                                driver.findElement(saveButtonForClickActions).click();
+                            }
+                        }
+                        driver.findElement(navbarComponentNavtitle).click();
+                        driver.findElement(navbarTitleField).clear();
+                        driver.findElement(navbarTitleField).sendKeys("Address Details User");
+                        addProperties.clickOnUpdateComponentButton();
+                    }
+                }
+                if (pagesRotate[j].equals("Page3")) {
+                    if (driver.findElements(navbarComponentNavtitle).size() > 0) {
+                        driver.findElement(navbarComponentNavIcon1).click();
+                        driver.findElement(navbarComponentNavIcon1).click();
+                        driver.findElement(navbarDisplayiconDropdown).click();
+                        driver.findElement(By.xpath("//mat-option[@value='arrow_back']")).click();
+                        addProperties.clickOnUpdateComponentButton();
+                        driver.findElement(By.xpath("//mat-expansion-panel-header[contains(@class,'mat-expansion-panel-header mat-focus-indicator')]/span/mat-panel-title/span[text()=' Click Actions']")).click();
+                        if (driver.findElements(selectActionTypeDropdown).size() > 0) {
+                            driver.findElement(selectActionTypeDropdown).click();
+                            driver.findElement(By.xpath("//mat-option[@role='option']/span[text()=' Navigation']")).click();
+                            driver.findElement(selctPageDropdownClickActions).click();
+                            if (driver.findElements(By.xpath("//mat-option[@role='option']/span[text()='Landing']")).size() > 0) {
+                                driver.findElement(By.xpath("//mat-option[@role='option']/span[text()='Landing']")).click();
+                                driver.findElement(saveButtonForClickActions).click();
+                            }
+                        }
+                        driver.findElement(navbarComponentNavtitle).click();
+                        driver.findElement(navbarTitleField).clear();
+                        driver.findElement(navbarTitleField).sendKeys("User Details");
+                        addProperties.clickOnUpdateComponentButton();
+                    }
+                }
             }
         }
     }
 }
-
-

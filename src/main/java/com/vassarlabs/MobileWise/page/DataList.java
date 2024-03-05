@@ -40,7 +40,7 @@ public class DataList {
     private By noFieldInEntityError = By.xpath("//mat-error[text()='No attributes found in the entity']");
 
     public void displayListProperties(String values_comp) throws Throwable {
-        String[] values = values_comp.split("~");
+        String[] values = values_comp.split("//?");
         Thread.sleep(3000);
         boolean expected = Boolean.parseBoolean(driver.findElement(dataListPropertiesPanel).getAttribute("aria-expanded"));
         System.out.println(expected);

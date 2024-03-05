@@ -16,3 +16,4 @@ public class CreateAPRojectSD {
         createAProject.clickOnWorkPages(work_pages, component_panel, component, properties, panels, values_comp, page_name, entity_name);
     }
 }
+
