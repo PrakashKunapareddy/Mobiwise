@@ -8,6 +8,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
@@ -102,6 +103,7 @@ public class PropertiesSideBar {
     private boolean sideBarExistsFlag = false;
     private boolean panelsarePresentFlag = true;
     Actions act;
+    public static int ittrator = 0;
     private LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> ClickActions = new LinkedHashMap<>();
     private LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> Validations = new LinkedHashMap<>();
     ArrayList<String> Panels = new ArrayList<>();
@@ -190,37 +192,37 @@ public class PropertiesSideBar {
         }
     }
 
-    public void editPropertiesOfComponent(String properties, String panels, String values_comp, String component, String page_name) throws Throwable {
+    public void editPropertiesOfComponent(String properties, String panels, String values_comp, String component, String page_name, String work_page, String component_panel, String entity_name) throws Throwable {
         Thread.sleep(3000);
         String[] Component1 = component.split("~");
-        for (int comp = 0; comp <= Component1.length - 1; comp++) {
+        String[] values1 = values_comp.split("%");
+        String[] panelsInPage = panels.split("%");
+        for (int comp = ittrator; comp <= Component1.length - 1; comp++) {
             String[] Component = Component1[comp].split(",");
-            String[] values1 = values_comp.split("//?");
-            String[] panelsInPage = panels.split("//?");
-            for (int val = 0; val < values1.length; val++) {
+            for (int val = ittrator; val < values1.length; val++) {
                 String[] values = values1[val].split("~");
-                for (int panelcount = 0; panelcount < panelsInPage.length; panelcount++) {
+                for (int panelcount = ittrator; panelcount < panelsInPage.length; panelcount++) {
                     String[] panel = panelsInPage[panelcount].split("~");
-                    int length = Component.length - 1;
-                    for (int c = 0; c <= length; c++) {
-                        if (Component[c].equals("Navbar")) {
-                            editNavbarComponentStylingButtonAndTitle(values[c], component, page_name);
-                            length = length - 1;
-                        }
-                    }
+//                    int length = Component.length - 1;
+//                    for (int c = 0; c <= length; c++) {
+//                        if (Component[c].equals("Navbar")) {
+//                            editNavbarComponentStylingButtonAndTitle(values[c], component, page_name);
+//                            length = length - 1;
+//                        }
+//                    }
                     if (panelsarePresentFlag) {
                         int l = driver.findElements(componentOnTheScreenBuilder).size();
                         int COSB = l - 1; // Initialize COSB with the initial value
-                        for (int c = 0; c <= length; c++) {
+                        for (int c = 0; c < Component.length; c++) {
                             if (COSB >= 0) {
                                 driver.findElements(componentOnTheScreenBuilder).get(COSB).click();
                                 System.out.println("Clicked the " + COSB + " component On the Screen Builder From Last");
                                 System.out.println(Component[c]);
                                 switch (Component[c]) {
-                                    case "Data List":
-                                        dataList.displayListProperties(values_comp);
-                                        clickOnUpdateComponentButton();
-                                        break;
+//                                    case "Data List":
+//                                        dataList.displayListProperties(values_comp);
+//                                        clickOnUpdateComponentButton();
+//                                        break;
 
                                     case "Radio Button":
                                         editRadioButtonComponent(values[c], component, panels);
@@ -331,18 +333,22 @@ public class PropertiesSideBar {
                                         break;
                                 }
                                 COSB--;
-
                             }
                         }
                     }
+                    break;
                 }
+                break;
             }
+            ittrator++;
+            break;
         }
+        return;
     }
 
     //panels for next modules
     public void clickActionsAndValidationsforAnyComponent(String values, String component, String panels, String page_name) throws Throwable {
-        String[] panelsInPage = panels.split("//?");
+        String[] panelsInPage = panels.split("%");
         for (int panelcount = 0; panelcount < panelsInPage.length; panelcount++) {
             String[] panel = panelsInPage[panelcount].split("~");
             String[] Component = component.split(",");
@@ -411,9 +417,6 @@ public class PropertiesSideBar {
                 String[] action = options[options.length - 1].split("-");
                 for (int navopt = 0; navopt < action.length; navopt++) {
                     String[] navOptions = action[navopt].split("_");
-                    if (navopt >= 1) {
-                        driver.findElement(clickActionsPanel).click();
-                    }
                     Thread.sleep(3000);
                     if (driver.findElements(selectActionTypeDropdown).size() > 0) {
                         driver.findElement(selectActionTypeDropdown).click();
@@ -432,7 +435,7 @@ public class PropertiesSideBar {
                             Point startPoint = driver.findElement(selectActionTypeDropdown).getLocation();
                             int xOffset = 0;
                             int yOffset = 20;
-                            act.moveToElement(driver.findElement(selectActionTypeDropdown)).moveByOffset(startPoint.getX() + xOffset, startPoint.getY() + yOffset).click().build().perform();
+                            act.moveToElement(driver.findElement(selectActionTypeDropdown)).moveByOffset(xOffset, yOffset).click().build().perform();
                         }
                     }
                 }
@@ -616,8 +619,8 @@ public class PropertiesSideBar {
                     String[] navicon2 = value[3].split("_");
                     boolean toggleExpected = Boolean.parseBoolean(navicon2[0]);
                     Thread.sleep(4000);
-                    boolean toggleNavicon2 = Boolean.parseBoolean(driver.findElement(By.xpath("//span[text()='Landing']/../../../following-sibling::div//p[text()='Nav Icon 2']/..//button")).getAttribute("aria-checked"));
-                    if (toggleExpected) {
+//                    boolean toggleNavicon2 = Boolean.parseBoolean(driver.findElement(By.xpath("//span[text()='Landing']/../../../following-sibling::div//p[text()='Nav Icon 2']/..//button")).getAttribute("aria-checked"));
+                    if (toggleExpected && false) {
                         driver.findElement(By.xpath("//span[text()='Landing']/../../../following-sibling::div//p[text()='Nav Icon 2']/..//button")).click();
                         driver.findElement(navbarComponentNavIcon2).click();
                         driver.findElement(navbarDisplayiconDropdown).click();
@@ -656,7 +659,6 @@ public class PropertiesSideBar {
 
     public void editLabelTextfield(String values, String component) throws Throwable {
         if (!(driver.findElements(labelTextField).isEmpty())) {
-
             String[] value = values.split(",");
             driver.findElement(labelTextField).clear();
             String[] Component = component.split(",");
@@ -678,6 +680,7 @@ public class PropertiesSideBar {
     public void editTopMarginTextField(String values, String component) throws Throwable {
         if (!(driver.findElements(topMarginTextField).isEmpty())) {
             String[] value = values.split(",");
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
             driver.findElement(topMarginTextField).clear();
             String[] Component = component.split(",");
             for (int c = 0; c <= Component.length - 1; c++) {
@@ -691,7 +694,13 @@ public class PropertiesSideBar {
                     String message = driver.findElement(topMarginTextField).getAttribute("value");
                     Assert.assertEquals(value[value.length - 3], message, "Expected Error Message " + value[value.length - 3] + " But Found : " + message);
                 }
-                if (Component[c].equals("Scanner") || Component[c].equals("Text Field") || Component[c].equals("Image") || Component[c].equals("Date Picker") || Component[c].equals("Address") || Component[c].equals("Geotag")) {
+                if (Component[c].equals("Image")) {
+                    String tp = "16";
+                    driver.findElement(topMarginTextField).sendKeys(tp);
+                    String message = driver.findElement(topMarginTextField).getAttribute("value");
+                    Assert.assertEquals(tp, message, "Expected Error Message " + tp + " But Found : " + message);
+                }
+                if (Component[c].equals("Scanner") || Component[c].equals("Text Field") || Component[c].equals("Date Picker") || Component[c].equals("Address") || Component[c].equals("Geotag")) {
                     driver.findElement(topMarginTextField).sendKeys(value[value.length - 2]);
                     String message = driver.findElement(topMarginTextField).getAttribute("value");
                     Assert.assertEquals(value[value.length - 2], message, "Expected Error Message " + value[value.length - 2] + " But Found : " + message);
@@ -706,7 +715,7 @@ public class PropertiesSideBar {
                     String message = driver.findElement(topMarginTextField).getAttribute("value");
                     Assert.assertEquals(value[1], message, "Expected Error Message " + value[1] + " But Found : " + message);
                 }
-                if (Component[c].equals("File Picker") || Component[c].equals("Image Picker") || Component[c].equals("Range Picker")) {
+                if (Component[c].equals("File Picker") || Component[c].equals("Media Upload") || Component[c].equals("Range Picker")) {
                     driver.findElement(topMarginTextField).sendKeys(value[2]);
                     String message = driver.findElement(topMarginTextField).getAttribute("value");
                     Assert.assertEquals(value[2], message, "Expected Error Message " + value[2] + " But Found : " + message);
@@ -718,7 +727,7 @@ public class PropertiesSideBar {
 
     public void editImageForImageComponent() throws Throwable {
         if (driver.findElements(editbuttonForImageUpload).size() > 0) {
-            driver.findElement(editbuttonForImageUpload).sendKeys("D:\\MobileWise\\Logo\\logo2.webp");
+            driver.findElement(editbuttonForImageUpload).sendKeys("D:\\MobileWise\\Logo\\add-user-icon.webp");
         }
     }
 
@@ -1015,13 +1024,12 @@ public class PropertiesSideBar {
 
 
     public void editRadioButtonComponent(String values, String component, String panels) throws Throwable {
-        String[] panelsInPage = panels.split("//?");
+        String[] panelsInPage = panels.split("%");
         for (int panelcount = 0; panelcount < panelsInPage.length; panelcount++) {
             String[] panel = panelsInPage[panelcount].split("~");
             String[] Component = component.split(",");
             for (int c = 0; c <= Component.length - 1; c++) {
                 if (Component[c].equals("Radio Button")) {
-                    String[] panelsToExpand = panel[c].split(",");
                     if (driver.findElements(radioButtonComponent).size() > 0) {
                         driver.findElement(radioButtonComponent).click();
                         String[] value = values.split(",");

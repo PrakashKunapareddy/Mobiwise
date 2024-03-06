@@ -158,7 +158,7 @@ public class MobileAppBuilderPagesAddComponents {
 
     public void addComponentToScreenBuilder(String component_panel, String component, String offset_value_x, String offset_value_y) throws Throwable {
         String[] components_panelsSelect = component_panel.split("~");
-        for(int comp=0;comp<=components_panelsSelect.length-1;comp++) {
+        for (int comp = 0; comp <= components_panelsSelect.length - 1; comp++) {
             String[] components_panels = components_panelsSelect[comp].split(",");
             String[] Component = component.trim().split(",");
             for (int j = 0; j <= components_panels.length - 1; j++) {
@@ -172,7 +172,7 @@ public class MobileAppBuilderPagesAddComponents {
                     ComponentsVerifyForFields();
                     ArrayList<String> uiCompare = new ArrayList<>();//Array list for Ui values
                     int lastRotate = Integer.parseInt(driver.findElement(By.xpath("//span[text()='" + components_panels[j] + "']//parent::mat-panel-title//span[contains(@class,'mdc-evolution-chip__text-label mat-mdc-chip-action-label')]")).getText().trim());
-                    for (int i = 0; i <= lastRotate; i++) {
+                    for (int i = 0; i <= lastRotate - 1; i++) {
                         String data = driver.findElements(By.xpath("//span[text()='" + components_panels[j] + "']/../../../following-sibling::div//div[contains(@class,'cdk-drag col-4')]")).get(i).getText().trim();
                         uiCompare.add(data);
                     }
@@ -195,7 +195,8 @@ public class MobileAppBuilderPagesAddComponents {
                 if (Component.length > 1) {
                     flagultipleComponents = false;
                 }
-                for (int i = Component.length - 1; i >= 0; i--) {
+
+                for (int i = 0; i < Component.length; i++) {
                     Thread.sleep(3000);
                     WebElement Source = driver.findElement(By.xpath("//div[text()='" + Component[i] + "']"));
                     Thread.sleep(5000);
@@ -220,55 +221,55 @@ public class MobileAppBuilderPagesAddComponents {
     }
 
 
-public void verifyAddedComponent(String component) throws InterruptedException {
-    Thread.sleep(3000);
-    if ((component.equals("Navbar"))) {
+    public void verifyAddedComponent(String component) throws InterruptedException {
         Thread.sleep(3000);
-        if (driver.findElements(navbarComponentNavIcon1).size() > 0) {
-            driver.findElement(navbarComponentNavIcon1).click();
-            if (driver.findElement(navBarSections).isDisplayed()) {
-                driver.findElement(navBarSections).click();
-                String component_name = driver.findElement(navBarSections).getText().trim();
-                Assert.assertEquals(component_name, component, "Expected Error Message " + component + " But Found : " + component_name);
-            }
-        }
-
-    } else {
-        if (flagultipleComponents) {
-            if (driver.findElements(componentOnTheScreenBuilder).size() > 0) {
-                driver.findElement(componentOnTheScreenBuilder).click();
-                String[] component_name = driver.findElement(propertiesNavbarHeading).getText().trim().split(" ");
-                if (component_name.length > 2) {
-                    String Component_name = component_name[0] + " " + component_name[1];
-                    Assert.assertEquals(component, Component_name, "Expected Error Message " + component + " But Found : " + Component_name);
-                } else {
-                    Assert.assertEquals(component, component_name[0], "Expected Error Message " + component + " But Found : " + component_name[0]);
-                }
-
-            }
-        }
-    }
-}
-
-public void deleteNavbarFromTheScreenBuilder(String component) throws Throwable {
-    if (component.equals("Navbar")) {
-        Thread.sleep(3000);
-        driver.findElement(deleteComponentNavbar).click();
-
-    }
-}
-
-public void deleteComponentFromTheScreenBuilder(String component) throws Throwable {
-    if (!(component.equals("Navbar"))) {
-        if (flagultipleComponents) {
-            Thread.sleep(6000);
-            act.moveToElement(driver.findElement(componentOnTheScreenBuilder)).perform();
+        if ((component.equals("Navbar"))) {
             Thread.sleep(3000);
-            driver.findElement(deleteComponent).click();
-        }
+            if (driver.findElements(navbarComponentNavIcon1).size() > 0) {
+                driver.findElement(navbarComponentNavIcon1).click();
+                if (driver.findElement(navBarSections).isDisplayed()) {
+                    driver.findElement(navBarSections).click();
+                    String component_name = driver.findElement(navBarSections).getText().trim();
+                    Assert.assertEquals(component_name, component, "Expected Error Message " + component + " But Found : " + component_name);
+                }
+            }
 
+        } else {
+            if (flagultipleComponents) {
+                if (driver.findElements(componentOnTheScreenBuilder).size() > 0) {
+                    driver.findElement(componentOnTheScreenBuilder).click();
+                    String[] component_name = driver.findElement(propertiesNavbarHeading).getText().trim().split(" ");
+                    if (component_name.length > 2) {
+                        String Component_name = component_name[0] + " " + component_name[1];
+                        Assert.assertEquals(component, Component_name, "Expected Error Message " + component + " But Found : " + Component_name);
+                    } else {
+                        Assert.assertEquals(component, component_name[0], "Expected Error Message " + component + " But Found : " + component_name[0]);
+                    }
+
+                }
+            }
+        }
     }
-}
+
+    public void deleteNavbarFromTheScreenBuilder(String component) throws Throwable {
+        if (component.equals("Navbar")) {
+            Thread.sleep(3000);
+            driver.findElement(deleteComponentNavbar).click();
+
+        }
+    }
+
+    public void deleteComponentFromTheScreenBuilder(String component) throws Throwable {
+        if (!(component.equals("Navbar"))) {
+            if (flagultipleComponents) {
+                Thread.sleep(6000);
+                act.moveToElement(driver.findElement(componentOnTheScreenBuilder)).perform();
+                Thread.sleep(3000);
+                driver.findElement(deleteComponent).click();
+            }
+
+        }
+    }
 //    WebElement shadowHost = driver.findElement(componentOnTheScreenBuilder);
 //
 //        // Execute JavaScript to get the shadow root

@@ -43,6 +43,9 @@ public class AddPage {
     private By radioButtonSelectFromExisting = By.xpath("//label[text()='Select from existing']");
     private By entityDropdownValue = By.xpath("//mat-select[@placeholder='Select Entity']/div/div/span[contains(@class,'mat-mdc-select-value-text')]/span[contains(@class,'mat-mdc-select-min-line')]");
     private By deleteErrorMessage = By.xpath("//div[@class='mat-mdc-dialog-surface mdc-dialog__surface']/div/div/mat-icon[text()='warning']/following-sibling::span");
+    private By loginTypeDropdown = By.xpath("//mat-label[text()='Login Type']/../../../following-sibling::div/mat-select/div/div/following-sibling::div");
+    private By loginTypeDropdownOption = By.xpath("//mat-option[@role='option']/span[text()='Username & Password']");
+    private By loginTypeDropdownvalue = By.xpath("//mat-label[text()='Login Type']/../../../following-sibling::div/mat-select/div/div/span/span");
 
 
     private boolean pagesModuleFlag = false;
@@ -82,6 +85,14 @@ public class AddPage {
             String text2 = driver.findElement(landingPageHeading).getText().trim();
             Assert.assertEquals(Defpages[2], text2, "Expected Error Message " + Defpages[2] + " But Found : " + text);
         }
+    }
+
+    public void verifyDefaultLoginPage() {
+
+    }
+
+    public void verifySplashScreen() {
+
     }
 
     public void addPageToApplication(String page_name, String error_message, String entity_name, String entity_error_message, String edit_entity_name) throws Throwable {

@@ -14,6 +14,8 @@ public class CreateAProject {
     WebDriver driver;
     Actions act;
     private By addComponentsButton = By.xpath("//span[text()=' Add Component ']");
+    private By clickActionSubmitPreviewToggle = By.xpath("//h4[text()='Preview']/../mat-slide-toggle/div/button");
+    private By saveComponentForSubmit = By.xpath("//div[contains(@class,'mobile-canvas-container')]//div[contains(@class,'mobile-canvas ng-star-inserted')]//div//div[contains(@class,'cdk-drop-list')]//lib-widget-filter/div/md-filled-button");
     private By navbarComponentNavIcon1 = By.xpath("//div[contains(@class,'mobile-canvas-container')]//div[contains(@class,'mobile-canvas ng-star-inserted')]//div//div[contains(@class,'cdk-drop-list')]/..//div//mat-toolbar/div[@class='toolbar-start']/button");
     private By navbarComponentNavtitle = By.xpath("//div[contains(@class,'mobile-canvas-container')]//div[contains(@class,'mobile-canvas ng-star-inserted')]//div//div[contains(@class,'cdk-drop-list')]/..//div//mat-toolbar/div[@class='toolbar-title']");
     private By navbarDisplayiconDropdown = By.xpath("//mat-label[text()='Display Icon']/../../../following-sibling::div//div/following-sibling::div");
@@ -22,6 +24,8 @@ public class CreateAProject {
     private By saveButtonForClickActions = By.xpath("//mat-label[text()='Select Page']/../../../../../../../following-sibling::div/button/span[text()='Save']");
     private By navbarTitleField = By.xpath("//mat-panel-title[text()=' Nav Title Properties ']/../../following-sibling::div//input[@formcontrolname='label']");
     private By updateComponentButton = By.xpath("//button//span[text()='Update component']");
+    private By clickActionsPanel = By.xpath("//mat-expansion-panel-header[contains(@class,'mat-expansion-panel-header mat-focus-indicator')]/span/mat-panel-title/span[text()=' Click Actions']");
+
     private By screenBuilder = By.xpath("//div[contains(@class,'mobile-canvas-container')]//div[contains(@class,'mobile-canvas ng-star-inserted')]//div//div[contains(@class,'cdk-drop-list')]");
     PropertiesSideBar addProperties = new PropertiesSideBar(WebdriverInitializer.getDriver());
     MobileAppBuilderPagesAddComponents addComponentsToScreenBuilder = new MobileAppBuilderPagesAddComponents(WebdriverInitializer.getDriver());
@@ -34,8 +38,8 @@ public class CreateAProject {
         act = new Actions(this.driver);
     }
 
-    public void clickOnWorkPages(String work_pages, String component_panel, String component, String properties, String panels, String values_comp, String page_name, String entity_name) throws Throwable {
-        String[] pagesRotate = work_pages.split(",");
+    public void clickOnWorkPages(String work_page, String component_panel, String component, String properties, String panels, String values_comp, String page_name, String entity_name) throws Throwable {
+        String[] pagesRotate = work_page.split(",");
         String[] components_panelsSelect = component_panel.split("~");
         String[] components = component.trim().split("~");
         addProperties.addPageForNavigation(page_name, entity_name);
@@ -58,7 +62,7 @@ public class CreateAProject {
                     }
                     if (expanded) {
                         addComponentsToScreenBuilder.ComponentsVerifyForFields();
-                        for (int i = 0; i < Component.length; i++){
+                        for (int i = 0; i < Component.length; i++) {
                             String ComponentPresent = Component[i];
                             if (addComponentsToScreenBuilder.Fields.get(components_panels[comp]).contains(ComponentPresent)) {
                                 Thread.sleep(3000);
@@ -88,6 +92,7 @@ public class CreateAProject {
                     driver.findElement(navbarComponentNavIcon1).click();
                     driver.findElement(navbarDisplayiconDropdown).click();
                     driver.findElement(By.xpath("//mat-option[@value='menu']")).click();
+                    Thread.sleep(2000);
                     driver.findElement(updateComponentButton).click();
                     driver.findElement(navbarComponentNavtitle).click();
                     driver.findElement(navbarTitleField).clear();
@@ -95,12 +100,14 @@ public class CreateAProject {
                     Thread.sleep(2000);
                     driver.findElement(updateComponentButton).click();
                 }
-                addProperties.editPropertiesOfComponent(properties, panels, values_comp, component, page_name);
+                addProperties.editPropertiesOfComponent(properties, panels, values_comp, component, page_name, work_page, component_panel, entity_name);
             } else {
                 WebElement panelHeader = driver.findElement(By.xpath("//mat-expansion-panel-header[contains(@class,'mat-expansion-panel-header mat-focus-indicator')]/span/mat-panel-title/span[text()='" + pagesRotate[j] + "']"));
                 panelHeader.click();
                 Thread.sleep(2000);
-                driver.findElement(addComponentsButton).click();
+                driver.findElement(By.xpath("//span[text()='" + pagesRotate[j] + "']/../../../following-sibling::div/div//label/span[text()='Disable Navbar']/../../button")).click();
+                Thread.sleep(3000);
+                driver.findElement(By.xpath("//mat-panel-title//span[text()='" + pagesRotate[j] + "']/../../../following-sibling::div//button//span[text()=' Add Component ']")).click();
                 String[] components_panels = components_panelsSelect[j].split(",");
                 String[] Component = components[j].split(",");
                 for (int comp = 0; comp < components_panels.length; comp++) {
@@ -113,7 +120,7 @@ public class CreateAProject {
                     }
                     if (expanded) {
                         addComponentsToScreenBuilder.ComponentsVerifyForFields();
-                        for (int i = 0; i < Component.length; i++){
+                        for (int i = 0; i < Component.length; i++) {
                             String ComponentPresent = Component[i];
                             if (addComponentsToScreenBuilder.Fields.get(components_panels[comp]).contains(ComponentPresent)) {
                                 Thread.sleep(3000);
@@ -129,7 +136,7 @@ public class CreateAProject {
                         }
                     }
                 }
-                addProperties.editPropertiesOfComponent(properties, panels, values_comp, component, page_name);
+                addProperties.editPropertiesOfComponent(properties, panels, values_comp, component, page_name, work_page, component_panel, entity_name);
                 driver.findElement(By.xpath("//span[text()='" + pagesRotate[j] + "']/../../../following-sibling::div/div//label/span[text()='Enable Navbar']/../../button")).click();
                 if (pagesRotate[j].equals("Page1")) {
                     if (driver.findElements(navbarComponentNavtitle).size() > 0) {
@@ -140,6 +147,7 @@ public class CreateAProject {
                         addProperties.clickOnUpdateComponentButton();
                         driver.findElement(By.xpath("//mat-expansion-panel-header[contains(@class,'mat-expansion-panel-header mat-focus-indicator')]/span/mat-panel-title/span[text()=' Click Actions']")).click();
                         if (driver.findElements(selectActionTypeDropdown).size() > 0) {
+                            Thread.sleep(3000);
                             driver.findElement(selectActionTypeDropdown).click();
                             driver.findElement(By.xpath("//mat-option[@role='option']/span[text()=' Navigation']")).click();
                             driver.findElement(selctPageDropdownClickActions).click();
@@ -175,6 +183,14 @@ public class CreateAProject {
                         driver.findElement(navbarTitleField).clear();
                         driver.findElement(navbarTitleField).sendKeys("Address Details User");
                         addProperties.clickOnUpdateComponentButton();
+                        driver.findElement(saveComponentForSubmit).click();
+                        if(driver.findElements(clickActionsPanel).size()>0){
+                            driver.findElement(clickActionsPanel).click();
+                            driver.findElement(selectActionTypeDropdown).click();
+                            driver.findElement(By.xpath("//mat-option[@role='option']/span[text()=' Submit']")).click();
+                                driver.findElement(clickActionSubmitPreviewToggle).click();
+                                driver.findElement(saveButtonForClickActions).click();
+                        }
                     }
                 }
                 if (pagesRotate[j].equals("Page3")) {
@@ -200,7 +216,12 @@ public class CreateAProject {
                         addProperties.clickOnUpdateComponentButton();
                     }
                 }
-            }
+           }
+            break;
         }
+    }
+
+    public void clickOnPublishButton() throws Throwable {
+
     }
 }
