@@ -27,6 +27,7 @@ public class PropertiesSideBar {
     private By SaveComponentFilledButton = By.xpath("//div[contains(@class,'mobile-canvas-container')]//div[contains(@class,'mobile-canvas ng-star-inserted')]//div//div[contains(@class,'cdk-drop-list')]//lib-widget-filter/div/md-filled-button");
     private By displayTypeDropdown = By.xpath("//mat-label[text()='Display Type']/parent::label/parent::div/parent::div/following::div/mat-select/div/div//span/span/../../following-sibling::div[contains(@class,'mat-mdc-select-arrow-wrapper')]");
     private By displayTypeDropdownValue = By.xpath("//mat-label[text()='Display Type']/../../../following-sibling::div/mat-select/div/div/span/span");
+    private By dataListViewPage = By.xpath("//span[contains(text(),'Data List View Of')]/parent::mat-panel-title");
     private By labelTextField = By.xpath("//mat-label[text()='Label']/../../../following-sibling::div/input[@formcontrolname='label']");
     private By topMarginTextField = By.xpath("//mat-label[text()='Top Margin']/../../../following-sibling::div/input[@formcontrolname='marginTop']");
     private By updateComponentButton = By.xpath("//button//span[text()='Update component']");
@@ -54,20 +55,22 @@ public class PropertiesSideBar {
     private By maxSizeTextField = By.xpath("//input[@formcontrolname='maxSize']");
     private By navbarTitleField = By.xpath("//mat-panel-title[text()=' Nav Title Properties ']/../../following-sibling::div//input[@formcontrolname='label']");
     private By previewToggle = By.xpath("//span[text()='Preview File']/../../button[@role='switch']");
-    private By previewToggleImagePickerImage = By.xpath("//span[text()='Preview Image']/../../button[@role='switch']");
+    private By gallaryUploadToggleImagePickerImage = By.xpath("//span[text()='Gallery Upload']/../../button[@role='switch']");
+    private By geoReferencetoggleImagePicker = By.xpath("//span[text()='Geo Reference']/../../button[@role='switch']");
+    private By dateRangeToggle = By.xpath("//span[text()='Date Range']/../../button[@role='switch']");
+    private By baringToggleImagePicker = By.xpath("//span[text()='Baring']/../../button[@role='switch']");
+    private By gpsAccuracyfield = By.xpath("//input[@formcontrolname='gpsAccuracy']");
     private By previewVideoImagePicker = By.xpath("//span[text()='Preview Video']/../../button[@role='switch']");
     private By videoCompressionToggleImagePicker = By.xpath("//span[text()='Video Compression']/../../button[@role='switch']");
     private By imageCompressionImagePicker = By.xpath("//span[text()='Image Compression']/../../button[@role='switch']");
-    private By autoRotatetoggleImagePicker = By.xpath("//span[text()='Auto-rotate']/../../button[@role='switch']");
     private By fileCompressiontoggle = By.xpath("//span[text()='File Compression']/../../button[@role='switch']");
     private By uploadTypeDropDown = By.xpath("//mat-label[text()='Upload Type']/../../../following-sibling::div//div/following-sibling::div");
     private By navbarDisplayiconDropdown = By.xpath("//mat-label[text()='Display Icon']/../../../following-sibling::div//div/following-sibling::div");
     private By allowedImageType = By.xpath("//mat-label[text()='Allowed Image Types']//parent::label//parent::div/../following-sibling::div/mat-select/div/div/following-sibling::div");
     private By allowedVideoType = By.xpath("//mat-label[text()='Allowed Video Types']//parent::label//parent::div/../following-sibling::div/mat-select/div/div/following-sibling::div");
-    private By maxVideoSizeImagePicker = By.xpath("//input[@formcontrolname='maxVideoSize']");
-    private By maxImageSizeImagePicker = By.xpath("//input[@formcontrolname='maxImageSize']");
-    private By minDateRangeRangePicker = By.xpath("//mat-label[text()='Minimum Date Range (in days)']/../../../following-sibling::div/input[@type='number']");
-    private By maxDateRangeRangePicker = By.xpath("//mat-label[text()='Maximum Date Range (in days)']/../../../following-sibling::div/input[@type='number']");
+    private By maxSizeImageAndVideo = By.xpath("//input[@formcontrolname='maxSize']");
+    private By futureDateRangeRangePicker = By.xpath("//input[@formcontrolname='futureDays']");
+    private By historicDateRangeRangePicker = By.xpath("//input[@formcontrolname='historicalDays']");
     private By selectDateFormatDropdown = By.xpath("//mat-label[text()='Select Date Format:']/../../../following-sibling::div/mat-select/div/div/following-sibling::div");
     private By thicknessSeparator = By.xpath("//input[@formcontrolname='thickness']");
     private By selectGeofenceTypeDropDown = By.xpath("//mat-label[text()='Select Geofence Types:']/../../../following-sibling::div/mat-select/div/div/following-sibling::div");
@@ -122,20 +125,27 @@ public class PropertiesSideBar {
             driver.findElement(addPageButton).click();
             driver.findElement(addPageTextfield).sendKeys(addPages[i]);
             Thread.sleep(4000);
-            if (addPages[i].equals("Page3")) {
-                driver.findElement(createNewEntityRadio).click();
-                driver.findElement(addPageEntityTextfield).sendKeys("dummy");
-                flag = false;
-            }
-            if (driver.findElement(radiobuttonselectstatus).getText().trim().equals("Select from existing")) {
-                Thread.sleep(4000);
+            if (addPages[i].equals("Page2")) {
                 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
                 driver.findElement(entityDropdown).click();
                 driver.findElement(By.xpath("//mat-option[@role='option']/span[text()='" + entity_name + "']")).click();
                 flag = false;
             }
+            if (addPages[i].equals("Page3")) {
+                driver.findElement(createNewEntityRadio).click();
+                driver.findElement(addPageEntityTextfield).sendKeys("dummy");
+                flag = false;
+            }
+            Thread.sleep(3000);
+//            if (driver.findElement(radiobuttonselectstatus).getText().trim().equals("Select from existing")) {
+//                Thread.sleep(4000);
+//                driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+//                driver.findElement(entityDropdown).click();
+//                driver.findElement(By.xpath("//mat-option[@role='option']/span[text()='" + entity_name + "']")).click();
+//                flag = false;
+//            }
             if (flag) {
-                Thread.sleep(2000);
+                Thread.sleep(3000);
                 driver.findElement(addPageEntityTextfield).sendKeys(entity_name);
             }
             driver.findElement(addPageSaveButton).click();
@@ -219,10 +229,13 @@ public class PropertiesSideBar {
                                 System.out.println("Clicked the " + COSB + " component On the Screen Builder From Last");
                                 System.out.println(Component[c]);
                                 switch (Component[c]) {
-//                                    case "Data List":
-//                                        dataList.displayListProperties(values_comp);
-//                                        clickOnUpdateComponentButton();
-//                                        break;
+                                    case "Data List":
+                                        boolean var = dataList.displayListProperties(values_comp);
+                                        if (var) {
+                                            createNavigationForDataListPage();
+                                        }
+                                        clickOnUpdateComponentButton();
+                                        break;
 
                                     case "Radio Button":
                                         editRadioButtonComponent(values[c], component, panels);
@@ -288,6 +301,7 @@ public class PropertiesSideBar {
                                         editDisplayTypeDropdowns(values[c]);
                                         editLabelTextfield(values[c], Component[c]);
                                         editTopMarginTextField(values[c], Component[c]);
+                                        editSelectDateFormatDropdownAndDateRanges(values[c], component);
                                         clickOnUpdateComponentButton();
                                         clickActionsAndValidationsforAnyComponent(values[c], component, panels, page_name);
                                         break;
@@ -314,7 +328,7 @@ public class PropertiesSideBar {
                                         editDisplayTypeDropdowns(values[c]);
                                         editLabelTextfield(values[c], Component[c]);
                                         editDataTypeDropDown(values[c]);
-                                        editPlaceHolderTextField(values[c]);
+                                        editPlaceHolderTextField(values[c], component);
                                         editTopMarginTextField(values[c], Component[c]);
                                         clickOnUpdateComponentButton();
                                         clickActionsAndValidationsforAnyComponent(values[c], component, panels, page_name);
@@ -569,6 +583,7 @@ public class PropertiesSideBar {
                     driver.findElement(By.xpath("//mat-option[@role='option']/span[text()='" + options[0] + "']")).click();
                     if (options[0].equals("Manual")) {
                         for (int o = 1; o <= options.length - 1; o++) {
+                            Thread.sleep(200);
                             driver.findElement(manualdataLables).sendKeys(options[o]);
                             if (driver.findElement(manualdataLables).getAttribute("value").length() > 0) {
                                 driver.findElement(addValueButton).click();
@@ -700,7 +715,7 @@ public class PropertiesSideBar {
                     String message = driver.findElement(topMarginTextField).getAttribute("value");
                     Assert.assertEquals(tp, message, "Expected Error Message " + tp + " But Found : " + message);
                 }
-                if (Component[c].equals("Scanner") || Component[c].equals("Text Field") || Component[c].equals("Date Picker") || Component[c].equals("Address") || Component[c].equals("Geotag")) {
+                if (Component[c].equals("Scanner") || Component[c].equals("Text Field") || Component[c].equals("Range Picker") || Component[c].equals("Address") || Component[c].equals("Geotag")) {
                     driver.findElement(topMarginTextField).sendKeys(value[value.length - 2]);
                     String message = driver.findElement(topMarginTextField).getAttribute("value");
                     Assert.assertEquals(value[value.length - 2], message, "Expected Error Message " + value[value.length - 2] + " But Found : " + message);
@@ -715,7 +730,7 @@ public class PropertiesSideBar {
                     String message = driver.findElement(topMarginTextField).getAttribute("value");
                     Assert.assertEquals(value[1], message, "Expected Error Message " + value[1] + " But Found : " + message);
                 }
-                if (Component[c].equals("File Picker") || Component[c].equals("Media Upload") || Component[c].equals("Range Picker")) {
+                if (Component[c].equals("File Picker") || Component[c].equals("Media Upload") || Component[c].equals("Date Picker")) {
                     driver.findElement(topMarginTextField).sendKeys(value[2]);
                     String message = driver.findElement(topMarginTextField).getAttribute("value");
                     Assert.assertEquals(value[2], message, "Expected Error Message " + value[2] + " But Found : " + message);
@@ -821,13 +836,27 @@ public class PropertiesSideBar {
         }
     }
 
-    public void editPlaceHolderTextField(String values) throws Throwable {
-        if (!(driver.findElements(placeHolderTextField).isEmpty())) {
-            String[] value = values.split(",");
-            driver.findElement(placeHolderTextField).clear();
-            driver.findElement(placeHolderTextField).sendKeys(value[3]);
-            String message = driver.findElement(placeHolderTextField).getAttribute("value");
-            Assert.assertEquals(value[3], message, "Expected Error Message " + value[3] + " But Found : " + message);
+    public void editPlaceHolderTextField(String values, String component) throws Throwable {
+        String[] Component = component.split(",");
+        for (int c = 0; c <= Component.length - 1; c++) {
+            if (Component[c].equals("Text Field")) {
+                if (!(driver.findElements(placeHolderTextField).isEmpty())) {
+                    String[] value = values.split(",");
+                    driver.findElement(placeHolderTextField).clear();
+                    driver.findElement(placeHolderTextField).sendKeys(value[3]);
+                    String message = driver.findElement(placeHolderTextField).getAttribute("value");
+                    Assert.assertEquals(value[3], message, "Expected Error Message " + value[3] + " But Found : " + message);
+                }
+            }
+            if (Component[c].equals("Address")) {
+                if (!(driver.findElements(placeHolderTextField).isEmpty())) {
+                    String[] value = values.split(",");
+                    driver.findElement(placeHolderTextField).clear();
+                    driver.findElement(placeHolderTextField).sendKeys(value[2]);
+                    String message = driver.findElement(placeHolderTextField).getAttribute("value");
+                    Assert.assertEquals(value[3], message, "Expected Error Message " + value[3] + " But Found : " + message);
+                }
+            }
         }
 
     }
@@ -865,7 +894,7 @@ public class PropertiesSideBar {
     public void uploadTyppeDropdownImagePicker(String values, String component) throws Throwable {
         String[] Component = component.split(",");
         for (int c = 0; c <= Component.length - 1; c++) {
-            if (Component[c].equals("Image Picker")) {
+            if (Component[c].equals("Media Upload")) {
                 String[] Value = values.split(",");
                 String[] prop = Value[3].split("_");
                 driver.findElement(uploadTypeDropDown).click();
@@ -880,21 +909,25 @@ public class PropertiesSideBar {
                         }
                     }
                     act.moveByOffset(0, 50).click().perform();
-                    driver.findElement(maxImageSizeImagePicker).sendKeys(prop[2]);
-                    boolean PreviewImage = Boolean.parseBoolean(prop[3]);
-                    boolean ImageCompression = Boolean.parseBoolean(prop[4]);
-                    boolean AutoRotateImage = Boolean.parseBoolean(prop[5]);
-                    boolean StatusPreviewImage = Boolean.parseBoolean(driver.findElement(previewToggleImagePickerImage).getAttribute("aria-checked"));
+                    driver.findElement(maxSizeImageAndVideo).sendKeys(prop[2]);
+                    boolean ImageCompression = Boolean.parseBoolean(prop[3]);
+                    boolean GallaryUpload = Boolean.parseBoolean(prop[4]);
+                    boolean GeoReference = Boolean.parseBoolean(prop[5]);
                     boolean StatusImageCompression = Boolean.parseBoolean(driver.findElement(imageCompressionImagePicker).getAttribute("aria-checked"));
-                    boolean StatusAutoRotateImage = Boolean.parseBoolean(driver.findElement(autoRotatetoggleImagePicker).getAttribute("aria-checked"));
-                    if (!(PreviewImage == StatusPreviewImage)) {
-                        driver.findElement(previewToggleImagePickerImage).click();
-                    }
+                    boolean StatusGallaryUpload = Boolean.parseBoolean(driver.findElement(gallaryUploadToggleImagePickerImage).getAttribute("aria-checked"));
+                    boolean StatusGeoReference = Boolean.parseBoolean(driver.findElement(geoReferencetoggleImagePicker).getAttribute("aria-checked"));
                     if (!(ImageCompression == StatusImageCompression)) {
                         driver.findElement(imageCompressionImagePicker).click();
                     }
-                    if (!(AutoRotateImage == StatusAutoRotateImage)) {
-                        driver.findElement(autoRotatetoggleImagePicker).click();
+                    if (!(GallaryUpload == StatusGallaryUpload)) {
+                        driver.findElement(gallaryUploadToggleImagePickerImage).click();
+                    }
+                    if (!(GeoReference == StatusGeoReference)) {
+                        driver.findElement(geoReferencetoggleImagePicker).click();
+                        if (GeoReference) {
+                            driver.findElement(baringToggleImagePicker).click();
+                            driver.findElement(gpsAccuracyfield).sendKeys("20");
+                        }
                     }
                 }
                 if (prop[0].equals("video")) {
@@ -909,45 +942,52 @@ public class PropertiesSideBar {
                     }
                     act.moveByOffset(0, 50).click().perform();
                     Thread.sleep(2000);
-                    driver.findElement(maxVideoSizeImagePicker).sendKeys(prop[2]);
-                    boolean PreviewVideo = Boolean.parseBoolean(prop[3]);
-                    boolean VideoCompression = Boolean.parseBoolean(prop[4]);
-                    boolean StatusPreviewVideo = Boolean.parseBoolean(driver.findElement(previewVideoImagePicker).getAttribute("aria-checked"));
+                    driver.findElement(maxSizeImageAndVideo).sendKeys(prop[2]);
+                    boolean VideoCompression = Boolean.parseBoolean(prop[3]);
+                    boolean GallaryUpload = Boolean.parseBoolean(prop[4]);
+                    boolean GeoReference = Boolean.parseBoolean(prop[5]);
                     boolean StatusVideoCompression = Boolean.parseBoolean(driver.findElement(videoCompressionToggleImagePicker).getAttribute("aria-checked"));
-                    if (!(PreviewVideo == StatusPreviewVideo)) {
-                        driver.findElement(previewVideoImagePicker).click();
-                    }
+                    boolean StatusGallaryUpload = Boolean.parseBoolean(driver.findElement(gallaryUploadToggleImagePickerImage).getAttribute("aria-checked"));
+                    boolean StatusGeoReference = Boolean.parseBoolean(driver.findElement(geoReferencetoggleImagePicker).getAttribute("aria-checked"));
                     if (!(VideoCompression == StatusVideoCompression)) {
                         driver.findElement(videoCompressionToggleImagePicker).click();
                     }
-                }
-                if (prop[0].equals("imgDirection")) {
-                    driver.findElement(By.xpath("//mat-option[@value='" + prop[0] + "']")).click();
+                    if (!(GallaryUpload == StatusGallaryUpload)) {
+                        driver.findElement(gallaryUploadToggleImagePickerImage).click();
+                    }
+                    if (!(GeoReference == StatusGeoReference)) {
+                        driver.findElement(geoReferencetoggleImagePicker).click();
+                        if (GeoReference) {
+                            driver.findElement(baringToggleImagePicker).click();
+                            driver.findElement(gpsAccuracyfield).sendKeys("20");
+                        }
+                    }
                 }
             }
         }
     }
 
     public void editSelectDateFormatDropdownAndDateRanges(String values, String component) throws Throwable {
-        String[] Component = component.split(",");
         String[] value = values.split(",");
-        for (int c = 0; c <= Component.length - 1; c++) {
-            if (Component[c].equals("Range Picker")) {
-                if (driver.findElements(selectDateFormatDropdown).size() > 0) {
-                    driver.findElement(selectDateFormatDropdown).click();
-                    if (driver.findElements(By.xpath("//mat-option[@role='option']/span[text()='" + value[3] + "']")).size() > 0) {
-                        driver.findElement(By.xpath("//mat-option[@role='option']/span[text()='" + value[3] + "']")).click();
-                    }
-                }
-                if (driver.findElements(minDateRangeRangePicker).size() > 0) {
-                    driver.findElement(minDateRangeRangePicker).sendKeys(value[4]);
-                }
-                if (driver.findElements(maxDateRangeRangePicker).size() > 0) {
-                    driver.findElement(maxDateRangeRangePicker).sendKeys(value[5]);
+        if (driver.findElements(selectDateFormatDropdown).size() > 0) {
+            driver.findElement(selectDateFormatDropdown).click();
+            if (driver.findElements(By.xpath("//mat-option[@role='option']/span[text()='" + value[3] + "']")).size() > 0) {
+                driver.findElement(By.xpath("//mat-option[@role='option']/span[text()='" + value[3] + "']")).click();
+            }
+        }
+        if (driver.findElements(dateRangeToggle).size() > 0) {
+            boolean expected = Boolean.parseBoolean(value[4]);
+            if (expected) {
+                driver.findElement(dateRangeToggle).click();
+                boolean exp = Boolean.parseBoolean(driver.findElement(dateRangeToggle).getAttribute("aria-checked"));
+                if (exp) {
+                    driver.findElement(historicDateRangeRangePicker).sendKeys(value[5]);
+                    driver.findElement(futureDateRangeRangePicker).sendKeys(value[6]);
                 }
             }
         }
     }
+
 
     public void editMaxSizeTextfield(String values, String component) throws Throwable {
         String[] value = values.split(",");
@@ -1066,6 +1106,7 @@ public class PropertiesSideBar {
                             }
                         }
                         clickOnUpdateComponentButton();
+                        break;
                     }
                 }
             }
@@ -1076,9 +1117,44 @@ public class PropertiesSideBar {
     public void clickOnUpdateComponentButton() throws Throwable {
 //        boolean disabled = Boolean.parseBoolean(driver.findElement(updateComponentButton).getAttribute("disabled"));
 //        if (!disabled) {
-        Thread.sleep(3000);
+        Thread.sleep(2000);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.findElement(updateComponentButton).click();
 //        }
+    }
+
+    public void createNavigationForDataListPage() throws Throwable {
+        Thread.sleep(3000);
+        driver.findElement(dataListViewPage).click();
+        int xOffset = 500;
+        int yOffset = 0;
+        act.moveToElement(driver.findElement(dataListViewPage)).moveByOffset(xOffset, yOffset).click().build().perform();
+        WebElement Source = driver.findElement(By.xpath("//div[text()='Navbar']"));
+        Thread.sleep(5000);
+        WebElement Target = driver.findElement(screenBuilder);
+        Point initialTargetLocation = Target.getLocation();
+        int yOffsetValue = initialTargetLocation.getY() - 500;
+        act.moveToElement(Source).clickAndHold().perform();
+        act.moveToElement(Target).moveByOffset(0, yOffsetValue).release().perform();
+        driver.findElement(navbarComponentNavIcon1).click();
+        driver.findElement(navbarDisplayiconDropdown).click();
+        driver.findElement(By.xpath("//mat-option[@value='arrow_back']")).click();
+        clickOnUpdateComponentButton();
+        driver.findElement(By.xpath("//mat-expansion-panel-header[contains(@class,'mat-expansion-panel-header mat-focus-indicator')]/span/mat-panel-title/span[text()=' Click Actions']")).click();
+        if (driver.findElements(selectActionTypeDropdown).size() > 0) {
+            Thread.sleep(3000);
+            driver.findElement(selectActionTypeDropdown).click();
+            driver.findElement(By.xpath("//mat-option[@role='option']/span[text()=' Navigation']")).click();
+            driver.findElement(selctPageDropdownClickActions).click();
+            if (driver.findElements(By.xpath("//mat-option[@role='option']/span[text()='Page3']")).size() > 0) {
+                driver.findElement(By.xpath("//mat-option[@role='option']/span[text()='Page3']")).click();
+                driver.findElement(saveButtonForClickActions).click();
+                driver.findElement(navbarComponentNavtitle).click();
+                driver.findElement(navbarTitleField).clear();
+                driver.findElement(navbarTitleField).sendKeys("Data List Preview");
+                clickOnUpdateComponentButton();
+            }
+        }
     }
 
 

@@ -1,0 +1,11 @@
+
+j
+java:S1104"TMake tlDriver a static final constant or non-public and provide accessors if needed.(–¿±ô
+D
+java:S1444".Make this "public static tlDriver" field final(–¿±ô
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(“—Ýü
+V	java:S125"<This block of commented-out lines of code should be removed.(¥ä¨åùÿÿÿÿ
+c	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(··‚ˆ
+@	java:S106"+Replace this use of System.out by a logger.(Ý¦“ 
+V	java:S125#"<This block of commented-out lines of code should be removed.(åãÎûÿÿÿÿ
+@	java:S1065"+Replace this use of System.out by a logger.(€éúæ

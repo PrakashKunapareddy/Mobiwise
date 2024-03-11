@@ -1,0 +1,47 @@
+
+[	java:S112="FDefine and throw a dedicated exception instead of using a generic one.(ª»
+[	java:S112E"FDefine and throw a dedicated exception instead of using a generic one.(Ù®†‹
+Z	java:S112M"FDefine and throw a dedicated exception instead of using a generic one.(› ¥>
+Z	java:S112_"FDefine and throw a dedicated exception instead of using a generic one.(ÁÇäa
+\	java:S112Ê"FDefine and throw a dedicated exception instead of using a generic one.(ø°©Â
+\	java:S112Ò"FDefine and throw a dedicated exception instead of using a generic one.(ÄˆÈ§
+n
+java:S1192B"XDefine a constant instead of duplicating this literal "Expected Error Message " 7 times.(ÚÚ¿¼
+d
+java:S1192B"NDefine a constant instead of duplicating this literal " But Found : " 7 times.(ÚÚ¿¼
+k	java:S1174"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(±Ü¥”ûÿÿÿÿ
+k	java:S117H"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(½è¹şÿÿÿÿ
+e	java:S117M"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(› ¥>
+f	java:S117d"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×êğ
+f	java:S117d"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×êğ
+k	java:S117i"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ş™şÄüÿÿÿÿ
+k	java:S117i"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ş™şÄüÿÿÿÿ
+k	java:S117s"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÄàÁÀşÿÿÿÿ
+k	java:S117s"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÄàÁÀşÿÿÿÿ
+f	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ª™¯
+l	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÉÄäƒùÿÿÿÿ
+g	java:S117Š"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸åØ†
+g	java:S117Š"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸åØ†
+g	java:S117›"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ª™¯
+l	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÉÄäƒùÿÿÿÿ
+l	java:S117Â"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(©°˜·ÿÿÿÿÿ
+g	java:S117Ê"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ø°©Â
+1
+java:S1700"Rename field "themesModule"(ƒêÃ–
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(½¶¾
+n	java:S116""TRename this field "OnPrimary" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¬«Ïüÿÿÿÿ
+‰
+java:S1130/"sRemove the declaration of thrown exception 'java.awt.AWTException', as it cannot be thrown from constructor's body.(ôû‘Æ
+Z
+java:S1172Š"CRemove this unused method parameter "toaster_message_themes_apply".(¸åØ†
+F	java:S106²"+Replace this use of System.out by a logger.(«ùşàüÿÿÿÿ
+U
+java:S1155Ä">Use isEmpty() to check whether the collection is empty or not.(¾İ²ó
+U
+java:S1155Ì">Use isEmpty() to check whether the collection is empty or not.(ÊŞû
+Z
+java:S1155Ô">Use isEmpty() to check whether the collection is empty or not.(Óúö’ıÿÿÿÿ
+J
+java:S1068"4Remove this unused "headingsDropdown" private field.(íéÁÙ
+F
+java:S1068"0Remove this unused "bodyDropdown" private field.(Â…Ğ

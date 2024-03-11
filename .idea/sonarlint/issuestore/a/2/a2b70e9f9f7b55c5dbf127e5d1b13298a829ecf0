@@ -1,0 +1,8 @@
+
+b	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(È¹¬Ê8¿ó­êâ1
+r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(³¤ï’üÿÿÿÿ8Áó­êâ1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(½¶¾8Ãó­êâ1
+u	java:S116"TRename this field "Mobileapp" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ä…„üüÿÿÿÿ8Êó­êâ1
+ƒ	java:S116"bRename this field "DataListOnScreenBuilder" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ş’Ûùÿÿÿÿ8Êó­êâ1
+\
+java:S6213":Rename this variable to not match a restricted identifier.(œ¬œ¸úÿÿÿÿ8Ôó­êâ1

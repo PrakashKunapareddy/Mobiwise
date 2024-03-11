@@ -1,0 +1,88 @@
+
+	java:S112K"FDefine and throw a dedicated exception instead of using a generic one.(åž„ÔJ$20ec4976-2db9-4e8a-91b3-9aa6f7eb35a0
+	java:S112V"FDefine and throw a dedicated exception instead of using a generic one.(³ÈÄJ$040d1674-526d-49fe-824e-e30fb18d440d
+‚	java:S112¸"FDefine and throw a dedicated exception instead of using a generic one.(Ž¦ü™J$e0ae2aa6-6c49-4ad2-8f94-e9d03894cf23
+‡	java:S112À"FDefine and throw a dedicated exception instead of using a generic one.(ýí°›üÿÿÿÿJ$e89f81f9-3695-4e08-9e9b-05250a2964e2
+‚	java:S112ý"FDefine and throw a dedicated exception instead of using a generic one.(ô´Õ£J$2916acb6-a31a-406d-82f0-f20545a0a35b
+‡	java:S112„"FDefine and throw a dedicated exception instead of using a generic one.(êàìúÿÿÿÿJ$d0833857-831e-4670-a187-7ba17933b287
+‚	java:S112‰"FDefine and throw a dedicated exception instead of using a generic one.(ŒèçÔJ$c196500b-0131-4430-9043-8a19cc68582f
+‚	java:S112’"FDefine and throw a dedicated exception instead of using a generic one.(¨×˜¿J$f667088e-1e4c-4e41-8798-0e5de7927d25
+‡	java:S112Ê"FDefine and throw a dedicated exception instead of using a generic one.(Ö‚ÚšÿÿÿÿÿJ$ec4e2c57-5975-4635-949b-4a506dc8585f
+‹
+java:S1192R"ODefine a constant instead of duplicating this literal " But Found : " 20 times.(½ð‹˜J$5e23e3b2-1acd-4e5b-8ca0-379ced98342f
+•
+java:S1192R"YDefine a constant instead of duplicating this literal "Expected Error Message " 20 times.(½ð‹˜J$f532c337-3949-4bf4-a691-375250fe467b
+‰
+java:S1192o"MDefine a constant instead of duplicating this literal "aria-checked" 3 times.(úîµµJ$96ed8c6b-bb28-4bde-95b5-90e6e4363eb0
+Œ	java:S117V"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(³ÈÄJ$95efe089-0840-4826-9f3f-711921950a96
+‘	java:S117Y"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(®ž‰ËÿÿÿÿÿJ$4167d8e0-2f78-4047-87b4-99d3d0b16ac1
+	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÆßµÜJ$f1a1ddaf-5cf9-4a5c-ba16-e9791236934b
+	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÆßµÜJ$8a69e1f2-7398-4cce-b408-2053ede8f5fc
+	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÆßµÜJ$65042232-2f00-4e4f-8756-4d05b5587602
+	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÆßµÜJ$2fc89ad2-2d5c-4968-8b07-6c8022b71e5f
+	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÆßµÜJ$f2f254a0-4282-4013-a015-961921918109
+’	java:S117»"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÄïçÁøÿÿÿÿJ$59feee42-ca74-4f41-acc9-77e021fa7039
+’	java:S117À"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ýí°›üÿÿÿÿJ$56ec1df9-a9d3-4b4b-87a5-6e58afe41b0e
+’	java:S117À"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ýí°›üÿÿÿÿJ$ec62ca8f-b31f-4e7e-b889-bddc6c19178f
+’	java:S117À"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ýí°›üÿÿÿÿJ$b3b28a29-cb3d-4851-90c0-d0b1aff4383d
+’	java:S117À"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ýí°›üÿÿÿÿJ$ae3fdd6c-334e-4a2e-8b68-eeee4a3f01b8
+	java:S117‰"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŒèçÔJ$502a92ad-638e-42b7-be8a-5dbd9f07e525
+’	java:S117–"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ù¯ý–üÿÿÿÿJ$d11c25e4-af0c-41db-aaa6-99b2e738cf7a
+	java:S117œ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.( Á»J$ba6ccccf-edfe-473b-a00b-a43f05a74393
+	java:S117œ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.( Á»J$1d559ca9-086c-459a-be45-33bd70a8e4bb
+	java:S117œ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.( Á»J$95085595-ccbd-4d0f-9440-3111e0460d68
+	java:S117œ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.( Á»J$522feb44-30e1-45d3-b6fb-60ee90a1ef6d
+	java:S117œ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.( Á»J$dc47b34b-ae6b-4498-a959-7984717d90f1
+	java:S117œ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.( Á»J$bb9c82ec-8898-4a8c-bd3f-df44603130eb
+	java:S117À"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ã¼¡þJ$b5849918-1f3c-45a5-a221-694fea39b77e
+	java:S117À"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ã¼¡þJ$885c043c-513a-4e11-9372-6a21e91a7a0f
+’	java:S117Ê"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ö‚ÚšÿÿÿÿÿJ$005625b9-fd13-4c87-940d-fac30056519a
+’	java:S117Ê"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ö‚ÚšÿÿÿÿÿJ$818aea7d-0dda-4a2a-95eb-c8768f770cb5
+•	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(½¶¾J$11db9e35-9970-444e-acc0-abb645644366
+
+java:S2583³"DChange this condition so that it does not always evaluate to "false"(ú®¨¸J$ad4dbdfe-5329-47a7-9619-14dd3dd469da
+k	java:S106P"+Replace this use of System.out by a logger.(ÇøüÿøÿÿÿÿJ$1b872731-0e99-4297-86d5-8519208bcb34
+f	java:S106Q"+Replace this use of System.out by a logger.(ç’ÝJ$d8c83c5b-f111-4ee0-95c2-6cdc2b14dc0a
+
+java:S1155h">Use isEmpty() to check whether the collection is empty or not.(©ŠÿùøÿÿÿÿJ$5a9bbe31-9a8a-4345-8392-7378f47b0759
+g	java:S106"+Replace this use of System.out by a logger.(ÑóúùJ$7e807869-0d9c-4f68-a1b7-5d137bfa3343
+{
+java:S1155§">Use isEmpty() to check whether the collection is empty or not.(õü¥•J$a5c899ff-2810-40c3-9420-849bbbf6b952
+{
+java:S1155«">Use isEmpty() to check whether the collection is empty or not.(Ìø”­J$39ff5f6f-542d-45bf-a2ca-2f59ade30210
+”
+java:S3776À"RRefactor this method to reduce its Cognitive Complexity from 41 to the 15 allowed.(ýí°›üÿÿÿÿJ$365aeb84-a4a3-4928-9b63-d20105ff0807
+{
+java:S1155Ç">Use isEmpty() to check whether the collection is empty or not.(ù¶­™J$758c716d-760b-4735-b14b-8937e4a7676e
+{
+java:S1155É">Use isEmpty() to check whether the collection is empty or not.(ç¨Õ¹J$6732577a-9031-40a4-ba5b-f6b08230aaf4
+€
+java:S1155Î">Use isEmpty() to check whether the collection is empty or not.(¸ûÀÒøÿÿÿÿJ$52002bd9-e236-44a8-9b25-f9e7abd373c1
+{
+java:S1155Ò">Use isEmpty() to check whether the collection is empty or not.(ç¨Õ¹J$d0d1582c-fe01-4052-a14f-e9726a9031ba
+{
+java:S1155â">Use isEmpty() to check whether the collection is empty or not.(ù¶­™J$f9cec50a-d7a9-4982-a3a7-1f01058163d9
+{
+java:S1155å">Use isEmpty() to check whether the collection is empty or not.(õü¥•J$bab62435-b1c3-4973-9ae9-42ca4b14d059
+€
+java:S1155ì">Use isEmpty() to check whether the collection is empty or not.(¸ûÀÒøÿÿÿÿJ$f66dca11-852a-4ab2-bd7e-cf7eb1ce3fd8
+{
+java:S1155ï">Use isEmpty() to check whether the collection is empty or not.(õü¥•J$43d4298f-1999-4804-a3bc-0c26a7dff92d
+
+java:S3776œ"RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.( Á»J$f4283fd1-cf4b-4c15-92b3-ddd4dc24e6c5
+{
+java:S1155¥">Use isEmpty() to check whether the collection is empty or not.(õü¥•J$d7cf8e82-3ab4-4983-8e54-1ab7a7288286
+{
+java:S1155©">Use isEmpty() to check whether the collection is empty or not.(Ìø”­J$70baef8d-4542-4f62-8e9a-9dee7a61bd56
+·
+java:S2159³"zRemove this call to "equals"; comparisons against null always return false; consider using '== null' to check for nullity.(ú®¨¸J$c210a1fa-26b3-4019-a9b9-18306e8f19d5
+{
+java:S1155Ð">Use isEmpty() to check whether the collection is empty or not.(—¾’J$0de18e6e-dc6a-421b-b4c0-af49953ec0a3
+
+java:S1128"DRemove this unused import 'org.openqa.selenium.chrome.ChromeDriver'.(†ÈJ$5625f799-87fb-4097-a7f0-aee991b7f8a7
+‰
+java:S1128"HRemove this unused import 'org.openqa.selenium.interactions.SourceType'.(Ë°ÅÐüÿÿÿÿJ$7f629cc6-61d0-437f-adfd-42e651a9ea46
+
+java:S1068.">Remove this unused "radioButtonCreateNewEntity" private field.(ÖºŸƒÿÿÿÿÿJ$11696cdf-3b55-4a2f-8bc9-63b9059adcb5
+}
+java:S1068/"ARemove this unused "radioButtonSelectFromExisting" private field.(£÷¬åJ$742e9cb7-ca44-423e-926c-83c3a52d88b0

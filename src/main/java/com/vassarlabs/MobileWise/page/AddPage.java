@@ -2,6 +2,7 @@ package com.vassarlabs.MobileWise.page;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.SourceType;
@@ -10,6 +11,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class AddPage {
     WebDriver driver;
@@ -46,6 +50,11 @@ public class AddPage {
     private By loginTypeDropdown = By.xpath("//mat-label[text()='Login Type']/../../../following-sibling::div/mat-select/div/div/following-sibling::div");
     private By loginTypeDropdownOption = By.xpath("//mat-option[@role='option']/span[text()='Username & Password']");
     private By loginTypeDropdownvalue = By.xpath("//mat-label[text()='Login Type']/../../../following-sibling::div/mat-select/div/div/span/span");
+    private By logoToggleButton = By.xpath("//span[text()='Logo']//parent::label//parent::div/button");
+    private By forgotPasswordToggleButton = By.xpath("//span[text()='Forget Password']//parent::label//parent::div/button");
+    private By biometricToggleButton = By.xpath("//span[text()='Biometrics']//parent::label//parent::div/button");
+    private By listOfWidgetsOnScreenBuilder = By.xpath("//mat-panel-title/span[text()='Login']/../../../..//div[contains(@class,'mat-expansion-panel-content')]//mat-list-item/span/span");
+    private By listOfWidgetsonScreenBuilderForSplashScreen = By.xpath("//mat-panel-title/span[text()='Splash Screen']/../../../..//div[contains(@class,'mat-expansion-panel-content')]//mat-list-item/span/span");
 
 
     private boolean pagesModuleFlag = false;
@@ -78,21 +87,71 @@ public class AddPage {
         if (pagesModuleFlag) {
             Thread.sleep(3000);
             String[] Defpages = default_pages.split(",");
+            verifySplashScreen();
             String text = driver.findElement(splashScreenPageHeading).getText().trim();
             Assert.assertEquals(Defpages[0], text, "Expected Error Message " + Defpages[0] + " But Found : " + text);
+            verifyDefaultLoginPage();
             String text1 = driver.findElement(loginPageHeading).getText().trim();
             Assert.assertEquals(Defpages[1], text1, "Expected Error Message " + Defpages[1] + " But Found : " + text);
             String text2 = driver.findElement(landingPageHeading).getText().trim();
             Assert.assertEquals(Defpages[2], text2, "Expected Error Message " + Defpages[2] + " But Found : " + text);
+
         }
     }
 
     public void verifyDefaultLoginPage() {
+        driver.findElement(loginPageHeading).click();
+        if (driver.findElements(loginTypeDropdown).size() > 0) {
+            driver.findElement(loginTypeDropdown).click();
+            driver.findElement(loginTypeDropdownOption).click();
+            String text = driver.findElement(loginTypeDropdownvalue).getText().trim();
+            String text2 = "Username & Password";
+            Assert.assertEquals(text, text2, "Expected Error Message " + text2 + " But Found : " + text);
+        }
+        boolean expected = Boolean.parseBoolean(driver.findElement(logoToggleButton).getAttribute("aria-checked"));
+        if (expected) {
+            driver.findElement(logoToggleButton).click();
+        }
+
+        boolean expected1 = Boolean.parseBoolean(driver.findElement(forgotPasswordToggleButton).getAttribute("aria-checked"));
+        if (expected1) {
+            driver.findElement(forgotPasswordToggleButton).click();
+        }
+
+        boolean expected2 = Boolean.parseBoolean(driver.findElement(biometricToggleButton).getAttribute("aria-checked"));
+        if (expected2) {
+            driver.findElement(biometricToggleButton).click();
+        }
+        listOfWidgetsInLoginPage();
+        driver.findElement(biometricToggleButton).click();
+        listOfWidgetsInLoginPage();
+        driver.findElement(biometricToggleButton).click();
+        driver.findElement(forgotPasswordToggleButton).click();
+        listOfWidgetsInLoginPage();
+        driver.findElement(logoToggleButton).click();
+        listOfWidgetsInLoginPage();
+    }
+
+    public void listOfWidgetsInLoginPage() {
+        ArrayList<String> listOfWidgets = new ArrayList<>();
+        List<String> widgetsToCheck = Arrays.asList("Biometrics", "Forget Password", "Logo");
+        for (WebElement widget : driver.findElements(listOfWidgetsOnScreenBuilder)) {
+            listOfWidgets.add(widget.getText().trim());
+        }
+        System.out.println(listOfWidgets);
+        for (String widgetToCheck : widgetsToCheck) {
+            if (listOfWidgets.contains(widgetToCheck)) {
+                int index = listOfWidgets.indexOf(widgetToCheck);
+                Assert.assertEquals(widgetToCheck, listOfWidgets.get(index), "Expected Error Message " + widgetToCheck + " But Found : " + listOfWidgets.get(index));
+            }
+        }
 
     }
 
     public void verifySplashScreen() {
-
+        String text = driver.findElement(listOfWidgetsonScreenBuilderForSplashScreen).getText().trim();
+        String text2 = "Image";
+        Assert.assertEquals(text, text2, "Expected Error Message " + text2 + " But Found : " + text);
     }
 
     public void addPageToApplication(String page_name, String error_message, String entity_name, String entity_error_message, String edit_entity_name) throws Throwable {

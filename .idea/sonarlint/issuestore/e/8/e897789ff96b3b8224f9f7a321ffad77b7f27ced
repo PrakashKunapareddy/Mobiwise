@@ -1,0 +1,80 @@
+
+g	java:S112$"FDefine and throw a dedicated exception instead of using a generic one.(ÂÕ”üÿÿÿÿ8Æ¿–ëâ1
+h	java:S112à"FDefine and throw a dedicated exception instead of using a generic one.(¢Øœßıÿÿÿÿ8Ç¿–ëâ1
+k
+java:S11929"NDefine a constant instead of duplicating this literal "aria-expanded" 4 times.(‚ÆÄš8Ç¿–ëâ1
+m
+java:S11929"PDefine a constant instead of duplicating this literal "//span[text()='" 8 times.(‚ÆÄš8Ç¿–ëâ1
+…
+java:S1192’"bDefine a constant instead of duplicating this literal "//mat-option[@value='arrow_back']" 3 times.(Ê“ƒŞüÿÿÿÿ8Ç¿–ëâ1
+›
+java:S1192˜"xDefine a constant instead of duplicating this literal "//mat-option[@role='option']/span[text()=' Navigation']" 3 times.(‘ğœ›şÿÿÿÿ8Ç¿–ëâ1
+©
+java:S11929"‹Define a constant instead of duplicating this literal "']/parent::mat-panel-title/parent::span/parent::mat-expansion-panel-header" 4 times.(‚ÆÄš8Ç¿–ëâ1
+’
+java:S1192š"tDefine a constant instead of duplicating this literal "//mat-option[@role='option']/span[text()='Landing']" 4 times.(×ÿ‚‘8È¿–ëâ1
+ğ
+java:S1192"ÓDefine a constant instead of duplicating this literal "//mat-expansion-panel-header[contains(@class,'mat-expansion-panel-header mat-focus-indicator')]/span/mat-panel-title/span[text()=' Click Actions']" 4 times.(‰ÍÉj8È¿–ëâ1
+R
+java:S1066"/Merge this if statement with the enclosing one.(Ğ¨‘ûøÿÿÿÿ8È¿–ëâ1
+R
+java:S1066¦"/Merge this if statement with the enclosing one.(Ğ¨‘ûøÿÿÿÿ8È¿–ëâ1
+R
+java:S1066Å"/Merge this if statement with the enclosing one.(Ğ¨‘ûøÿÿÿÿ8È¿–ëâ1
+m	java:S117)"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñ’Œ8È¿–ëâ1
+m	java:S117)"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñ’Œ8È¿–ëâ1
+m	java:S117)"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñ’Œ8È¿–ëâ1
+m	java:S117)"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñ’Œ8È¿–ëâ1
+m	java:S117)"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñ’Œ8È¿–ëâ1
+r	java:S117+"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(šÅÜÔÿÿÿÿÿ8É¿–ëâ1
+r	java:S1175"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(÷œƒ«şÿÿÿÿ8É¿–ëâ1
+m	java:S1176"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(áÕ¾°8É¿–ëâ1
+m	java:S117B"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(û„¬É8É¿–ëâ1
+r	java:S117E"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ô…ÃŒşÿÿÿÿ8É¿–ëâ1
+r	java:S117G"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•ÿ£ìşÿÿÿÿ8É¿–ëâ1
+m	java:S117P"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ú†¾ï8É¿–ëâ1
+r	java:S117R"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•ÿ£ìşÿÿÿÿ8É¿–ëâ1
+r	java:S117o"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(÷œƒ«şÿÿÿÿ8É¿–ëâ1
+m	java:S117p"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(áÕ¾°8É¿–ëâ1
+m	java:S117|"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(û„¬É8É¿–ëâ1
+r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ô…ÃŒşÿÿÿÿ8É¿–ëâ1
+s	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•ÿ£ìşÿÿÿÿ8É¿–ëâ1
+œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(½¶¾8½â‰êâ1J$ef499960-4efe-40e8-a884-cac7d11b1971
+¤
+java:S1186à"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¢Øœßıÿÿÿÿ8éÀ–ëâ1
+X	java:S107)"<Method has 8 parameters, which is greater than 7 authorized.(ñ’Œ8òÀ–ëâ1
+p
+java:S3776)"SRefactor this method to reduce its Cognitive Complexity from 110 to the 15 allowed.(ñ’Œ8÷À–ëâ1
+F	java:S106L"+Replace this use of System.out by a logger.(ÂĞî8ıÀ–ëâ1
+G	java:S106W"+Replace this use of System.out by a logger.(æ¦ÎŒ8şÀ–ëâ1
+`
+java:S1155Y">Use isEmpty() to check whether the collection is empty or not.(Ğ¨‘ûøÿÿÿÿ8şÀ–ëâ1
+G	java:S106†"+Replace this use of System.out by a logger.(ÂĞî8‚Á–ëâ1
+a
+java:S1155">Use isEmpty() to check whether the collection is empty or not.(Ğ¨‘ûøÿÿÿÿ8ƒÁ–ëâ1
+[
+java:S1155•">Use isEmpty() to check whether the collection is empty or not.(¬™Ìr8ƒÁ–ëâ1
+\
+java:S1155š">Use isEmpty() to check whether the collection is empty or not.(×ÿ‚‘8„Á–ëâ1
+a
+java:S1155¦">Use isEmpty() to check whether the collection is empty or not.(Ğ¨‘ûøÿÿÿÿ8…Á–ëâ1
+[
+java:S1155­">Use isEmpty() to check whether the collection is empty or not.(¬™Ìr8†Á–ëâ1
+a
+java:S1155±">Use isEmpty() to check whether the collection is empty or not.(‘µÊüûÿÿÿÿ8†Á–ëâ1
+\
+java:S1155»">Use isEmpty() to check whether the collection is empty or not.(ê€Î€8‡Á–ëâ1
+a
+java:S1155Å">Use isEmpty() to check whether the collection is empty or not.(Ğ¨‘ûøÿÿÿÿ8ˆÁ–ëâ1
+[
+java:S1155Ì">Use isEmpty() to check whether the collection is empty or not.(¬™Ìr8‰Á–ëâ1
+\
+java:S1155Ğ">Use isEmpty() to check whether the collection is empty or not.(×ÿ‚‘8ŠÁ–ëâ1
+S
+java:S1751Ü"5Remove this "break" statement or make it conditional.(›ûä·8ŠÁ–ëâ1
+K
+java:S1128	".Remove this unused import 'org.testng.Assert'.(Ø£ÿ§8‹Á–ëâ1
+s
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8°ä‰êâ1J$0aae8235-6438-43a4-812f-4ca53d319670
+ä
+java:S6541)"ÆA "Brain Method" was detected. Refactor it to reduce at least one of the following metrics: LOC from 182 to 64, Complexity from 27 to 14, Nesting Level from 6 to 2, Number of Variables from 38 to 6.(ñ’Œ8Á–ëâ1

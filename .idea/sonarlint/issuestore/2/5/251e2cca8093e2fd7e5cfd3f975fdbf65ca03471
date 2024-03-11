@@ -1,0 +1,81 @@
+
+[	java:S112P"FDefine and throw a dedicated exception instead of using a generic one.(‹½¯
+[	java:S112d"FDefine and throw a dedicated exception instead of using a generic one.(šÉºË
+\	java:S112·"FDefine and throw a dedicated exception instead of using a generic one.(¿„õÏ
+a	java:S112ä"FDefine and throw a dedicated exception instead of using a generic one.(ÃÑİ¼şÿÿÿÿ
+\	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(§×İ†
+a	java:S112—"FDefine and throw a dedicated exception instead of using a generic one.(âÔÅèûÿÿÿÿ
+o
+java:S1192r"YDefine a constant instead of duplicating this literal "Expected Error Message " 10 times.(·”†
+e
+java:S1192r"ODefine a constant instead of duplicating this literal " But Found : " 10 times.(·”†
+e	java:S117l"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õ’¥
+l	java:S117‚"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¨Œ¼Äıÿÿÿÿ
+l	java:S117‰"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ïÒõÓùÿÿÿÿ
+l	java:S117‰"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ïÒõÓùÿÿÿÿ
+l	java:S117‰"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ïÒõÓùÿÿÿÿ
+f	java:S117¿"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„–‹}
+l	java:S117À"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ô¢ƒàÿÿÿÿÿ
+g	java:S117Ã"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(æ±„
+l	java:S117Ä"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µİş ùÿÿÿÿ
+g	java:S117Æ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ªéÍò
+l	java:S117Ç"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¾â´€ÿÿÿÿÿ
+l	java:S117Ó"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Š¥Û®ıÿÿÿÿ
+l	java:S117Ó"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Š¥Û®ıÿÿÿÿ
+l	java:S117Ó"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Š¥Û®ıÿÿÿÿ
+l	java:S117Ó"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Š¥Û®ıÿÿÿÿ
+l	java:S117ä"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÃÑİ¼şÿÿÿÿ
+l	java:S117ä"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÃÑİ¼şÿÿÿÿ
+l	java:S117ä"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÃÑİ¼şÿÿÿÿ
+l	java:S117ä"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÃÑİ¼şÿÿÿÿ
+l	java:S117æ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ĞîËòıÿÿÿÿ
+g	java:S117ç"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğü¦Ç
+g	java:S117ó"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ëå–ñ
+g	java:S117‚"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ª™¯
+g	java:S117„"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‚öæü
+l	java:S117—"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(âÔÅèûÿÿÿÿ
+l	java:S117—"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(âÔÅèûÿÿÿÿ
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(½¶¾
+i
+java:S2095¹"MUse try-with-resources or close this "FileInputStream" in a "finally" clause.(Ã•²øúÿÿÿÿ
+a
+java:S2095»"JUse try-with-resources or close this "XSSFWorkbook" in a "finally" clause.(×ÉÆ‡
+s	java:S1165"^Rename this field "homepage_validation" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(óİí®
+g	java:S116>"RRename this field "Headers" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(…·Ä±
+m	java:S116I"SRename this field "rand_int" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(• ×”ùÿÿÿÿ
+Q	java:S125!"<This block of commented-out lines of code should be removed.(˜œÿ³
+W
+java:S1075,"ARefactor your code to get this URI from a customizable parameter.(Á¬Éø
+V
+java:S1075."ARefactor your code to get this URI from a customizable parameter.(ó°¶W
+Q	java:S1253"<This block of commented-out lines of code should be removed.(µ÷ªú
+
+java:S1130L"sRemove the declaration of thrown exception 'java.awt.AWTException', as it cannot be thrown from constructor's body.(áØùÿÿÿÿ
+T
+java:S1155R">Use isEmpty() to check whether the collection is empty or not.(åˆî
+T
+java:S1155V">Use isEmpty() to check whether the collection is empty or not.(Úñ 
+“
+java:S1130‰"wRemove the declaration of thrown exception 'java.lang.InterruptedException', as it cannot be thrown from method's body.(ïÒõÓùÿÿÿÿ
+W	java:S125‹"<This block of commented-out lines of code should be removed.(¶ò±”şÿÿÿÿ
+U
+java:S1155š">Use isEmpty() to check whether the collection is empty or not.(ÅëËæ
+D
+java:S2201©"(The return value of "trim" must be used.(×òŞ°şÿÿÿÿ
+W	java:S125½"<This block of commented-out lines of code should be removed.(ØÌğÔøÿÿÿÿ
+A	java:S106Ğ"+Replace this use of System.out by a logger.(£®†¶
+R
+java:S1172ä"6Remove this unused method parameter "themes_dropdown".(ÃÑİ¼şÿÿÿÿ
+F	java:S106õ"+Replace this use of System.out by a logger.(Åø»éüÿÿÿÿ
+A	java:S106ÿ"+Replace this use of System.out by a logger.(ÙØŸä
+F	java:S106€"+Replace this use of System.out by a logger.(Åø»éüÿÿÿÿ
+K
+java:S1172—"/Remove this unused method parameter "app_name".(âÔÅèûÿÿÿÿ
+U
+java:S1155š">Use isEmpty() to check whether the collection is empty or not.(˜Ò•
+V
+java:S1128";Remove this unused import 'org.openqa.selenium.WebElement'.(‰ïµ”şÿÿÿÿ
+H
+java:S1068."3Remove this unused "invalidlogoPath" private field.(ó°¶W
+D
+java:S1068C")Remove this unused "flag4" private field.(¯Á‚ëúÿÿÿÿ
