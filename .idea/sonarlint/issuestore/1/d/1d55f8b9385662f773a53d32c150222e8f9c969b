@@ -1,0 +1,17 @@
+
+	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(äÓŠçùÿÿÿÿ8‡äª™ã1J$70f87c7b-f6b1-4d49-81c0-46dca1ec7353
+‡	java:S112 "FDefine and throw a dedicated exception instead of using a generic one.(ÑË8ˆäª™ã1J$1da6fba0-c11e-45e9-995e-4054ae810584
+ˆ	java:S112'"FDefine and throw a dedicated exception instead of using a generic one.(”´Ìæ8ˆäª™ã1J$304c2118-592a-4aab-9620-e15a6a94a7c7
+	java:S1120"FDefine and throw a dedicated exception instead of using a generic one.(…õ—Êúÿÿÿÿ8‰äª™ã1J$0e9261a4-906e-4fa7-a738-447be8c1163f
+b	java:S112="FDefine and throw a dedicated exception instead of using a generic one.(¤´³Ş8›ã®™ã1
+›
+java:S1192*"XDefine a constant instead of duplicating this literal "Expected Error Message " 4 times.(¶ìşá8³äª™ã1J$6f9af838-067b-4cd2-b797-15fe5d3de99d
+‘
+java:S1192*"NDefine a constant instead of duplicating this literal " But Found : " 4 times.(¶ìşá8Ëäª™ã1J$fe56fc4d-c8d7-468d-97c4-9c021311bdd7
+’	java:S117 "QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÑË8×äª™ã1J$3f58258a-d595-4752-b1ba-6876559003ba
+“	java:S117'"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(”´Ìæ8Ùäª™ã1J$760511e1-45ba-410c-b501-821d555404a6
+˜	java:S1170"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(…õ—Êúÿÿÿÿ8Ûäª™ã1J$621170f3-bb9a-4a2f-a64f-1246a359037c
+m	java:S117="QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¤´³Ş8ã®™ã1
+_
+java:S1700"Rename field "settingsModule"(¿ºù:8üäª™ã1J$526466fb-79e9-47c2-aa19-2c5d2b326b08
+œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(½¶¾8…åª™ã1J$ee1fa4ad-627a-49ed-9889-3c0b980fa5ea

@@ -23,7 +23,7 @@ import java.util.Random;
 public class MobileAppBuilderPagesAddComponents {
 
     WebDriver driver;
-    Actions act;
+    Actions act ;
 
     private By appNameField = By.xpath("//input[@placeholder='App Name']");
     private By shortDescField = By.xpath("//textarea[@formcontrolname='applicationDescription']");

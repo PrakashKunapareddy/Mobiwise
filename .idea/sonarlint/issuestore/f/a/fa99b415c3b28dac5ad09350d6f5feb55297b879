@@ -1,0 +1,34 @@
+
+	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(Ì‚Ÿõûÿÿÿÿ8Ïí„–ã1J$87ffc8a5-ec08-4592-850a-42fa57b94697
+	java:S112U"FDefine and throw a dedicated exception instead of using a generic one.(Ï¯Ş˜ûÿÿÿÿ8Ïí„–ã1J$f2b5e83f-318c-47c9-898c-7c76bf0827c0
+	java:S112o"FDefine and throw a dedicated exception instead of using a generic one.(—Ğõşÿÿÿÿ8Ïí„–ã1J$69fab035-3ede-4c9c-a6ee-2314fb0ad154
+	java:S112ˆ"FDefine and throw a dedicated exception instead of using a generic one.(«Œ¿ûÿÿÿÿ8Ïí„–ã1J$7b32717d-40a7-4775-8e15-9c44601942e7
+š
+java:S1192("WDefine a constant instead of duplicating this literal " ']/parent::mat-option" 4 times.(¹—ã•8Ğí„–ã1J$663c6031-8c7c-4a9b-a6d6-a552683fd36b
+”
+java:S1192("QDefine a constant instead of duplicating this literal "//span[text()=' " 6 times.(¹—ã•8Ğí„–ã1J$166a6490-0063-4053-94f6-32139ec0403e
+›
+java:S1192F"XDefine a constant instead of duplicating this literal "Expected Error Message " 7 times.(“À˜É8Ğí„–ã1J$7c963636-d609-49d4-b83d-73dcc024a664
+‘
+java:S1192F"NDefine a constant instead of duplicating this literal " But Found : " 7 times.(“À˜É8Ğí„–ã1J$daf86c23-604d-499e-870c-482497b08141
+“	java:S117."QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¼ªé´8Ñí„–ã1J$3647d66e-1c67-49df-8995-832b43c3f426
+˜	java:S1171"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(çöµ¬üÿÿÿÿ8Ñí„–ã1J$3cb1cd95-ccfb-4114-90c8-85c4c8e66bc0
+“	java:S117="QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ï±÷•8Ñí„–ã1J$0012c9e6-fabf-4027-a4bd-49934ab1b34b
+˜	java:S117?"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ö•…ëıÿÿÿÿ8Ñí„–ã1J$23d5e19e-e4f7-4298-8e98-6da030476d5e
+˜	java:S117U"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ï¯Ş˜ûÿÿÿÿ8Ñí„–ã1J$1ac93c1d-188a-490c-8a8b-2dbe66ac24cd
+˜	java:S117V"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Û¹§üÿÿÿÿ8Ñí„–ã1J$d4e75bdb-e176-4c2a-96ca-1174f8f96369
+˜	java:S117o"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(—Ğõşÿÿÿÿ8Ñí„–ã1J$c383001c-cf0f-4f5b-afb3-4acb3adb7771
+“	java:S117p"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(úóÉ8Ñí„–ã1J$8422c648-5353-4721-9eba-c7aca6c4b26f
+™	java:S117ˆ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(«Œ¿ûÿÿÿÿ8Òí„–ã1J$560ed979-3f0a-44d5-88bc-ed3765637f5a
+œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(½¶¾8Ôí„–ã1J$f6054345-c331-45cd-b88e-1f3d1a7ff55e
+›	java:S116"TRename this field "Mobileapp" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(®›˜»ıÿÿÿÿ8ïí„–ã1J$2db202b1-bd61-4ed9-91f1-10acb534b5e2
+
+java:S1155(">Use isEmpty() to check whether the collection is empty or not.(¹—ã•8öí„–ã1J$25f14941-25e0-4ff4-8d31-b8ebf868c843
+
+java:S11553">Use isEmpty() to check whether the collection is empty or not.(ªãÆé8÷í„–ã1J$0e1f8b13-1799-4227-b1ef-db6430817ed1
+†
+java:S1155C">Use isEmpty() to check whether the collection is empty or not.(¤Û½Äşÿÿÿÿ8ùí„–ã1J$ad1459c1-c5ef-4c74-a162-5e3be81e7bfa
+†
+java:S1155M">Use isEmpty() to check whether the collection is empty or not.(ÜîŒ³úÿÿÿÿ8úí„–ã1J$6785e77a-c47b-4d99-9d6f-b02e31129c7a
+‡
+java:S1155‹">Use isEmpty() to check whether the collection is empty or not.(ç¦·õúÿÿÿÿ8î„–ã1J$16a6952b-3640-4903-87ce-0b6c653c1244

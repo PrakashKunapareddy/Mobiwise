@@ -1,0 +1,91 @@
+
+	java:S112;"FDefine and throw a dedicated exception instead of using a generic one.(ğÚÉ«J$56aea446-32c2-4738-a161-c35de99f128a
+	java:S112S"FDefine and throw a dedicated exception instead of using a generic one.(Î¹ÁõJ$d156b3a9-4c2f-4245-9936-42f4815e419b
+†	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(ÂŞÁ¹úÿÿÿÿJ$c04cbb49-5639-4419-a7b3-64acc7d6f949
+‡	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(êàìúÿÿÿÿJ$2eecf876-8948-4e16-8cb5-54e6348c59fb
+‡	java:S112š"FDefine and throw a dedicated exception instead of using a generic one.(¤ÒùÿÿÿÿJ$39720e42-bc93-4375-bd6f-32c956c26948
+‡	java:S112ì"FDefine and throw a dedicated exception instead of using a generic one.(ûø©ĞûÿÿÿÿJ$27126f5f-db3e-4b8a-90d2-a69dd5719412
+‡	java:S112õ"FDefine and throw a dedicated exception instead of using a generic one.(Ê¥”¤ıÿÿÿÿJ$7ba19830-1be7-4aee-8f5b-d09d2b5bfb1e
+Ë
+java:S1192W"Define a constant instead of duplicating this literal "//div[contains(@class,'mat-mdc-form-field-error-wrapper')]/mat-error[text()='" 4 times.(æØñ„J$692121a6-c77b-43db-b731-46ec03dfcbbe
+—
+java:S1192©"ZDefine a constant instead of duplicating this literal "//mat-card-title[text()='" 5 times.(éüæ J$7358d192-9a64-4984-ad72-871f15903c14
+š
+java:S1192F"YDefine a constant instead of duplicating this literal "Expected Error Message " 14 times.(È«›ûÿÿÿÿJ$f09f4591-696a-4135-846a-5c7bc2facf41
+
+java:S1192F"ODefine a constant instead of duplicating this literal " But Found : " 14 times.(È«›ûÿÿÿÿJ$e99b1051-a849-41c9-b2f9-9597557f0c9e
+k
+java:S1066u"/Merge this if statement with the enclosing one.(Š¯éJ$eecbbc18-aec4-44d9-8422-6936dbd19012
+‘	java:S117D"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹‚Ê¶úÿÿÿÿJ$460c610d-84c2-45c9-8100-47e76b6e3eb1
+‘	java:S117N"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–‰É‡ûÿÿÿÿJ$89b4386f-024a-4797-a692-f485af20b96b
+Œ	java:S117S"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Î¹ÁõJ$e777ef34-9d7c-4023-aa54-a574e2d76cee
+Œ	java:S117S"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Î¹ÁõJ$a976d8da-265a-48ca-8b8d-00f0d362aa1a
+Œ	java:S117S"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Î¹ÁõJ$9ef5708e-5b16-4206-8cbd-1e939291f712
+Œ	java:S117S"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Î¹ÁõJ$0de7f7c7-47b7-4724-805d-1828849d6124
+‘	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÂŞÁ¹úÿÿÿÿJ$2b63dbea-a8fb-4eb9-a774-f1369177b59d
+‘	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÂŞÁ¹úÿÿÿÿJ$47276727-3b4a-42be-a513-cdc70be07f2a
+’	java:S117š"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¤ÒùÿÿÿÿJ$a81266a5-b027-412d-bad7-d39b625e395f
+’	java:S117¤"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‡ñÒ™üÿÿÿÿJ$0bec3e5c-bafa-4c46-814c-07f64ef5e2da
+’	java:S117¤"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‡ñÒ™üÿÿÿÿJ$dd7b38ba-e970-4884-b781-fd77ac446d11
+’	java:S117¤"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‡ñÒ™üÿÿÿÿJ$5df87fa1-82d8-4d23-9d43-97714db56ab5
+	java:S117«"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(÷ìÉ‰J$e67e05ad-1aea-4fcb-85b2-7e6664be1e0a
+	java:S117°"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ê¥ÚJ$ee09264d-3837-494b-8cab-a18742c569da
+’	java:S117±"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÈÎªşÿÿÿÿJ$29459f28-1776-4b68-a1c6-23f41f32c099
+’	java:S117Ñ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(è–…šûÿÿÿÿJ$e40e5c60-2a6a-4813-9059-b3971ff3a980
+’	java:S117Ñ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(è–…šûÿÿÿÿJ$cb0a50ab-99e9-4159-a920-b2d665745e79
+’	java:S117Ñ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(è–…šûÿÿÿÿJ$01917acf-0eae-4f43-874d-05b28466b850
+’	java:S117Ñ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(è–…šûÿÿÿÿJ$9babeef4-0285-4c0f-b7b1-a3f5932bd356
+’	java:S117Ñ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(è–…šûÿÿÿÿJ$3134cda5-f286-40f7-9950-55b7467098f7
+’	java:S117ì"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûø©ĞûÿÿÿÿJ$5e67747d-1ee5-4a8e-826c-fb93993b8956
+’	java:S117õ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ê¥”¤ıÿÿÿÿJ$be3da236-f440-417a-8588-ba5f726c3efd
+’	java:S117„"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–«ŒøüÿÿÿÿJ$35088cf1-4631-46f6-8b2a-a61702f6e21d
+•	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(½¶¾J$69441320-1337-48ff-8da7-40a7d29c97b4
+y
+java:S2589µ"7Remove this expression which always evaluates to "true"(€¢ÄĞúÿÿÿÿJ$e479cbf8-6edd-4a66-bcf1-d5b197d2d7bb
+…
+java:S2583V"DChange this condition so that it does not always evaluate to "false"(Ó¶ï—şÿÿÿÿJ$b3de2389-7016-4eb6-bfe3-7c68ab854aab
+†
+java:S2583º"DChange this condition so that it does not always evaluate to "false"(Ó¶ï—şÿÿÿÿJ$406acad7-496c-44ab-b593-cb73532a1a60
+
+java:S14502"TRemove the "flag8" field and declare it as a local variable in the relevant methods.(ñ¼ö£J$2ce9ad33-2a04-435a-82e1-371db1ba638e
+w	java:S125"<This block of commented-out lines of code should be removed.(³‡€¶J$575d3372-1f30-4397-84f6-7b67aa82b8bd
+}
+java:S1075"ARefactor your code to get this URI from a customizable parameter.(ôÙùûJ$f0dca713-99d5-4f07-b671-5a173e403dfb
+‚
+java:S1075"ARefactor your code to get this URI from a customizable parameter.(Å÷åàıÿÿÿÿJ$8947f704-9335-400e-a212-c0e6a3b03644
+|
+java:S1075 "ARefactor your code to get this URI from a customizable parameter.(ó°¶WJ$14ea4a1b-6bcd-4d0f-a1fb-f988af896766
+w	java:S125'"<This block of commented-out lines of code should be removed.(Å÷­J$a8e287f6-fcb2-4c13-b04a-809c6893ba41
+´
+java:S11307"sRemove the declaration of thrown exception 'java.awt.AWTException', as it cannot be thrown from constructor's body.(ÇÕàÛúÿÿÿÿJ$8d7f4a36-ba0b-4e53-84b3-8727390c6071
+z
+java:S1155=">Use isEmpty() to check whether the collection is empty or not.(åˆîJ$5c2b6345-7712-4c9a-9fb2-50a8d1877ae7
+ˆ
+java:S1871a"LThis branch's code block is the same as the block for the branch on line 86.(íğóJ$5227dc01-aca8-43ea-ab2f-15f3b3e9d733
+»
+java:S2159V"zRemove this call to "equals"; comparisons against null always return false; consider using '== null' to check for nullity.(Ó¶ï—şÿÿÿÿJ$07aec876-792e-4c78-aefe-a838e2f9c87c
+
+java:S1155\">Use isEmpty() to check whether the collection is empty or not.(’©İ³ıÿÿÿÿJ$d1984fdc-0110-4324-928c-d453d0feff9b
+z
+java:S1155a">Use isEmpty() to check whether the collection is empty or not.(íğóJ$257d16e5-d0ce-4b24-a0e7-f60a8b3491fe
+z
+java:S1155i">Use isEmpty() to check whether the collection is empty or not.(üí…“J$24620018-6a40-4338-bb7d-e669e39f9941
+z
+java:S1155u">Use isEmpty() to check whether the collection is empty or not.(Š¯éJ$241d17f7-eb5d-426e-950c-d50370ca1229
+‡
+java:S1172"FRemove these unused method parameters "project_name", "error_message".(ÂŞÁ¹úÿÿÿÿJ$86152c68-2e14-4ab3-aae3-78725df4f86b
+x	java:S125ˆ"<This block of commented-out lines of code should be removed.(¢™—ğJ$e18299cd-9bd4-4a26-bea3-c157df34960d
+x	java:S125”"<This block of commented-out lines of code should be removed.(í¿İ«J$34a174f5-aecf-49b0-879d-0e795cf616ba
+l	java:S106²"+Replace this use of System.out by a logger.(Üñ¯äùÿÿÿÿJ$b1bd7653-66e2-439d-b5ec-52fb43ca51e9
+¼
+java:S2159º"zRemove this call to "equals"; comparisons against null always return false; consider using '== null' to check for nullity.(Ó¶ï—şÿÿÿÿJ$951487e0-a90e-4df1-8773-818145e87c37
+{
+java:S1155¿">Use isEmpty() to check whether the collection is empty or not.(Š¯éJ$9f6ccc24-590c-4f5d-9433-c7973cd835e9
+{
+java:S1155Û">Use isEmpty() to check whether the collection is empty or not.(üí…“J$75cf8c6c-142c-4058-9374-03ef443d219f
+€
+java:S1155†">Use isEmpty() to check whether the collection is empty or not.(ñ¬²€ûÿÿÿÿJ$4743940b-b16f-45ed-ac2f-45d83f62b993
+n
+java:S1068"-Remove this unused "logoPath2" private field.(Å÷åàıÿÿÿÿJ$553a8e81-b21c-49e3-bf8e-95fbc3d7a461
+j
+java:S1068+")Remove this unused "flag2" private field.(Ş™¯…ûÿÿÿÿJ$b752a42e-541c-4d38-84c0-21671f328b68

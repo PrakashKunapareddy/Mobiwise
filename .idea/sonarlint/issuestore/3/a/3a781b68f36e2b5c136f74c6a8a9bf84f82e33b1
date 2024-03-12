@@ -1,61 +1,77 @@
 
-ˆ	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(ä¨¶8ä†àâ1J$555757c7-d9ca-4571-a539-9ca39b3e7f98
-ˆ	java:S112A"FDefine and throw a dedicated exception instead of using a generic one.(ÇÌ‘½8¯‰ˆàâ1J$95b19be1-f174-45d5-9bcb-00a7a6d6fcb4
-b	java:S112I"FDefine and throw a dedicated exception instead of using a generic one.(åÊçİ8¾©–ëâ1
-b	java:S112]"FDefine and throw a dedicated exception instead of using a generic one.(Ûó†³8¿©–ëâ1
-h	java:S112•"FDefine and throw a dedicated exception instead of using a generic one.(ñÅµıÿÿÿÿ8¿©–ëâ1
-c	java:S112£"FDefine and throw a dedicated exception instead of using a generic one.(ş•Ò³8¿©–ëâ1
+ˆ	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(ä¨¶8ä†àâ1J$520923c6-7eb1-4f3e-b493-f35b7493811b
+ˆ	java:S112C"FDefine and throw a dedicated exception instead of using a generic one.(ÇÌ‘½8¿©–ëâ1J$62eed562-4982-4e95-a4b8-d9dfd45b9c15
+b	java:S112K"FDefine and throw a dedicated exception instead of using a generic one.(åÊçİ8Â¨—ëâ1
+b	java:S112a"FDefine and throw a dedicated exception instead of using a generic one.(Ûó†³8Â¨—ëâ1
+h	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(ñÅµıÿÿÿÿ8Â¨—ëâ1
+c	java:S112¯"FDefine and throw a dedicated exception instead of using a generic one.(ş•Ò³8Â¨—ëâ1
 k
-java:S1192-"NDefine a constant instead of duplicating this literal "aria-expanded" 6 times.(òŸª­8À©–ëâ1
+java:S1192."NDefine a constant instead of duplicating this literal "aria-expanded" 5 times.(òŸª­8Ã¨—ëâ1
 
-java:S1192F"lDefine a constant instead of duplicating this literal "//mat-option[@role='option']/span[text()=' " 6 times.(Å„Ö­úÿÿÿÿ8À©–ëâ1
-r	java:S117*"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‡¥½¹ıÿÿÿÿ8Á©–ëâ1
-œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(½¶¾8ä†àâ1J$b4318d51-ac30-4c4c-9b90-997a605eb93f
-F	java:S106."+Replace this use of System.out by a logger.(å£(8†«–ëâ1
-L	java:S1060"+Replace this use of System.out by a logger.(Ó…´üÿÿÿÿ8†«–ëâ1
-G	java:S1065"+Replace this use of System.out by a logger.(üè»î8‡«–ëâ1
-]	java:S1257"<This block of commented-out lines of code should be removed.(µ×í£ûÿÿÿÿ8‡«–ëâ1
+java:S1192H"lDefine a constant instead of duplicating this literal "//mat-option[@role='option']/span[text()=' " 6 times.(Å„Ö­úÿÿÿÿ8Ã¨—ëâ1
+r	java:S117+"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¨¼‚–şÿÿÿÿ8Ä¨—ëâ1
+n	java:S117£"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Û«Øœ8Ä¨—ëâ1
+œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(½¶¾8ä†àâ1J$0d2f740e-6ac3-4ecc-9cf1-7ee4d27bada7
+F	java:S106/"+Replace this use of System.out by a logger.(å£(8Š©—ëâ1
+L	java:S1061"+Replace this use of System.out by a logger.(Ó…´üÿÿÿÿ8Š©—ëâ1
+G	java:S1066"+Replace this use of System.out by a logger.(üè»î8‹©—ëâ1
+]	java:S1258"<This block of commented-out lines of code should be removed.(µ×í£ûÿÿÿÿ8‹©—ëâ1
 [
-java:S11558">Use isEmpty() to check whether the collection is empty or not.(ëã§î8ˆ«–ëâ1
-D
-java:S1125T"'Remove the unnecessary boolean literal.(ˆˆâŸ8‹«–ëâ1
+java:S11559">Use isEmpty() to check whether the collection is empty or not.(ëã§î8Œ©—ëâ1
+F	java:S106V"+Replace this use of System.out by a logger.(å£(8©—ëâ1
+]	java:S125W"<This block of commented-out lines of code should be removed.(ƒ°ÏÓúÿÿÿÿ8©—ëâ1
 o
-java:S3776]"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(Ûó†³8Œ«–ëâ1
+java:S3776a"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(Ûó†³8‘©—ëâ1
 F
-java:S1940c")Use the opposite operator ("<=") instead.(Ì“ıº8«–ëâ1
+java:S1940g")Use the opposite operator ("<=") instead.(Ì“ıº8“©—ëâ1
 [
-java:S1155c">Use isEmpty() to check whether the collection is empty or not.(Ì“ıº8«–ëâ1
+java:S1155g">Use isEmpty() to check whether the collection is empty or not.(Ì“ıº8“©—ëâ1
+G	java:S106j"+Replace this use of System.out by a logger.(ã¨Óò8”©—ëâ1
 `
-java:S1155i">Use isEmpty() to check whether the collection is empty or not.(Ó«Îõúÿÿÿÿ8«–ëâ1
+java:S1155n">Use isEmpty() to check whether the collection is empty or not.(Ó«Îõúÿÿÿÿ8•©—ëâ1
+L	java:S106q"+Replace this use of System.out by a logger.(öÊÉóúÿÿÿÿ8–©—ëâ1
+]	java:S125t"<This block of commented-out lines of code should be removed.(õ±°®ıÿÿÿÿ8–©—ëâ1
 `
-java:S1155y">Use isEmpty() to check whether the collection is empty or not.(ãäÍÁûÿÿÿÿ8‘«–ëâ1
+java:S1155">Use isEmpty() to check whether the collection is empty or not.(ãäÍÁûÿÿÿÿ8—©—ëâ1
+Y	java:S125„"<This block of commented-out lines of code should be removed.(Ú¤À8˜©—ëâ1
+S
+java:S1751Œ"5Remove this "break" statement or make it conditional.(›ûä·8™©—ëâ1
 E
-java:S1125‹"'Remove the unnecessary boolean literal.(ˆˆâŸ8“«–ëâ1
+java:S1125“"'Remove the unnecessary boolean literal.(ˆˆâŸ8š©—ëâ1
+G	java:S106˜"+Replace this use of System.out by a logger.(å£(8š©—ëâ1
 \
-java:S1155š">Use isEmpty() to check whether the collection is empty or not.(˜¤çÆ8”«–ëâ1
+java:S1155¤">Use isEmpty() to check whether the collection is empty or not.(‹œºä8œ©—ëâ1
+G	java:S106¦"+Replace this use of System.out by a logger.(å£(8œ©—ëâ1
+H	java:S106©"+Replace this use of System.out by a logger.(‰³ê8œ©—ëâ1
 q
-java:S1172£"-Remove this unused method parameter "values".(ş•Ò³8úø‹àâ1J$ea4aa4fe-3a4f-4817-98b9-65d4fe34e0b9
+java:S1172¯"-Remove this unused method parameter "values".(ş•Ò³8úø‹àâ1J$a9c5523d-f2c4-420b-9d60-9ad82189ead0
 r
-java:S1940¥")Use the opposite operator ("<=") instead.(—Ø˜§üÿÿÿÿ8úø‹àâ1J$22c618aa-3dc9-4d4d-998a-cc2f5ef481a3
+java:S1940±")Use the opposite operator ("<=") instead.(—Ø˜§üÿÿÿÿ8úø‹àâ1J$72f9e457-8110-4169-b70a-ad0d816fc5ee
 ‡
-java:S1155¥">Use isEmpty() to check whether the collection is empty or not.(—Ø˜§üÿÿÿÿ8ûø‹àâ1J$1a22ad96-9328-45ac-b78e-d7a212b2b876
+java:S1155±">Use isEmpty() to check whether the collection is empty or not.(—Ø˜§üÿÿÿÿ8ûø‹àâ1J$55cb9bcb-da38-45df-835c-d7035290e24d
 t
-java:S1128"1Remove this unused import 'com.google.gson.Gson'.(–§8œ‹ˆàâ1J$3e6e2492-92e1-4121-aaa4-d6a82b1c114f
+java:S1128"1Remove this unused import 'com.google.gson.Gson'.(–§8œ‹ˆàâ1J$6f14c7b7-3045-4551-afd0-fca0358f3bca
 
-java:S1128"<Remove this unused import 'org.apache.poi.ss.usermodel.Row'.(›Ü…8‹ˆàâ1J$09d390ac-12c2-4ce2-896f-6080ae5adafc
+java:S1128"<Remove this unused import 'org.apache.poi.ss.usermodel.Row'.(›Ü…8‹ˆàâ1J$c4de7499-c59f-4919-ac7c-a30742948339
 
-java:S1128">Remove this unused import 'org.apache.poi.ss.usermodel.Sheet'.(·è£8‹ˆàâ1J$8b59800e-7d38-4f92-b857-d8ee82ff759e
+java:S1128">Remove this unused import 'org.apache.poi.ss.usermodel.Sheet'.(·è£8‹ˆàâ1J$17d1183c-b007-4045-bf94-e654c1d3a995
 
-java:S1128"GRemove this unused import 'org.apache.poi.xssf.usermodel.XSSFWorkbook'.(Œ¦ƒëşÿÿÿÿ8‹ˆàâ1J$cffb330f-327e-4607-8d3c-212859082086
+java:S1128"GRemove this unused import 'org.apache.poi.xssf.usermodel.XSSFWorkbook'.(Œ¦ƒëşÿÿÿÿ8‹ˆàâ1J$a0963cb8-0910-46b7-a2af-fa5cc9a40cfd
+S
+java:S1128"6Remove this unused import 'org.openqa.selenium.Point'.(Ğéé8¡©—ëâ1
 q
-java:S1128".Remove this unused import 'org.testng.Assert'.(Ø£ÿ§8‹ˆàâ1J$11fdc611-6006-4422-bf98-48f49c5d6eb1
+java:S1128".Remove this unused import 'org.testng.Assert'.(Ø£ÿ§8‹ˆàâ1J$078e93be-6b87-4e9e-a455-d5a731a31fd8
 w
-java:S1128"4Remove this unused import 'java.io.FileInputStream'.(˜³ÉÓ8‹ˆàâ1J$26dd0b58-f6e4-4b39-ba4e-a08b1ef49712
+java:S1128"4Remove this unused import 'java.io.FileInputStream'.(˜³ÉÓ8‹ˆàâ1J$17b50f3b-da7e-4f44-a84b-741aab5a1521
 r
-java:S1128"/Remove this unused import 'java.sql.Statement'.(ÏÖÔø8Ÿ‹ˆàâ1J$0a3ac190-58ad-4abc-bc89-54b0b5d88670
+java:S1128"/Remove this unused import 'java.sql.Statement'.(ÏÖÔø8Ÿ‹ˆàâ1J$21440fa7-09d7-493e-8abf-d7c22fb07410
 w
-java:S1128"/Remove this unused import 'java.time.Duration'.(ëá¯‰üÿÿÿÿ8Ÿ‹ˆàâ1J$170813e9-dee2-4a74-85e2-c350c2f07a52
+java:S1128"/Remove this unused import 'java.time.Duration'.(ëá¯‰üÿÿÿÿ8Ÿ‹ˆàâ1J$5e5714bd-ad17-411b-aca4-8312c6e42467
 s
-java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8Ÿ‹ˆàâ1J$770a9fc7-0610-4d40-833b-52e56e355067
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8Ÿ‹ˆàâ1J$faba5442-1a10-450e-9b2f-5534d172b7cb
 |
-java:S1128"4Remove this unused import 'java.util.LinkedHashMap'.(ò†ŠŞùÿÿÿÿ8 ‹ˆàâ1J$068e3809-d765-4ed7-adac-a50049ea7c72
+java:S1128"4Remove this unused import 'java.util.LinkedHashMap'.(ò†ŠŞùÿÿÿÿ8 ‹ˆàâ1J$1e67f695-915f-4cd2-97cd-c490126d99ad
+U
+java:S1068!"8Remove this unused "lhsFielddeleteButton" private field.(õ®Êö8¢©—ëâ1
+Z
+java:S1068#"8Remove this unused "rhsFielddeleteButton" private field.(¸á¦Òùÿÿÿÿ8¢©—ëâ1
