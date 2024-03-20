@@ -6,8 +6,12 @@ import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import java.io.File;
+import java.time.Duration;
 import java.util.ArrayList;
 
 public class CreateAProject {
@@ -15,6 +19,7 @@ public class CreateAProject {
     Actions act;
     private By addComponentsButton = By.xpath("//span[text()=' Add Component ']");
     private By publishModule = By.xpath("//div[@class='smidemenu-container']/ul/li[5]");
+    private By mobileAppHeadingInNavBar = By.xpath("//div[contains(@class,'app-Name')]/h4");
     private By clickActionSubmitPreviewToggle = By.xpath("//h4[text()='Preview']/../mat-slide-toggle/div/button");
     private By saveComponentForSubmit = By.xpath("//div[contains(@class,'mobile-canvas-container')]//div[contains(@class,'mobile-canvas ng-star-inserted')]//div//div[contains(@class,'cdk-drop-list')]//lib-widget-filter/div/md-filled-button");
     private By navbarComponentNavIcon1 = By.xpath("//div[contains(@class,'mobile-canvas-container')]//div[contains(@class,'mobile-canvas ng-star-inserted')]//div//div[contains(@class,'cdk-drop-list')]/..//div//mat-toolbar/div[@class='toolbar-start']/button");
@@ -34,6 +39,7 @@ public class CreateAProject {
     private By publishApplicationCreatedSuccessfully = By.xpath("//div[text()=' Application Created Successfully! ']");
     private By PublishAppPopupSuggestionMessage = By.xpath("//p[text()='Are You Sure You Want To Publish?']");
     private By publishAppGenarationApkMessage = By.xpath("//div[@class='alert alert-warning mx-3 custom-background ng-star-inserted']");
+    private By downloadApkButton = By.xpath("//span[text()=' Download APK ']/..");
     private By screenBuilder = By.xpath("//div[contains(@class,'mobile-canvas-container')]//div[contains(@class,'mobile-canvas ng-star-inserted')]//div//div[contains(@class,'cdk-drop-list')]");
     PropertiesSideBar addProperties = new PropertiesSideBar(WebdriverInitializer.getDriver());
     MobileAppBuilderPagesAddComponents addComponentsToScreenBuilder = new MobileAppBuilderPagesAddComponents(WebdriverInitializer.getDriver());
@@ -201,6 +207,7 @@ public class CreateAProject {
                             Thread.sleep(1000);
                             driver.findElement(selectActionTypeDropdown).click();
                             driver.findElement(By.xpath("//mat-option[@role='option']/span[text()=' Submit']")).click();
+                            Thread.sleep(3000);
                             driver.findElement(clickActionSubmitPreviewToggle).click();
                             driver.findElement(saveButtonForPreviewAction).click();
                         }
@@ -232,6 +239,7 @@ public class CreateAProject {
             }
         }
     }
+
     public void clickOnPublishButton() throws Throwable {
         Thread.sleep(2000);
         driver.findElement(publishModule).click();
@@ -241,6 +249,7 @@ public class CreateAProject {
         Thread.sleep(2000);
         driver.findElement(publishMobileApp).click();
         if (driver.findElements(publishAppPopUpHeading).size() > 0) {
+            Thread.sleep(2000);
             String message = driver.findElement(publishAppPopUpHeading).getText().trim();
             String text = "Publish Resources";
             Assert.assertEquals(text, message, "Expected Error Message " + text + " But Found : " + message);
@@ -265,11 +274,21 @@ public class CreateAProject {
         Assert.assertEquals(mess[2], message2, "Expected Error Message " + mess[2] + " But Found : " + message2);
         Assert.assertEquals(mess[4], message3, "Expected Error Message " + mess[4] + " But Found : " + message3);
         Assert.assertEquals(text, message4, "Expected Error Message " + text + " But Found : " + message4);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMinutes(3));
+        wait.until(ExpectedConditions.elementToBeClickable(downloadApkButton));
+        String AppName = driver.findElement(mobileAppHeadingInNavBar).getText().trim() + ".apk";
         if (driver.findElements(publishApplicationCreatedSuccessfully).size() > 0) {
             String text1 = driver.findElement(publishApplicationCreatedSuccessfully).getText().trim();
             String message5 = "Application Created Successfully!";
             Assert.assertEquals(text1, message5, "Expected Error Message " + text1 + " But Found : " + message5);
         }
+        driver.findElement(downloadApkButton).click();
+        Thread.sleep(30000);
+        File downloadedFile = new File("C:\\Users\\user\\Downloads\\" + AppName);
+        String fileName = downloadedFile.getName();
+        System.out.println(fileName);
+        Assert.assertEquals(fileName, AppName, "Expected Error Message " + AppName + " But Found : " + fileName);
+
     }
 
 }

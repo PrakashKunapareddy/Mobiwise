@@ -1,14 +1,17 @@
-Feature: dataListCheck
+Feature: Publish Module Check
 
-  Scenario Outline: DATA LIST CHECK
-
+  Scenario Outline: Verify Publish Module by navigating to Pages Module and Changing Properties of components
 
     Given Entered a valid <username> <password>
     When  Clicked on the sign in button
     And  Validate login <expected_output>
     And Clicked on the Project
     And Click on the Mobile Application and Click On Page panel
-    And Click on the data List and edit properties <values_comp>
+    And Click on Publish Module and click on publish apk button
+    And Click on pages Module and click on Landing Page And Add Component and delete the Component
+    And Click on Publish Module and click on publish apk button
+
+#    And Click on the data List and edit properties <values_comp>
 
     Examples:
       | username | password     | expected_output | values_comp                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |

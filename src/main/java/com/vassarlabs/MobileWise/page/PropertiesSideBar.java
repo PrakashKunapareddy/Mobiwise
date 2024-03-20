@@ -136,14 +136,14 @@ public class PropertiesSideBar {
                 driver.findElement(addPageEntityTextfield).sendKeys("dummy");
                 flag = false;
             }
-            Thread.sleep(3000);
-//            if (driver.findElement(radiobuttonselectstatus).getText().trim().equals("Select from existing")) {
-//                Thread.sleep(4000);
-//                driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-//                driver.findElement(entityDropdown).click();
-//                driver.findElement(By.xpath("//mat-option[@role='option']/span[text()='" + entity_name + "']")).click();
-//                flag = false;
-//            }
+            Thread.sleep(4000);
+            if (driver.findElement(radiobuttonselectstatus).getText().trim().equals("Select from existing")) {
+                Thread.sleep(4000);
+                driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+                driver.findElement(entityDropdown).click();
+                driver.findElement(By.xpath("//mat-option[@role='option']/span[text()='" + entity_name + "']")).click();
+                flag = false;
+            }
             if (flag) {
                 Thread.sleep(3000);
                 driver.findElement(addPageEntityTextfield).sendKeys(entity_name);
@@ -561,6 +561,12 @@ public class PropertiesSideBar {
                     }
                     Thread.sleep(2000);
                     driver.findElement(addValidationbutton).click();
+                    if (validations[i].split("_")[0].equals("Required")) {
+                       String text =  driver.findElement(By.xpath("//h6[text()='Required: True']")).getText();
+                       String [] validationtext = text.split(" ");
+                       boolean added = Boolean.parseBoolean(validationtext[1]);
+                       Assert.assertTrue(added);
+                    }
                 } else {
                     Point startPoint = driver.findElement(validationsDropdown).getLocation();
                     int xOffset = 0;
@@ -590,6 +596,9 @@ public class PropertiesSideBar {
                             }
                         }
                         driver.findElement(saveValueButton).click();
+                    }
+                    if (options[0].equals("API")) {
+
                     }
                 }
 
@@ -666,6 +675,10 @@ public class PropertiesSideBar {
         if (!(driver.findElements(displayTypeDropdown).isEmpty())) {
             driver.findElement(displayTypeDropdown).click();
             String[] value = values.split(",");
+            int size = Integer.parseInt(String.valueOf(driver.findElements(By.xpath("//mat-option")).size()));
+            if(size == 2){
+                Assert.assertEquals(size, 2, "Expected Error Message " + size + " But Found : " + 2);
+            }
             driver.findElement(By.xpath("//mat-option[@value='" + value[0] + "']")).click();
             String message = driver.findElement(displayTypeDropdownValue).getText().trim().toLowerCase();
             Assert.assertEquals(value[0], message, "Expected Error Message " + value[0] + " But Found : " + message);
@@ -782,6 +795,10 @@ public class PropertiesSideBar {
         if (!(driver.findElements(positionDropdown).isEmpty())) {
             driver.findElement(positionDropdown).click();
             String[] value = values.split(",");
+            int size = Integer.parseInt(String.valueOf(driver.findElements(By.xpath("//mat-option")).size()));
+            if(size == 3){
+                Assert.assertEquals(size, 3, "Expected Error Message " + size + " But Found : " + 3);
+            }
             driver.findElement(By.xpath("//mat-option[@value='" + value[1] + "']")).click();
             String message = driver.findElement(positionDropDownValue).getText().trim().toLowerCase();
             Assert.assertEquals(value[1], message, "Expected Error Message " + value[1] + " But Found : " + message);
@@ -830,6 +847,10 @@ public class PropertiesSideBar {
         if (driver.findElements(dataTypeDropdown).size() > 0) {
             driver.findElement(dataTypeDropdown).click();
             String[] value = values.split(",");
+            int size = Integer.parseInt(String.valueOf(driver.findElements(By.xpath("//mat-option")).size()));
+            if(size == 3){
+                Assert.assertEquals(size, 3, "Expected Error Message " + size + " But Found : " + 3);
+            }
             driver.findElement(By.xpath("//mat-option[@value='" + value[2] + "']")).click();
             String message = driver.findElement(dataTypeDropdownValue).getText().trim().toLowerCase();
             Assert.assertEquals(value[2], message, "Expected Error Message " + value[2] + " But Found : " + message);
@@ -852,9 +873,10 @@ public class PropertiesSideBar {
                 if (!(driver.findElements(placeHolderTextField).isEmpty())) {
                     String[] value = values.split(",");
                     driver.findElement(placeHolderTextField).clear();
-                    driver.findElement(placeHolderTextField).sendKeys(value[2]);
+                    String text = "Enter Address";
+                    driver.findElement(placeHolderTextField).sendKeys(text);
                     String message = driver.findElement(placeHolderTextField).getAttribute("value");
-                    Assert.assertEquals(value[3], message, "Expected Error Message " + value[3] + " But Found : " + message);
+                    Assert.assertEquals(text, message, "Expected Error Message " + text + " But Found : " + message);
                 }
             }
         }
@@ -880,6 +902,10 @@ public class PropertiesSideBar {
             if (Component[c].equals("File Picker")) {
                 if (driver.findElements(fileTypedropdown).size() > 0) {
                     driver.findElement(fileTypedropdown).click();
+                    int size = Integer.parseInt(String.valueOf(driver.findElements(By.xpath("//mat-option")).size()));
+                    if(size == 4){
+                        Assert.assertEquals(size, 4, "Expected Error Message " + size + " But Found : " + 4);
+                    }
                     for (int i = 0; i <= type.length - 1; i++) {
                         if (driver.findElements(By.xpath("//mat-option[@role='option']/mat-pseudo-checkbox/following-sibling::span[text()='" + type[i] + "']")).size() > 0) {
                             driver.findElement(By.xpath("//mat-option[@role='option']/mat-pseudo-checkbox/following-sibling::span[text()='" + type[i] + "']")).click();
@@ -898,6 +924,10 @@ public class PropertiesSideBar {
                 String[] Value = values.split(",");
                 String[] prop = Value[3].split("_");
                 driver.findElement(uploadTypeDropDown).click();
+                int size = Integer.parseInt(String.valueOf(driver.findElements(By.xpath("//mat-option")).size()));
+                if(size == 4){
+                    Assert.assertEquals(size, 4, "Expected Error Message " + size + " But Found : " + 4);
+                }
                 if (prop[0].equals("image")) {
                     driver.findElement(By.xpath("//mat-option[@value='" + prop[0] + "']")).click();
                     Thread.sleep(1000);

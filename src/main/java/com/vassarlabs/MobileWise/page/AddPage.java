@@ -134,7 +134,7 @@ public class AddPage {
 
     public void listOfWidgetsInLoginPage() {
         ArrayList<String> listOfWidgets = new ArrayList<>();
-        List<String> widgetsToCheck = Arrays.asList("Biometrics", "Forget Password", "Logo");
+        List<String> widgetsToCheck = Arrays.asList("Biometrics", "Forget Password", "Image");
         for (WebElement widget : driver.findElements(listOfWidgetsOnScreenBuilder)) {
             listOfWidgets.add(widget.getText().trim());
         }

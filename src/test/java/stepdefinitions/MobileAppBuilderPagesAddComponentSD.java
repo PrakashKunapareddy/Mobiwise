@@ -20,8 +20,8 @@ public class MobileAppBuilderPagesAddComponentSD {
 
 
     @And("Click on the {string} and drag the {string} to the screen builder {string} {string}")
-    public void clickOnTheComponents_panelAndDragTheComponentToTheScreenBuilder(String component_panel, String component, String offset_value_x,String offset_value_y) throws Throwable {
-        mobileAppBuilderPagesAddComponents.addComponentToScreenBuilder(component_panel, component,offset_value_x,offset_value_y);
+    public void clickOnTheComponents_panelAndDragTheComponentToTheScreenBuilder(String component_panel, String component, String offset_value_x, String offset_value_y) throws Throwable {
+        mobileAppBuilderPagesAddComponents.addComponentToScreenBuilder(component_panel, component, offset_value_x, offset_value_y);
     }
 
     @Then("Verify the {string} on the screen builder")
@@ -35,13 +35,12 @@ public class MobileAppBuilderPagesAddComponentSD {
 
     }
 
-    @Then("Delete The component from The Screen Builder {string}")
-    public void deleteTheComponentFromTheScreenBuilder(String component) throws Throwable {
-        mobileAppBuilderPagesAddComponents.deleteComponentFromTheScreenBuilder(component);
+
+    @Then("Delete The component from The Screen Builder {string} {string} {string} {string} {string}")
+    public void deleteTheComponentFromTheScreenBuilderComponents_panelComponentOffset_value_xOffset_value_yWork_pages(String component_panel, String component, String offset_value_x, String offset_value_y, String work_page) throws Throwable{
+        mobileAppBuilderPagesAddComponents.deleteComponentFromTheScreenBuilder(component_panel, component, offset_value_x, offset_value_y, work_page);
         mobileAppBuilderPagesAddComponents.deleteNavbarFromTheScreenBuilder(component);
-
     }
-
 
 }
 

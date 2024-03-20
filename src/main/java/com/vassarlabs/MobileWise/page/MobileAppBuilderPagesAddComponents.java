@@ -23,7 +23,7 @@ import java.util.Random;
 public class MobileAppBuilderPagesAddComponents {
 
     WebDriver driver;
-    Actions act ;
+    Actions act;
 
     private By appNameField = By.xpath("//input[@placeholder='App Name']");
     private By shortDescField = By.xpath("//textarea[@formcontrolname='applicationDescription']");
@@ -54,7 +54,8 @@ public class MobileAppBuilderPagesAddComponents {
     private By componentOnTheScreenBuilder = By.xpath("//div[contains(@class,'mobile-canvas-container')]//div[contains(@class,'mobile-canvas ng-star-inserted')]//div//div[contains(@class,'cdk-drop-list')]//lib-widget-filter/div");
     private By navbarComponentTitle = By.xpath("//mat-toolbar/div[text()='Title']");
     private By navBarSections = By.xpath("//span[text()='Landing']/../../../following-sibling::div//div//span/mat-panel-title[text()=' Navbar ']");
-    private By deleteComponentNavbar = By.xpath("//div[contains(@class,'mobile-canvas-container')]//div[contains(@class,'mobile-canvas ng-star-inserted')]//div//button[@mattooltip='Delete Section']");
+    private By deleteComponentNavbar = By.xpath("//span[text()='Landing']/../../../following-sibling::div/div//label/span[text()='Disable Navbar']/../../button");
+    private By EnableComponentNavbar = By.xpath("//span[text()='Landing']/../../../following-sibling::div/div//label/span[text()='Enable Navbar']/../../button");
     private By addComponentButton = By.xpath("//span[text()='Landing']/../../../following-sibling::div/div//button/span[text()=' Add Component ']/parent::button");
     private By deleteComponent = By.xpath("//div[contains(@class,'mobile-canvas-container')]//div[contains(@class,'mobile-canvas ng-star-inserted')]//div//div[contains(@class,'cdk-drop-list')]//lib-widget-filter/div/../..//button[@mattooltip='Delete Widget']");
     LinkedHashMap<String, ArrayList<String>> Fields = new LinkedHashMap<>();
@@ -116,9 +117,9 @@ public class MobileAppBuilderPagesAddComponents {
         }
     }
 
-    public void clickOnLandingPageAndClickOnAddComponentsButton(String work_pages) throws Throwable {
+    public void clickOnLandingPageAndClickOnAddComponentsButton(String work_page) throws Throwable {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        String[] pageRotate = work_pages.split(",");
+        String[] pageRotate = work_page.split(",");
         Thread.sleep(3000);
         driver.findElement(By.xpath("//mat-expansion-panel-header[contains(@class,'mat-expansion-panel-header mat-focus-indicator')]/span/mat-panel-title/span[text()='" + pageRotate[0] + "']")).click();
         if (driver.findElements(addComponentButton).size() > 0) {
@@ -255,17 +256,41 @@ public class MobileAppBuilderPagesAddComponents {
         if (component.equals("Navbar")) {
             Thread.sleep(3000);
             driver.findElement(deleteComponentNavbar).click();
-
+            driver.findElement(EnableComponentNavbar).click();
+            Thread.sleep(3000);
+            driver.findElement(By.xpath("//ol[contains(@class,'breadcrumb builder-breadcrumb')]/li[1]")).click();
+            Thread.sleep(5000);
+            int len1 = driver.findElements(By.xpath("//mat-card-title")).size();
+            driver.findElements(By.xpath("//span[text()=' Delete']/parent::button[@color='warn']")).get(0).click();
+            Thread.sleep(2000);
+            driver.findElement(By.xpath("//span[text()='Yes']/..")).click();
+            Thread.sleep(5000);
+            int len2 = driver.findElements(By.xpath("//mat-card-title")).size();
+            boolean status = len2 < len1;
+            Assert.assertTrue(status);
         }
     }
 
-    public void deleteComponentFromTheScreenBuilder(String component) throws Throwable {
+    public void deleteComponentFromTheScreenBuilder(String component_panel, String component, String offset_value_x, String offset_value_y, String work_page) throws Throwable {
         if (!(component.equals("Navbar"))) {
             if (flagultipleComponents) {
                 Thread.sleep(6000);
                 act.moveToElement(driver.findElement(componentOnTheScreenBuilder)).perform();
                 Thread.sleep(3000);
                 driver.findElement(deleteComponent).click();
+                clickOnLandingPageAndClickOnAddComponentsButton(work_page);
+                addComponentToScreenBuilder(component_panel, component, offset_value_x, offset_value_y);
+                Thread.sleep(3000);
+                driver.findElement(By.xpath("//ol[contains(@class,'breadcrumb builder-breadcrumb')]/li[1]")).click();
+                Thread.sleep(5000);
+                int len1 = driver.findElements(By.xpath("//mat-card-title")).size();
+                driver.findElements(By.xpath("//span[text()=' Delete']/parent::button[@color='warn']")).get(0).click();
+                Thread.sleep(2000);
+                driver.findElement(By.xpath("//span[text()='Yes']/..")).click();
+                Thread.sleep(5000);
+                int len2 = driver.findElements(By.xpath("//mat-card-title")).size();
+                boolean status = len2 < len1;
+                Assert.assertTrue(status);
             }
 
         }
