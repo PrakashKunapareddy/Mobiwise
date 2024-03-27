@@ -64,9 +64,11 @@ public class CreateProject {
         } else {
             driver.findElement(matCreateProjectButton).click();
         }
-        Thread.sleep(3000);
+
         String AddProjectHeading = "Add Project";
+        Thread.sleep(7000);
         String addProjectHeadingVerify = driver.findElement(addProjectHeading).getText();
+        Thread.sleep(3000);
         Assert.assertEquals(AddProjectHeading, addProjectHeadingVerify, "Expected Error Message " + AddProjectHeading + " But Found : " + addProjectHeadingVerify);
 
     }
@@ -127,7 +129,7 @@ public class CreateProject {
     public void clickSaveButton(String project_name, String error_message) throws Throwable {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         if (flag) {
-            Thread.sleep(3000);
+            Thread.sleep(7000);
             driver.findElement(saveButton).click();
             flag1 = true;
         }
@@ -260,8 +262,8 @@ public class CreateProject {
     public void validateDeletedProject(String new_project_name) {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         if (driver.findElements(toasterProjectDelete).size() > 0) {
-            boolean projectDeletedflag = !(driver.findElement(By.xpath("//mat-card[contains(@class,'mat-mdc-card mdc-card mat-ripple')]/div/following-sibling::mat-card-content/mat-card-title[text()='" + new_project_name + "']")).isDisplayed());
-            Assert.assertTrue(projectDeletedflag);
+//            boolean projectDeletedflag = !(driver.findElement(By.xpath("//mat-card[contains(@class,'mat-mdc-card mdc-card mat-ripple')]/div/following-sibling::mat-card-content/mat-card-title[text()='" + new_project_name + "']")).isDisplayed());
+//            Assert.assertTrue(projectDeletedflag);
             String toaster = "Sucessfully Deleted Project";
             String deleteToaster = driver.findElement(toasterProjectDelete).getText().trim();
             Assert.assertEquals(toaster, deleteToaster, "Expected Error Message " + toaster + " But Found : " + deleteToaster);

@@ -162,7 +162,7 @@ public class ThemesModule {
             }
         }
         storePresetThemeData();
-        driver.findElement(By.xpath("Select Heading Font")).click();
+        driver.findElement(By.xpath("//mat-label[text()='Headings']/../../../following-sibling::div/mat-select/div/div[contains(@class,'mat-mdc-select-arrow-wrapper')]")).click();
         driver.findElement(By.xpath("//span[text()='Rock 3D']")).click();
         clickResetButton();
         comparePreviousThemeAfterReset();

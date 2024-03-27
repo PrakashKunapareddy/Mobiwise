@@ -282,8 +282,8 @@ public class AddPage {
     }
 
     public void editAddedPage(String edit_page_name, String page_name, String error_message, String entity_name, String entity_error_message, String edit_entity_name) throws Throwable {
-        Thread.sleep(3000);
         if (pageAddedFlag) {
+            Thread.sleep(4000);
             act.moveToElement(driver.findElement(By.xpath(" //span[text()='" + page_name + "']/../following-sibling::div/button/mat-icon[text()='edit']"))).click().perform();
             verifyEditPagePopup();
             if (editPagePopupFlag) {

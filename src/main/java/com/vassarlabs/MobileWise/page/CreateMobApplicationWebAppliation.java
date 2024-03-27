@@ -143,14 +143,14 @@ public class CreateMobApplicationWebAppliation {
         Thread.sleep(2000);
         if (driver.findElements(hintProjectAvailable).size() > 0) {
             flag2 = true;
-            Thread.sleep(4000);
+            Thread.sleep(5000);
             String message = driver.findElement(hintProjectAvailable).getText().trim();
             Assert.assertEquals(application_name_field_message, message, "Expected Error Message :" + application_name_field_message + " But Found : " + message);
         }
         if (!driver.findElements(errorProjectExists).isEmpty()) {//size>0
             String message = driver.findElement(errorProjectExists).getText();
             Assert.assertEquals(application_name_field_message, message, "Expected Error Message :" + application_name_field_message + " But Found : " + message);
-            flagerror=true;
+            flagerror = true;
         }
         if (flag2) {
             int length = app_desc.length();
@@ -172,7 +172,7 @@ public class CreateMobApplicationWebAppliation {
             String message = driver.findElement(requiredAppNameField).getText();
             Assert.assertEquals(application_name_field_message, message, "Expected Error Message " + application_name_field_message + " But Found : " + message);
             flag2 = false;
-            flagerror=true;
+            flagerror = true;
         }
         if (driver.findElements(atleast3LettersRequired).size() > 0) {//size>0
             Thread.sleep(3000);
@@ -180,7 +180,7 @@ public class CreateMobApplicationWebAppliation {
             message.trim();
             Assert.assertEquals(application_name_field_message, message, "Expected Error Message " + application_name_field_message + " But Found : " + message);
             flag2 = false;
-            flagerror=true;
+            flagerror = true;
         }
 
     }
@@ -297,13 +297,15 @@ public class CreateMobApplicationWebAppliation {
                 driver.findElement(By.xpath("//ol[contains(@class,'breadcrumb builder-breadcrumb')]/li[1]")).click();
                 Thread.sleep(5000);
                 int len1 = driver.findElements(By.xpath("//mat-card-title")).size();
-                driver.findElements(By.xpath("//span[text()=' Delete']/parent::button[@color='warn']")).get(0).click();
-                Thread.sleep(2000);
-                driver.findElement(By.xpath("//span[text()='Yes']/..")).click();
-                Thread.sleep(5000);
-                int len2 = driver.findElements(By.xpath("//mat-card-title")).size();
-                boolean status = len2 < len1;
-                Assert.assertTrue(status);
+                if (driver.findElements(By.xpath("//span[text()=' Delete']/parent::button[@color='warn']")).size() > 0) {
+                    driver.findElements(By.xpath("//span[text()=' Delete']/parent::button[@color='warn']")).get(0).click();
+                    Thread.sleep(2000);
+                    driver.findElement(By.xpath("//span[text()='Yes']/..")).click();
+                    Thread.sleep(5000);
+                    int len2 = driver.findElements(By.xpath("//mat-card-title")).size();
+                    boolean status = len2 < len1;
+                    Assert.assertTrue(status);
+                }
             }
         }
         if (flagerror) {

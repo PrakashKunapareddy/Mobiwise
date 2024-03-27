@@ -120,7 +120,7 @@ public class MobileAppBuilderPagesAddComponents {
     public void clickOnLandingPageAndClickOnAddComponentsButton(String work_page) throws Throwable {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         String[] pageRotate = work_page.split(",");
-        Thread.sleep(3000);
+        Thread.sleep(5000);
         driver.findElement(By.xpath("//mat-expansion-panel-header[contains(@class,'mat-expansion-panel-header mat-focus-indicator')]/span/mat-panel-title/span[text()='" + pageRotate[0] + "']")).click();
         if (driver.findElements(addComponentButton).size() > 0) {
             Thread.sleep(5000);
@@ -294,6 +294,7 @@ public class MobileAppBuilderPagesAddComponents {
             }
 
         }
+//        deleteNavbarFromTheScreenBuilder(component);
     }
 //    WebElement shadowHost = driver.findElement(componentOnTheScreenBuilder);
 //
