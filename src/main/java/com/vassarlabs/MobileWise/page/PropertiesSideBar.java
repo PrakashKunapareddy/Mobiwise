@@ -708,7 +708,7 @@ public class PropertiesSideBar {
     public void editTopMarginTextField(String values, String component) throws Throwable {
         if (!(driver.findElements(topMarginTextField).isEmpty())) {
             String[] value = values.split(",");
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+            Thread.sleep(3000);
             driver.findElement(topMarginTextField).clear();
             String[] Component = component.split(",");
             for (int c = 0; c <= Component.length - 1; c++) {

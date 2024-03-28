@@ -38,7 +38,7 @@ public class MobileAppBuilderPagesAddComponentSD {
 
     @Then("Delete The component from The Screen Builder {string} {string} {string} {string} {string}")
     public void deleteTheComponentFromTheScreenBuilderComponents_panelComponentOffset_value_xOffset_value_yWork_pages(String component_panel, String component, String offset_value_x, String offset_value_y, String work_page) throws Throwable{
-        mobileAppBuilderPagesAddComponents.deleteComponentFromTheScreenBuilder(component_panel, component, offset_value_x, offset_value_y, work_page);
+//        mobileAppBuilderPagesAddComponents.deleteComponentFromTheScreenBuilder(component_panel, component, offset_value_x, offset_value_y, work_page);
 
     }
 

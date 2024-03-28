@@ -274,6 +274,7 @@ public class CreateAProject {
         Assert.assertEquals(mess[2], message2, "Expected Error Message " + mess[2] + " But Found : " + message2);
         Assert.assertEquals(mess[4], message3, "Expected Error Message " + mess[4] + " But Found : " + message3);
         Assert.assertEquals(text, message4, "Expected Error Message " + text + " But Found : " + message4);
+        Thread.sleep(3000);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMinutes(3));
         wait.until(ExpectedConditions.elementToBeClickable(downloadApkButton));
         String AppName = driver.findElement(mobileAppHeadingInNavBar).getText().trim() + ".apk";

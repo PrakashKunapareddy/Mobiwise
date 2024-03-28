@@ -126,7 +126,7 @@ public class MobileAppBuilderPagesAddComponents {
             Thread.sleep(5000);
 //            driver.findElement(addComponentButton).click();
             Point startPoint = driver.findElement(landingPanel).getLocation();
-            int xOffset = 1500;
+            int xOffset = 500;
             int yOffset = 0;
             act.moveToElement(driver.findElement(landingPanel)).moveByOffset(startPoint.getX() + xOffset, startPoint.getY() + yOffset).click().build().perform();
         } else {
@@ -275,9 +275,7 @@ public class MobileAppBuilderPagesAddComponents {
         if (!(component.equals("Navbar"))) {
             if (flagultipleComponents) {
                 Thread.sleep(6000);
-                act.moveToElement(driver.findElement(componentOnTheScreenBuilder)).perform();
-                Thread.sleep(3000);
-                driver.findElement(deleteComponent).click();
+                act.moveToElement(driver.findElement(componentOnTheScreenBuilder)).moveToElement(driver.findElement(deleteComponent)).click().perform();
                 clickOnLandingPageAndClickOnAddComponentsButton(work_page);
                 addComponentToScreenBuilder(component_panel, component, offset_value_x, offset_value_y);
                 Thread.sleep(3000);
