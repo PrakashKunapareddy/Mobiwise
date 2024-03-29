@@ -66,7 +66,7 @@ public class CreateProject {
         }
 
         String AddProjectHeading = "Add Project";
-        Thread.sleep(7000);
+        Thread.sleep(10000);
         String addProjectHeadingVerify = driver.findElement(addProjectHeading).getText();
         Thread.sleep(3000);
         Assert.assertEquals(AddProjectHeading, addProjectHeadingVerify, "Expected Error Message " + AddProjectHeading + " But Found : " + addProjectHeadingVerify);
@@ -155,7 +155,7 @@ public class CreateProject {
 
     public void checkCreatedProject(String project_name) throws Throwable {
         if (flag1) {
-            Thread.sleep(3000);
+            Thread.sleep(5000);
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
             String createdProjectName = driver.findElement(By.xpath("//mat-card[contains(@class,'mat-mdc-card mdc-card mat-ripple')]/div/following-sibling::mat-card-content/mat-card-title[text()='" + project_name + "']")).getText();
             Assert.assertEquals(project_name, createdProjectName, "Expected Error Message " + project_name + " But Found : " + createdProjectName);
@@ -238,7 +238,7 @@ public class CreateProject {
     public void deleteProjectNo(String new_project_name) throws Throwable {
         if (flag3) {
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-            Thread.sleep(3000);
+            Thread.sleep(4000);
             driver.findElement(By.xpath("//mat-card-title[text()='" + new_project_name + "']/parent::mat-card-content/following-sibling::mat-card-actions/button/span[text()=' Delete']")).click();
             driver.findElement(deleteProjectPopupNo).click();
         }

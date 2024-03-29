@@ -71,7 +71,7 @@ public class DataDownload {
             Assert.assertEquals(date[date.length - 2], Date[0].split("/")[2], "Expected Error Message " + Date[0].split("/")[2] + " But Found : " + date[date.length - 2]);
             Assert.assertEquals(date[0], Date[0].split("/")[1], "Expected Error Message " + Date[0].split("/")[1] + " But Found : " + date[0]);
         }
-        Thread.sleep(2000);
+        Thread.sleep(5000);
         driver.findElement(dateTo).click();
         toDateHandling(Date[1]);
         if (driver.findElements(toDateValues).size() > 0) {

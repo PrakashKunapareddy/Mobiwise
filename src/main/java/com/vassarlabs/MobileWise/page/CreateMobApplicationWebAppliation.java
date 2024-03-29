@@ -143,7 +143,7 @@ public class CreateMobApplicationWebAppliation {
         Thread.sleep(2000);
         if (driver.findElements(hintProjectAvailable).size() > 0) {
             flag2 = true;
-            Thread.sleep(5000);
+            Thread.sleep(6000);
             String message = driver.findElement(hintProjectAvailable).getText().trim();
             Assert.assertEquals(application_name_field_message, message, "Expected Error Message :" + application_name_field_message + " But Found : " + message);
         }

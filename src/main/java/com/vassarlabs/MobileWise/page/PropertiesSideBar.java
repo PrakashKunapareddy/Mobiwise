@@ -1133,6 +1133,7 @@ public class PropertiesSideBar {
                                         driver.findElement(radioButtonDeleteValues).click();
                                     }
                                 }
+                                break;
                             }
                         }
                         clickOnUpdateComponentButton();

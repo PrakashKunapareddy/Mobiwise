@@ -42,7 +42,7 @@ public class DataList {
 
     public boolean displayListProperties(String values_comp) throws Throwable {
         String[] values = values_comp.split("%");
-        Thread.sleep(3000);
+        Thread.sleep(5000);
         boolean expected = Boolean.parseBoolean(driver.findElement(dataListPropertiesPanel).getAttribute("aria-expanded"));
         System.out.println(expected);
         if (!expected) {
