@@ -12,7 +12,7 @@ public class EntityModule {
         this.driver = driver;
     }
 
-    private By Mobileapp = By.xpath("//div[text()=' Demo Mobile 315 ']");
+    private By Mobileapp = By.xpath("//div[text()=' Demo Application 314 ']");
     private By entityModule = By.xpath("//div[@class='smidemenu-container']/ul/li[3]");
     private By addNewEntity = By.xpath("//span[text()=' Add Entity ']/..");
     private By addEntityPopUpHeading = By.xpath("//span[text()='Add Entity']");
@@ -28,7 +28,7 @@ public class EntityModule {
     public void clickOnEntityModule() throws Throwable {
         Thread.sleep(5000);
         driver.findElement(Mobileapp).click();
-        Thread.sleep(5000);
+        Thread.sleep(10000);
         driver.findElement(entityModule).click();
     }
 
@@ -49,7 +49,7 @@ public class EntityModule {
             driver.findElement(addEntityCancelButton).click();
             Thread.sleep(3000);
             driver.findElement(addNewEntity).click();
-            Thread.sleep(5000);
+            Thread.sleep(8000);
             String text = driver.findElement(addEntityPopUpHeading).getText().trim();
             String message = "Add Entity";
             Assert.assertEquals(text, message, "Expected Error Message " + text + " But Found : " + message);

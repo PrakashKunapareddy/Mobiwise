@@ -123,12 +123,12 @@ public class MobileAppBuilderPagesAddComponents {
         Thread.sleep(5000);
         driver.findElement(By.xpath("//mat-expansion-panel-header[contains(@class,'mat-expansion-panel-header mat-focus-indicator')]/span/mat-panel-title/span[text()='" + pageRotate[0] + "']")).click();
         if (driver.findElements(addComponentButton).size() > 0) {
-            Thread.sleep(5000);
-//            driver.findElement(addComponentButton).click();
-            Point startPoint = driver.findElement(landingPanel).getLocation();
-            int xOffset = 500;
-            int yOffset = 0;
-            act.moveToElement(driver.findElement(landingPanel)).moveByOffset(startPoint.getX() + xOffset, startPoint.getY() + yOffset).click().build().perform();
+            Thread.sleep(4000);
+            driver.findElement(addComponentButton).click();
+//            Point startPoint = driver.findElement(landingPanel).getLocation();
+//            int xOffset = 500;
+//            int yOffset = 0;
+//            act.moveToElement(driver.findElement(landingPanel)).moveByOffset(startPoint.getX() + xOffset, startPoint.getY() + yOffset).click().build().perform();
         } else {
             Point startPoint = driver.findElement(landingPanel).getLocation();
             int xOffset = 1500;

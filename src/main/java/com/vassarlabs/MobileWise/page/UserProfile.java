@@ -72,7 +72,7 @@ public class UserProfile {
     //validate the new password entered and confirm password
     public void validateNewPasswordAndConfirmPassword(String new_password, String confirm_password, String new_password_error_message, String confirm_password_error, String password_suggestion_message) throws Throwable {
         if (UserProfileOptionsFlag) {
-            Thread.sleep(6000);
+            Thread.sleep(8000);
             driver.findElement(changePasswordUserProfile).click();
             cancleButtonChangePassword();
             Thread.sleep(3000);

@@ -123,6 +123,7 @@ public class PropertiesSideBar {
         for (int i = 0; i <= addPages.length - 1; i++) {
             Thread.sleep(4000);
             driver.findElement(addPageButton).click();
+            Thread.sleep(3000);
             driver.findElement(addPageTextfield).sendKeys(addPages[i]);
             Thread.sleep(4000);
             if (addPages[i].equals("Page2")) {

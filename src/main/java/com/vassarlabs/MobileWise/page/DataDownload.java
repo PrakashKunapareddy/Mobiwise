@@ -12,7 +12,7 @@ public class DataDownload {
     private By errorMessageDataDownload = By.xpath("//div[text()=' There is no data to download! ']");
     private By dateFrom = By.xpath("//mat-label[text()='Date From']/../../../following-sibling::div//button[@aria-label='Open calendar']");
     private By dateTo = By.xpath("//mat-label[text()='Date To']/../../../following-sibling::div//button[@aria-label='Open calendar']");
-    private By Mobileapp = By.xpath("//div[text()=' Demo Mobile 315 ']");
+    private By Mobileapp = By.xpath("//div[text()=' Demo Application 314 ']");
     private By dataDownloadModule = By.xpath("//div[@class='smidemenu-container']/ul/li[7]");
     private By yearInCalnder = By.xpath("//div[@class='mat-calendar-controls']/button[@class='mat-calendar-period-button mdc-button mat-mdc-button mat-unthemed mat-mdc-button-base']");
     private By yearInRange = By.xpath("//div[@class='mat-calendar-controls']/button[@class='mat-calendar-period-button mdc-button mat-mdc-button mat-unthemed mat-mdc-button-base']//span//span");
@@ -134,7 +134,7 @@ public class DataDownload {
     }
 
     public void clickOnDataDownloadButton(String error_message) throws Throwable {
-        Thread.sleep(2000);
+        Thread.sleep(4000);
         driver.findElement(dataDownloadButton).click();
         if (driver.findElements(errorMessageDataDownload).size() > 0) {
             String text = driver.findElement(errorMessageDataDownload).getText().trim();

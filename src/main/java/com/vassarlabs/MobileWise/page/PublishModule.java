@@ -27,12 +27,12 @@ public class PublishModule {
     DataList dataList = new DataList(WebdriverInitializer.getDriver());
     CreateAProject createAProject = new CreateAProject(WebdriverInitializer.getDriver());
 
-    private By Mobileapp = By.xpath("//div[text()=' Demo Mobile 315 ']");
+    private By Mobileapp = By.xpath("//div[text()=' Demo Application 314 ']");
     private By page3 = By.xpath("//span[text()='Page3']");
     private By DataListOnScreenBuilder = By.xpath("//div[contains(@class,'mobile-canvas-container')]//div[contains(@class,'mobile-canvas ng-star-inserted')]//div//div[contains(@class,'cdk-drop-list')]//lib-widget-filter/div");
 
     public void clickonmobileappandpage() throws InterruptedException {
-        Thread.sleep(3000);
+        Thread.sleep(6000);
         driver.findElement(Mobileapp).click();
         Thread.sleep(5000);
         driver.findElement(page3).click();

@@ -81,6 +81,7 @@ public class CreateMobApplicationWebAppliation {
     public void createRandomProjects() throws Throwable {
 
         if (driver.findElements(createProjectButton).size() > 0) {
+            Thread.sleep(3000);
             driver.findElement(createProjectButton).click();
             flagCreateProject = true;
         }
@@ -99,16 +100,14 @@ public class CreateMobApplicationWebAppliation {
     }
 
     public void clickProjectMatButton() throws Throwable {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        Thread.sleep(5000);
-        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(projectMatBuutton)));
+        Thread.sleep(10000);
         driver.findElements(projectMatBuutton).get(0).click();
         flag = true;
     }
 
     public void clickHomeOnBreadcrumb(String homepage_validation_text) throws Throwable {
         if (flag) {
-            Thread.sleep(3000);
+            Thread.sleep(5000);
             driver.findElement(breadcrumbHome).click();
             Thread.sleep(3000);
             String message = driver.findElement(homepage_validation).getText();

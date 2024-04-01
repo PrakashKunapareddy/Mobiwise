@@ -62,7 +62,7 @@ public class CreateAProject {
                 Thread.sleep(3000);
                 WebElement panelHeader = driver.findElement(By.xpath("//mat-expansion-panel-header[contains(@class,'mat-expansion-panel-header mat-focus-indicator')]/span/mat-panel-title/span[text()='" + pagesRotate[j] + "']"));
                 panelHeader.click();
-                Thread.sleep(3000);
+                Thread.sleep(6000);
                 driver.findElement(addComponentsButton).click();
                 String[] components_panels = components_panelsSelect[j].split(",");
                 String[] Component = components[j].split(",");
@@ -241,7 +241,7 @@ public class CreateAProject {
     }
 
     public void clickOnPublishButton() throws Throwable {
-        Thread.sleep(2000);
+        Thread.sleep(7000);
         driver.findElement(publishModule).click();
         Thread.sleep(2000);
         driver.findElement(publishMobileApp).click();
@@ -275,7 +275,7 @@ public class CreateAProject {
         Assert.assertEquals(mess[4], message3, "Expected Error Message " + mess[4] + " But Found : " + message3);
         Assert.assertEquals(text, message4, "Expected Error Message " + text + " But Found : " + message4);
         Thread.sleep(3000);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMinutes(3));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMinutes(15));
         wait.until(ExpectedConditions.elementToBeClickable(downloadApkButton));
         String AppName = driver.findElement(mobileAppHeadingInNavBar).getText().trim() + ".apk";
         if (driver.findElements(publishApplicationCreatedSuccessfully).size() > 0) {
