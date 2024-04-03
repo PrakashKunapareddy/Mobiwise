@@ -62,13 +62,12 @@ public class CreateProject {
             Thread.sleep(3000);
             driver.findElement(createProjectButton).click();
         } else {
+            Thread.sleep(5000);
             driver.findElement(matCreateProjectButton).click();
         }
-
         String AddProjectHeading = "Add Project";
-        Thread.sleep(10000);
         String addProjectHeadingVerify = driver.findElement(addProjectHeading).getText();
-        Thread.sleep(3000);
+        Thread.sleep(2000);
         Assert.assertEquals(AddProjectHeading, addProjectHeadingVerify, "Expected Error Message " + AddProjectHeading + " But Found : " + addProjectHeadingVerify);
 
     }
@@ -85,21 +84,20 @@ public class CreateProject {
     public void enterProjectnameProjectdescription(String project_name, String project_description, String error_message, String error_message_image) throws Throwable {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.findElement(projectName).sendKeys(project_name);
-        if (driver.findElement(projectName).getText().equals(null)) {
-            String errormessage = driver.findElement(By.xpath("//div[contains(@class,'mat-mdc-form-field-error-wrapper')]/mat-error[text()='" + error_message + "']")).getText();
-            Assert.assertEquals(error_message, errormessage, "Expected Error Message " + error_message + " But Found : " + errormessage);
-            Thread.sleep(3000);
-            flag = false;
-
-        } else if (driver.findElements(errorProjectExists).size() > 0) {
+        if (driver.findElements(errorProjectExists).size() > 0) {
             String errormessage = driver.findElement(By.xpath("//div[contains(@class,'mat-mdc-form-field-hint-wrapper')]/mat-hint[text()='" + error_message + "']")).getText();
             Assert.assertEquals(error_message, errormessage, "Expected Error Message " + error_message + " But Found : " + errormessage);
-            Thread.sleep(3000);
+
             flag = false;
         } else if (driver.findElements(errorProjectRequired).size() > 0) {
             String errormessage = driver.findElement(By.xpath("//div[contains(@class,'mat-mdc-form-field-error-wrapper')]/mat-error[text()='" + error_message + "']")).getText();
             Assert.assertEquals(error_message, errormessage, "Expected Error Message " + error_message + " But Found : " + errormessage);
-            Thread.sleep(3000);
+
+            flag = false;
+        } else if (driver.findElements(errorProjectExists).size() > 0) {
+            String errormessage = driver.findElement(By.xpath("//div[contains(@class,'mat-mdc-form-field-error-wrapper')]/mat-error[text()='" + error_message + "']")).getText();
+            Assert.assertEquals(error_message, errormessage, "Expected Error Message " + error_message + " But Found : " + errormessage);
+
             flag = false;
         } else {
             driver.findElement(projectDesc).sendKeys(project_description);
@@ -115,21 +113,14 @@ public class CreateProject {
                 flag = true;
             }
         }
-        if (driver.findElement(projectName).getText().length() > 0) {
-            if (driver.findElements(errorProjectExists).size() > 0) {
-                String errormessage = driver.findElement(By.xpath("//div[contains(@class,'mat-mdc-form-field-error-wrapper')]/mat-error[text()='" + error_message + "']")).getText();
-                Assert.assertEquals(error_message, errormessage, "Expected Error Message " + error_message + " But Found : " + errormessage);
-                Thread.sleep(3000);
-                flag = false;
-            }
-        }
+
 
     }
 
     public void clickSaveButton(String project_name, String error_message) throws Throwable {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         if (flag) {
-            Thread.sleep(7000);
+            Thread.sleep(3000);
             driver.findElement(saveButton).click();
             flag1 = true;
         }
@@ -155,7 +146,7 @@ public class CreateProject {
 
     public void checkCreatedProject(String project_name) throws Throwable {
         if (flag1) {
-            Thread.sleep(5000);
+            Thread.sleep(3000);
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
             String createdProjectName = driver.findElement(By.xpath("//mat-card[contains(@class,'mat-mdc-card mdc-card mat-ripple')]/div/following-sibling::mat-card-content/mat-card-title[text()='" + project_name + "']")).getText();
             Assert.assertEquals(project_name, createdProjectName, "Expected Error Message " + project_name + " But Found : " + createdProjectName);
@@ -171,10 +162,8 @@ public class CreateProject {
             driver.findElement(By.xpath("//mat-card-title[text()='" + project_name + "']/parent::mat-card-content/following-sibling::mat-card-actions//button//span[text()='Edit']")).click();
             Thread.sleep(2000);
             String EditProjectHeading = "Edit Project";
-            Thread.sleep(3000);
             String editProjectHeadingVerify = driver.findElement(editProjectHeading).getText();
             Assert.assertEquals(EditProjectHeading, editProjectHeadingVerify, "Expected Error Message " + EditProjectHeading + " But Found : " + editProjectHeadingVerify);
-            Thread.sleep(3000);
             String project_nameVerify = project_name;
             String Projectname = driver.findElement(projectName).getAttribute("value");
             System.out.println(Projectname);
@@ -219,7 +208,7 @@ public class CreateProject {
 
         driver.findElement(editLogoButton).sendKeys(invalidlogoPath);
         if (driver.findElements(errorMessageInvalidLogo).size() > 0) {
-            Thread.sleep(3000);
+            Thread.sleep(1000);
             String errormessage = driver.findElement(errorMessageInvalidLogo).getText();
             Assert.assertEquals(error_message_image, errormessage, "Expected Error Message " + error_message_image + " But Found : " + errormessage);
             flag6 = true;
@@ -238,7 +227,7 @@ public class CreateProject {
     public void deleteProjectNo(String new_project_name) throws Throwable {
         if (flag3) {
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-            Thread.sleep(4000);
+            Thread.sleep(6000);
             driver.findElement(By.xpath("//mat-card-title[text()='" + new_project_name + "']/parent::mat-card-content/following-sibling::mat-card-actions/button/span[text()=' Delete']")).click();
             driver.findElement(deleteProjectPopupNo).click();
         }

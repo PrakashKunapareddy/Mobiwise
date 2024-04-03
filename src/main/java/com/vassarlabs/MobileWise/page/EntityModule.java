@@ -49,7 +49,7 @@ public class EntityModule {
             driver.findElement(addEntityCancelButton).click();
             Thread.sleep(3000);
             driver.findElement(addNewEntity).click();
-            Thread.sleep(8000);
+            Thread.sleep(15000);
             String text = driver.findElement(addEntityPopUpHeading).getText().trim();
             String message = "Add Entity";
             Assert.assertEquals(text, message, "Expected Error Message " + text + " But Found : " + message);

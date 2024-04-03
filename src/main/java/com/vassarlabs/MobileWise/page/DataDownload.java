@@ -13,7 +13,7 @@ public class DataDownload {
     private By dateFrom = By.xpath("//mat-label[text()='Date From']/../../../following-sibling::div//button[@aria-label='Open calendar']");
     private By dateTo = By.xpath("//mat-label[text()='Date To']/../../../following-sibling::div//button[@aria-label='Open calendar']");
     private By Mobileapp = By.xpath("//div[text()=' Demo Application 314 ']");
-    private By dataDownloadModule = By.xpath("//div[@class='smidemenu-container']/ul/li[7]");
+    private By dataDownloadModule = By.xpath("//div[@class='smidemenu-container']/ul/li[8]");
     private By yearInCalnder = By.xpath("//div[@class='mat-calendar-controls']/button[@class='mat-calendar-period-button mdc-button mat-mdc-button mat-unthemed mat-mdc-button-base']");
     private By yearInRange = By.xpath("//div[@class='mat-calendar-controls']/button[@class='mat-calendar-period-button mdc-button mat-mdc-button mat-unthemed mat-mdc-button-base']//span//span");
     private By previousYears = By.xpath("//div[@class='mat-calendar-controls']/button[@class='mat-calendar-previous-button mdc-icon-button mat-mdc-icon-button mat-unthemed mat-mdc-button-base']");

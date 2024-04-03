@@ -56,7 +56,7 @@ public class PublishModule {
 //                    int yOffset = initialTargetLocation.getY();
         act.moveToElement(Source).clickAndHold().perform();
         act.moveToElement(Target).moveByOffset(0, yOffset).release().perform();
-        Thread.sleep(5000);
+        Thread.sleep(7000);
         driver.findElement(textComponentOnScreenBuilder).click();
         Thread.sleep(2000);
         driver.findElement(deleteIconForTextComponent).click();

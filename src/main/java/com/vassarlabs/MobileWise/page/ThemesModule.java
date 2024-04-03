@@ -59,7 +59,7 @@ public class ThemesModule {
     }
 
     public void verifyMobileApplicationNameOnBreadcrumb() throws Throwable {
-        Thread.sleep(3000);
+        Thread.sleep(5000);
         String mobApplicationName = driver.findElement(mobileApplicationName).getText().trim();
         Thread.sleep(3000);
         String text = driver.findElement(mobileAppBreadCrumb).getText().trim();

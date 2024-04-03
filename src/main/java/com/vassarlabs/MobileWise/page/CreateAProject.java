@@ -18,7 +18,7 @@ public class CreateAProject {
     WebDriver driver;
     Actions act;
     private By addComponentsButton = By.xpath("//span[text()=' Add Component ']");
-    private By publishModule = By.xpath("//div[@class='smidemenu-container']/ul/li[5]");
+    private By publishModule = By.xpath("//div[@class='smidemenu-container']/ul/li[6]");
     private By mobileAppHeadingInNavBar = By.xpath("//div[contains(@class,'app-Name')]/h4");
     private By clickActionSubmitPreviewToggle = By.xpath("//h4[text()='Preview']/../mat-slide-toggle/div/button");
     private By saveComponentForSubmit = By.xpath("//div[contains(@class,'mobile-canvas-container')]//div[contains(@class,'mobile-canvas ng-star-inserted')]//div//div[contains(@class,'cdk-drop-list')]//lib-widget-filter/div/md-filled-button");
@@ -234,6 +234,7 @@ public class CreateAProject {
                         driver.findElement(navbarTitleField).clear();
                         driver.findElement(navbarTitleField).sendKeys("User Details");
                         addProperties.clickOnUpdateComponentButton();
+                        break;
                     }
                 }
             }

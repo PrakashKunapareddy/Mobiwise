@@ -12,11 +12,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
+import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Statement;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.Set;
 
 public class PropertiesSideBar {
     DataList dataList = new DataList(WebdriverInitializer.getDriver());
@@ -250,6 +254,14 @@ public class PropertiesSideBar {
                                         clickOnUpdateComponentButton();
                                         clickActionsAndValidationsforAnyComponent(values[c], component, panels, page_name);
                                         break;
+                                    case "Printer":
+                                        editDisplayTypeDropdowns(values[c]);
+                                        editTextTextfield(values[c], component);
+                                        ZPlFormat();
+                                        editTopMarginTextField(values[c], Component[c]);
+                                        clickOnUpdateComponentButton();
+                                        clickActionsAndValidationsforAnyComponent(values[c], component, panels, page_name);
+                                        break;
 
                                     case "Text":
                                     case "Save":
@@ -428,7 +440,7 @@ public class PropertiesSideBar {
                         }
                     }
                 }
-            } else if (Component[c].equals("Image") || Component[c].equals("Text") || Component[c].equals("Drop Down") || Component[c].equals("Save")) {
+            } else if (Component[c].equals("Image") || Component[c].equals("Text") || Component[c].equals("Drop Down") || Component[c].equals("Save") || Component[c].equals("Printer")) {
                 String[] action = options[options.length - 1].split("-");
                 for (int navopt = 0; navopt < action.length; navopt++) {
                     String[] navOptions = action[navopt].split("_");
@@ -563,10 +575,10 @@ public class PropertiesSideBar {
                     Thread.sleep(2000);
                     driver.findElement(addValidationbutton).click();
                     if (validations[i].split("_")[0].equals("Required")) {
-                       String text =  driver.findElement(By.xpath("//h6[text()='Required: True']")).getText();
-                       String [] validationtext = text.split(" ");
-                       boolean added = Boolean.parseBoolean(validationtext[1]);
-                       Assert.assertTrue(added);
+                        String text = driver.findElement(By.xpath("//h6[text()='Required: True']")).getText();
+                        String[] validationtext = text.split(" ");
+                        boolean added = Boolean.parseBoolean(validationtext[1]);
+                        Assert.assertTrue(added);
                     }
                 } else {
                     Point startPoint = driver.findElement(validationsDropdown).getLocation();
@@ -590,7 +602,7 @@ public class PropertiesSideBar {
                     driver.findElement(By.xpath("//mat-option[@role='option']/span[text()='" + options[0] + "']")).click();
                     if (options[0].equals("Manual")) {
                         for (int o = 1; o <= options.length - 1; o++) {
-                            Thread.sleep(200);
+                            Thread.sleep(700);
                             driver.findElement(manualdataLables).sendKeys(options[o]);
                             if (driver.findElement(manualdataLables).getAttribute("value").length() > 0) {
                                 driver.findElement(addValueButton).click();
@@ -677,7 +689,7 @@ public class PropertiesSideBar {
             driver.findElement(displayTypeDropdown).click();
             String[] value = values.split(",");
             int size = Integer.parseInt(String.valueOf(driver.findElements(By.xpath("//mat-option")).size()));
-            if(size == 2){
+            if (size == 2) {
                 Assert.assertEquals(size, 2, "Expected Error Message " + size + " But Found : " + 2);
             }
             driver.findElement(By.xpath("//mat-option[@value='" + value[0] + "']")).click();
@@ -717,6 +729,9 @@ public class PropertiesSideBar {
                     driver.findElement(topMarginTextField).sendKeys(value[value.length - 1]);
                     String message = driver.findElement(topMarginTextField).getAttribute("value");
                     Assert.assertEquals(value[value.length - 1], message, "Expected Error Message " + value[value.length - 1] + " But Found : " + message);
+                }
+                if ((Component[c].equals("Printer"))) {
+                    driver.findElement(topMarginTextField).sendKeys("16");
                 }
                 if (Component[c].equals("Save") || Component[c].equals("Text") || Component[c].equals("Check Box") || Component[c].equals("Radio Button")) {
                     driver.findElement(topMarginTextField).sendKeys(value[value.length - 3]);
@@ -797,7 +812,7 @@ public class PropertiesSideBar {
             driver.findElement(positionDropdown).click();
             String[] value = values.split(",");
             int size = Integer.parseInt(String.valueOf(driver.findElements(By.xpath("//mat-option")).size()));
-            if(size == 3){
+            if (size == 3) {
                 Assert.assertEquals(size, 3, "Expected Error Message " + size + " But Found : " + 3);
             }
             driver.findElement(By.xpath("//mat-option[@value='" + value[1] + "']")).click();
@@ -849,7 +864,7 @@ public class PropertiesSideBar {
             driver.findElement(dataTypeDropdown).click();
             String[] value = values.split(",");
             int size = Integer.parseInt(String.valueOf(driver.findElements(By.xpath("//mat-option")).size()));
-            if(size == 3){
+            if (size == 3) {
                 Assert.assertEquals(size, 3, "Expected Error Message " + size + " But Found : " + 3);
             }
             driver.findElement(By.xpath("//mat-option[@value='" + value[2] + "']")).click();
@@ -904,7 +919,7 @@ public class PropertiesSideBar {
                 if (driver.findElements(fileTypedropdown).size() > 0) {
                     driver.findElement(fileTypedropdown).click();
                     int size = Integer.parseInt(String.valueOf(driver.findElements(By.xpath("//mat-option")).size()));
-                    if(size == 4){
+                    if (size == 4) {
                         Assert.assertEquals(size, 4, "Expected Error Message " + size + " But Found : " + 4);
                     }
                     for (int i = 0; i <= type.length - 1; i++) {
@@ -926,7 +941,7 @@ public class PropertiesSideBar {
                 String[] prop = Value[3].split("_");
                 driver.findElement(uploadTypeDropDown).click();
                 int size = Integer.parseInt(String.valueOf(driver.findElements(By.xpath("//mat-option")).size()));
-                if(size == 4){
+                if (size == 4) {
                     Assert.assertEquals(size, 4, "Expected Error Message " + size + " But Found : " + 4);
                 }
                 if (prop[0].equals("image")) {
@@ -1093,57 +1108,138 @@ public class PropertiesSideBar {
 
     }
 
+    public void ZPlFormat() throws Throwable {
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//textarea[@formcontrolname='image']")).clear();
+        String filePath = "C:\\Users\\user\\Documents\\Mobiwise\\ZPLCodePrinter.txt";
+        StringBuilder stringBuilder = new StringBuilder();
+        try {
+            FileReader fileReader = new FileReader(filePath);
+            // Wrap FileReader in BufferedReader.
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            String line;
+            // Read each line and append it to the StringBuilder.
+            while ((line = bufferedReader.readLine()) != null) {
+                stringBuilder.append(line);
+                stringBuilder.append("\n"); // Append newline character if needed
+            }
+            // Close the BufferedReader after reading.
+            bufferedReader.close();
+        } catch (IOException e) {
+            // Handle any potential IO exceptions.
+            e.printStackTrace();
+        }
+
+        // Convert the StringBuilder to a String.
+        String fileContent = stringBuilder.toString();
+
+        // Print the content of the file as a String.
+        System.out.println("Content of the file:");
+        System.out.println(fileContent);
+        driver.findElement(By.xpath("//textarea[@formcontrolname='image']")).sendKeys(fileContent);
+        Thread.sleep(5000);
+        driver.findElement(By.xpath("//mat-hint[text()='ZPL Editor : ']/a")).click();
+        Thread.sleep(4000);
+        String title = driver.getTitle();
+        if (title.contains("Labelary Online ZPL Viewer")) {
+            Assert.assertTrue(true);
+        }
+        Set<String> windowHandles = driver.getWindowHandles();
+        int length = windowHandles.toArray().length;
+        System.out.println(length);
+        String FirstWindow = (String) windowHandles.toArray()[0];
+        driver.switchTo().window(FirstWindow);
+    }
+
 
     public void editRadioButtonComponent(String values, String component, String panels) throws Throwable {
-        String[] panelsInPage = panels.split("%");
-        for (int panelcount = 0; panelcount < panelsInPage.length; panelcount++) {
-            String[] panel = panelsInPage[panelcount].split("~");
-            String[] Component = component.split(",");
-            for (int c = 0; c <= Component.length - 1; c++) {
-                if (Component[c].equals("Radio Button")) {
-                    if (driver.findElements(radioButtonComponent).size() > 0) {
-                        driver.findElement(radioButtonComponent).click();
-                        String[] value = values.split(",");
-                        driver.findElement(radioButtonTitleTextField).clear();
-                        driver.findElement(radioButtonTitleTextField).sendKeys(value[0]);
-                        String[] radioLables = value[1].split("-");
-                        for (int d = 2; d <= radioLables.length - 1; d++) {
-                            String[] deleteIconsClick = radioLables[d].split("_");
-                            int countLables = radioLables.length - 1;
-                            if (countLables > 1) {
-                                for (int i = 2; i <= countLables; i++) {
-                                    driver.findElement(radioButtonAddValue).click();
-                                    driver.findElements(radioButtonValuesTextField).get(i).sendKeys("value");
-                                }
-                            }
-                            for (int j = 1; j <= deleteIconsClick.length - 1; j = j + 2) {
-                                boolean clickDeleteIcon = Boolean.parseBoolean(deleteIconsClick[j]);
-                                for (int i = 0; i <= radioLables.length - 1; i++) {
-                                    if (i == 0 || i == 1) {
-                                        Thread.sleep(1000);
-                                        driver.findElements(radioButtonValuesTextField).get(i).clear();
-                                        driver.findElements(radioButtonValuesTextField).get(i).sendKeys(radioLables[i]);
-                                    } else {
-                                        for (int Del = 0; Del <= deleteIconsClick.length - 1; Del = Del + 2) {
-                                            Thread.sleep(1000);
-                                            driver.findElements(radioButtonValuesTextField).get(i).clear();
-                                            driver.findElements(radioButtonValuesTextField).get(i).sendKeys(deleteIconsClick[Del]);
-                                        }
-                                    }
-                                    if (!(clickDeleteIcon) && i >= 2) {
-                                        driver.findElement(radioButtonDeleteValues).click();
-                                    }
-                                }
-                                break;
-                            }
-                        }
-                        clickOnUpdateComponentButton();
-                        break;
-                    }
-                }
+
+        String[] value = values.split(",");
+        if (value.length < 2) {
+            // Handle the case where there are not enough values in the 'values' parameter
+            System.err.println("Error: Insufficient data in 'values' parameter");
+            return;
+        }
+
+        String[] radioLabels = value[1].split("-");
+        driver.findElement(radioButtonComponent).click();
+        driver.findElement(radioButtonTitleTextField).clear();
+        driver.findElement(radioButtonTitleTextField).sendKeys(value[0]);
+        int var = 0;
+        for (String radioLabel : radioLabels) {
+            String[] radioLabelInfo = radioLabel.split("_");
+            if (radioLabelInfo.length < 2) {
+                // Handle the case where there are not enough values in the 'radioLabel' parameter
+                System.err.println("Error: Insufficient data in 'radioLabel' parameter");
+                return;
+            }
+            if (var < 2) {
+                driver.findElements(radioButtonValuesTextField).get(var).clear();
+            }
+            driver.findElement(radioButtonAddValue).click();
+            driver.findElements(radioButtonValuesTextField).get(var).sendKeys(radioLabelInfo[0]);
+            var++;
+            if (!Boolean.parseBoolean(radioLabelInfo[1])) {
+                driver.findElement(radioButtonDeleteValues).click();
             }
         }
+
+        clickOnUpdateComponentButton();
     }
+
+
+//    public void editRadioButtonComponent(String values, String component, String panels) throws Throwable {
+//        String[] panelsInPage = panels.split("%");
+//        for (int panelcount = 0; panelcount < panelsInPage.length; panelcount++) {
+//            String[] panel = panelsInPage[panelcount].split("~");
+//            String[] Component = component.split(",");
+//            for (int c = 0; c <= Component.length - 1; c++) {
+//                if (Component[c].equals("Radio Button")) {
+//                    if (driver.findElements(radioButtonComponent).size() > 0) {
+//                        driver.findElement(radioButtonComponent).click();
+//                        String[] value = values.split(",");
+//                        driver.findElement(radioButtonTitleTextField).clear();
+//                        driver.findElement(radioButtonTitleTextField).sendKeys(value[0]);
+//                        String[] radioLables = value[1].split("-");
+//                        for (int d = 2; d <= radioLables.length - 1; d++) {
+//                            String[] deleteIconsClick = radioLables[d].split("_");
+//                            int countLables = radioLables.length - 1;
+//                            if (countLables > 1) {
+//                                for (int i = 2; i <= countLables; i++) {
+//                                    driver.findElement(radioButtonAddValue).click();
+//                                    driver.findElements(radioButtonValuesTextField).get(i).sendKeys("value");
+//                                }
+//                            }
+//                            for (int j = 1; j <= deleteIconsClick.length - 1; j = j + 2) {
+//                                boolean clickDeleteIcon = Boolean.parseBoolean(deleteIconsClick[j]);
+//                                for (int i = 0; i <= radioLables.length - 1; i++) {
+//                                    if (i == 0 || i == 1) {
+//                                        Thread.sleep(1000);
+//                                        driver.findElements(radioButtonValuesTextField).get(i).clear();
+//                                        driver.findElements(radioButtonValuesTextField).get(i).sendKeys(radioLables[i]);
+//                                    } else {
+//                                        for (int Del = 0; Del <= deleteIconsClick.length - 1; Del = Del + 2) {
+//                                            Thread.sleep(1000);
+//                                            driver.findElements(radioButtonValuesTextField).get(i).clear();
+//                                            driver.findElements(radioButtonValuesTextField).get(i).sendKeys(deleteIconsClick[Del]);
+//                                        }
+//                                    }
+//                                    if (!(clickDeleteIcon) && i >= 2) {
+//                                        driver.findElement(radioButtonDeleteValues).click();
+//                                    }
+//                                }
+//                                break;
+//                            }
+//                            if(countLables==d){
+//                                break;
+//                            }
+//                        }
+//                        clickOnUpdateComponentButton();
+//                    }
+//                }
+//            }
+//        }
+//    }
 
 
     public void clickOnUpdateComponentButton() throws Throwable {

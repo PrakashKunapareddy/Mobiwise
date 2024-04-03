@@ -56,13 +56,13 @@ public class UserProfile {
     // Check option in the User profile
     public void checkUserProfile(String list_option1, String list_option2) throws Throwable {
         if (verifyUserFlag) {
-            Thread.sleep(3000);
+            Thread.sleep(6000);
             driver.findElement(userProfileExpandIcon).click();
-            Thread.sleep(4000);
+            Thread.sleep(6000);
             String changePasswordTextInUserProfile = driver.findElement(changePasswordUserProfile).getText().trim();
-            Thread.sleep(3000);
+            Thread.sleep(6000);
             Assert.assertEquals(list_option1, changePasswordTextInUserProfile, "Expected Error Message " + list_option1 + " But Found : " + changePasswordTextInUserProfile);
-            Thread.sleep(3000);
+            Thread.sleep(6000);
             String logOutTextInUserProfile = driver.findElement(logOutUserProfile).getText().trim();
             Assert.assertEquals(list_option2, logOutTextInUserProfile, "Expected Error Message " + list_option2 + " But Found : " + logOutTextInUserProfile);
             UserProfileOptionsFlag = true;
@@ -72,7 +72,7 @@ public class UserProfile {
     //validate the new password entered and confirm password
     public void validateNewPasswordAndConfirmPassword(String new_password, String confirm_password, String new_password_error_message, String confirm_password_error, String password_suggestion_message) throws Throwable {
         if (UserProfileOptionsFlag) {
-            Thread.sleep(8000);
+            Thread.sleep(10000);
             driver.findElement(changePasswordUserProfile).click();
             cancleButtonChangePassword();
             Thread.sleep(3000);

@@ -8,7 +8,7 @@ public class SettingsModule {
     WebDriver driver;
 
 
-    private By settingsModule = By.xpath("//div[@class='smidemenu-container']/ul/li[4]");
+    private By settingsModule = By.xpath("//div[@class='smidemenu-container']/ul/li[5]");
     private By mobileAppHeading = By.xpath("//div[@class='app-name']/h3");
     private By mobileAppHeadingInNavBar = By.xpath("//div[contains(@class,'app-Name')]/h4");
     private By mobileNameBreadcrumb = By.xpath("//ol[contains(@class,'breadcrumb builder-breadcrumb')]/li[contains(@class,'breadcrumb-item active')]");
@@ -37,7 +37,7 @@ public class SettingsModule {
     }
 
     public void verifyMobileAppAndClickOnEditButton(String mobile_app) throws Throwable {
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         String text = driver.findElement(mobileAppHeading).getText().trim();
         Assert.assertEquals(text, mobile_app, "Expected Error Message " + mobile_app + " But Found : " + text);
         Thread.sleep(2000);
