@@ -1,5 +1,7 @@
 Feature: Publish Module Check
 
+
+
   Scenario Outline: Verify Publish Module by navigating to Pages Module and Changing Properties of components
 
     Given Entered a valid <username> <password>
@@ -10,7 +12,6 @@ Feature: Publish Module Check
     And Click on Publish Module and click on publish apk button
     And Click on pages Module and click on Landing Page And Add Component and delete the Component
     And Click on Publish Module and click on publish apk button
-
 #    And Click on the data List and edit properties <values_comp>
 
     Examples:
