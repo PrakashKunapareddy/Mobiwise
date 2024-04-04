@@ -42,7 +42,7 @@ public class UserProfile {
 
     //Check username which is displayed on the Home page to verify it with logged-in username
     public void checkUserName(String username) throws Throwable {
-        Thread.sleep(3000);
+        Thread.sleep(10000);
         String userProfileVerifyBigString = driver.findElement(usernameInUserProfile).getText();
         String[] userNameProfile = userProfileVerifyBigString.split("\n");
         String userVerify = userNameProfile[1];
@@ -56,13 +56,13 @@ public class UserProfile {
     // Check option in the User profile
     public void checkUserProfile(String list_option1, String list_option2) throws Throwable {
         if (verifyUserFlag) {
-            Thread.sleep(6000);
+            Thread.sleep(9000);
             driver.findElement(userProfileExpandIcon).click();
-            Thread.sleep(6000);
+            Thread.sleep(9000);
             String changePasswordTextInUserProfile = driver.findElement(changePasswordUserProfile).getText().trim();
-            Thread.sleep(6000);
+            Thread.sleep(8000);
             Assert.assertEquals(list_option1, changePasswordTextInUserProfile, "Expected Error Message " + list_option1 + " But Found : " + changePasswordTextInUserProfile);
-            Thread.sleep(6000);
+            Thread.sleep(8000);
             String logOutTextInUserProfile = driver.findElement(logOutUserProfile).getText().trim();
             Assert.assertEquals(list_option2, logOutTextInUserProfile, "Expected Error Message " + list_option2 + " But Found : " + logOutTextInUserProfile);
             UserProfileOptionsFlag = true;
@@ -75,9 +75,9 @@ public class UserProfile {
             Thread.sleep(10000);
             driver.findElement(changePasswordUserProfile).click();
             cancleButtonChangePassword();
-            Thread.sleep(3000);
+            Thread.sleep(5000);
             driver.findElement(userProfileExpandIcon).click();
-            Thread.sleep(3000);
+            Thread.sleep(5000);
             driver.findElement(changePasswordUserProfile).click();
             Thread.sleep(3000);
             driver.findElement(changePasswordField).sendKeys(new_password);
@@ -90,7 +90,7 @@ public class UserProfile {
                 confirmPasswordFlag = false;
                 submitFlag = false;
             }
-            Thread.sleep(3000);
+            Thread.sleep(5000);
             if (confirmPasswordFlag) {
                 String message;
                 driver.findElement(confirmPasswordField).sendKeys(confirm_password);

@@ -26,7 +26,7 @@ public class EntityModule {
     boolean editedEntityFlag = false;
 
     public void clickOnEntityModule() throws Throwable {
-        Thread.sleep(5000);
+        Thread.sleep(9000);
         driver.findElement(Mobileapp).click();
         Thread.sleep(10000);
         driver.findElement(entityModule).click();

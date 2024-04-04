@@ -5,10 +5,7 @@ import com.vassarlabs.MobileWise.driver.WebdriverInitializer;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
@@ -125,7 +122,7 @@ public class PropertiesSideBar {
         String[] addPages = page_name.split(",");
         boolean flag = true;
         for (int i = 0; i <= addPages.length - 1; i++) {
-            Thread.sleep(4000);
+            Thread.sleep(7000);
             driver.findElement(addPageButton).click();
             Thread.sleep(3000);
             driver.findElement(addPageTextfield).sendKeys(addPages[i]);
@@ -1136,7 +1133,6 @@ public class PropertiesSideBar {
         // Print the content of the file as a String.
         System.out.println("Content of the file:");
         System.out.println(fileContent);
-        driver.findElement(By.xpath("//textarea[@formcontrolname='image']")).sendKeys(fileContent);
         Thread.sleep(5000);
         driver.findElement(By.xpath("//mat-hint[text()='ZPL Editor : ']/a")).click();
         Thread.sleep(4000);
@@ -1148,7 +1144,21 @@ public class PropertiesSideBar {
         int length = windowHandles.toArray().length;
         System.out.println(length);
         String FirstWindow = (String) windowHandles.toArray()[0];
+        intractionWithZPLWebPage(fileContent);
+        driver.findElement(By.xpath("//textarea[@id='zpl']")).sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        driver.findElement(By.xpath("//textarea[@id='zpl']")).sendKeys(Keys.chord(Keys.CONTROL, "c"));
         driver.switchTo().window(FirstWindow);
+        driver.findElement(By.xpath("//textarea[@formcontrolname='image']")).sendKeys(Keys.chord(Keys.CONTROL, "v"));
+    }
+
+    public void intractionWithZPLWebPage(String fileContent) throws Throwable {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        Thread.sleep(10000);
+        driver.findElement(By.xpath("//form/textarea[@id='zpl']")).sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        driver.findElement(By.xpath("//form/textarea[@id='zpl']")).sendKeys(fileContent);
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//button[@id='redraw']")).click();
+        Thread.sleep(6000);
     }
 
 

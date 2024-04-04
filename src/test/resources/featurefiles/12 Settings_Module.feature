@@ -14,6 +14,6 @@ Feature: Settings Module functionality in Mobile App Builder in Mobile-wise
 
     Examples:
       | username | password     | expected_output | project  | mobile_app | new_mobile_name | description            |
-#      | "dummy"  | "1234567890" | "Projects"      | "Sample" | "Demo"     | "New Demo"      | "New Demo Description" |
+      | "dummy"  | "1234567890" | "Projects"      | "Sample" | "Demo"     | "New Demo"      | "New Demo Description" |
       | "dummy"  | "1234567890" | "Projects"      | "Sample" | "New Demo" | "Demo"          | "New Demo Description" |
 

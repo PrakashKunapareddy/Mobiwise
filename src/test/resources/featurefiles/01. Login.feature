@@ -15,11 +15,11 @@ Feature: Login Functionality for MobiWise SuperAdmin Login
       | "dummy1"           | "mobile@123"      | "List Of Applications & Resources" |
       | "Invalid Username" | "invalidPassword" | "Invalid Username!"                |
       | "Invalid Username" | "ip"              | "Invalid Username!"                |
-#      | "Invalid Username" | "00000"           | "Invalid Username!"                |
+      | "Invalid Username" | "00000"           | "Invalid Username!"                |
       | "dummy"            | "abcd"            | "Incorrect Password!"              |
-#      | "dummy"            | "abc"             | "Incorrect Password!"              |
-#      | "dummy"            | "ad"              | "Incorrect Password!"              |
-#      | ""                 | "abcd"            | "Invalid Username!"                |
-#      | "ABCD"             | ""                | "Invalid Username!"                |
+      | "dummy"            | "abc"             | "Incorrect Password!"              |
+      | "dummy"            | "ad"              | "Incorrect Password!"              |
+      | ""                 | "abcd"            | "Invalid Username!"                |
+      | "ABCD"             | ""                | "Invalid Username!"                |
       | ""                 | ""                | "Invalid Username!"                |
 
