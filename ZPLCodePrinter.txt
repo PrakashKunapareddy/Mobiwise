@@ -7,13 +7,13 @@ FO25,45
 
 ^CF01,50
 ^FO399,41
-^FDMESA CROPS^FS
+^FD Vassar Labs ^FS
 
 ^FX Second Line Starting
 
 ^CF0,27
 ^FO399,101
-^FDTransformer and Pole Inspection^FS
+^FDDevelopment and Testing^FS
 
 ^FX ThirdLine Starting
 

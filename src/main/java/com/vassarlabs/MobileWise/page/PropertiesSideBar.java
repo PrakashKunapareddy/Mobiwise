@@ -1144,10 +1144,15 @@ public class PropertiesSideBar {
         int length = windowHandles.toArray().length;
         System.out.println(length);
         String FirstWindow = (String) windowHandles.toArray()[0];
+        driver.switchTo().window(FirstWindow);
+        String secondWindow = (String) windowHandles.toArray()[1];
+        driver.switchTo().window(secondWindow);
+        System.out.println("Switched to Second window");
         intractionWithZPLWebPage(fileContent);
         driver.findElement(By.xpath("//textarea[@id='zpl']")).sendKeys(Keys.chord(Keys.CONTROL, "a"));
         driver.findElement(By.xpath("//textarea[@id='zpl']")).sendKeys(Keys.chord(Keys.CONTROL, "c"));
         driver.switchTo().window(FirstWindow);
+        System.out.println("Switched to First window");
         driver.findElement(By.xpath("//textarea[@formcontrolname='image']")).sendKeys(Keys.chord(Keys.CONTROL, "v"));
     }
 
