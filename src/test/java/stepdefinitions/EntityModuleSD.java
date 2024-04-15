@@ -33,9 +33,9 @@ public class EntityModuleSD {
         entityModule.clickOnUpdateAssociationButton(new_entity_names);
     }
 
-    @And("Delete Added Entity {string}")
-    public void deleteAddedEntityNew_entity_name(String new_entity_names) throws Throwable {
-        entityModule.validateDeleteFucntionality(new_entity_names);
+    @And("Delete Added Entity {string} {string}")
+    public void deleteAddedEntityNew_entity_name(String new_entity_names,String entity_names) throws Throwable {
+        entityModule.validateDeleteFucntionality(new_entity_names,entity_names);
     }
 
 

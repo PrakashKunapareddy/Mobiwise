@@ -21,6 +21,7 @@ public class CreateMobApplicationWebAppliation {
     WebDriver driver;
 
 
+
     private By projectMatBuutton = By.xpath("//div/mat-card/mat-card-content/mat-card-title[contains(@class,'mat-mdc-card-title mat-mdc-tooltip-trigger ellipsis-input')]");  //use find eles
     private By createProjectButton = By.xpath("//button[contains(@class,'mdc-button')]/span[text()=' Create Project ']");
     private By matCreateProjectButton = By.xpath("//div[contains(@class,'row')]/div/mat-card/span[text()='Create Project']");
@@ -237,16 +238,19 @@ public class CreateMobApplicationWebAppliation {
     }
 
     public void customThemeFlow(String themes_dropdown, String headings_dropdown, String body_dropdown, String suggestion_message) throws Throwable {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
         Thread.sleep(3000);
         String actual_suggestion_message_heading = driver.findElements(suggestionForDropdown).get(0).getText();
         String actual_suggestion_message_body = driver.findElements(suggestionForDropdown).get(1).getText();
         Assert.assertEquals(suggestion_message, actual_suggestion_message_heading, "Expected Error Message " + suggestion_message + " But Found : " + actual_suggestion_message_heading);
         Assert.assertEquals(suggestion_message, actual_suggestion_message_body, "Expected Error Message " + suggestion_message + " But Found : " + actual_suggestion_message_body);
-        Thread.sleep(3000);
+        wait.until(ExpectedConditions.presenceOfElementLocated(headingsDropdown));
         driver.findElement(headingsDropdown).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//mat-option[contains(@class,'mat-mdc-option mdc-list-item')]/span[text()='" + headings_dropdown + "']")));
         driver.findElement(By.xpath("//mat-option[contains(@class,'mat-mdc-option mdc-list-item')]/span[text()='" + headings_dropdown + "']")).click();
-        Thread.sleep(3000);
+        wait.until(ExpectedConditions.presenceOfElementLocated(bodyDropdown));
         driver.findElement(bodyDropdown).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//mat-option[contains(@class,'mat-mdc-option mdc-list-item')]/span[text()='" + body_dropdown + "']")));
         driver.findElement(By.xpath("//mat-option[contains(@class,'mat-mdc-option mdc-list-item')]/span[text()='" + body_dropdown + "']")).click();
         flag3 = true;
     }

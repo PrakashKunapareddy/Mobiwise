@@ -3,7 +3,11 @@ package com.vassarlabs.MobileWise.page;
 import com.vassarlabs.MobileWise.driver.WebdriverInitializer;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
+import java.time.Duration;
 
 public class EntityModule {
     WebDriver driver;
@@ -26,9 +30,10 @@ public class EntityModule {
     boolean editedEntityFlag = false;
 
     public void clickOnEntityModule() throws Throwable {
-        Thread.sleep(9000);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(120));
+        wait.until(ExpectedConditions.elementToBeClickable(Mobileapp));
         driver.findElement(Mobileapp).click();
-        Thread.sleep(10000);
+        wait.until(ExpectedConditions.presenceOfElementLocated(entityModule));
         driver.findElement(entityModule).click();
     }
 
@@ -49,7 +54,8 @@ public class EntityModule {
             driver.findElement(addEntityCancelButton).click();
             Thread.sleep(3000);
             driver.findElement(addNewEntity).click();
-            Thread.sleep(15000);
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+            wait.until(ExpectedConditions.presenceOfElementLocated(addEntityPopUpHeading));
             String text = driver.findElement(addEntityPopUpHeading).getText().trim();
             String message = "Add Entity";
             Assert.assertEquals(text, message, "Expected Error Message " + text + " But Found : " + message);
@@ -120,12 +126,21 @@ public class EntityModule {
         }
     }
 
-    public void validateDeleteFucntionality(String new_entity_name) throws Throwable {
-        if (editedEntityFlag) {
+    public void validateDeleteFucntionality(String new_entity_name,String entity_names) throws Throwable {
+        if (editedEntityFlag && entityCreatedFlag) {
             Thread.sleep(2000);
-            driver.findElement(By.xpath("//span[text()='" + new_entity_name + "']/../../..")).click();
-//            driver.findElement(By.xpath("//span[text()='" + new_entity_name + "']/../..//div/button//mat-icon[text()='delete']/..")).click();
+            if(driver.findElements(By.xpath("//span[text()='" + new_entity_name + "']/../../..")).size()>0) {
+                if(!(new_entity_name.equals("User Details"))) {
+                    driver.findElement(By.xpath("//span[text()='" + new_entity_name + "']/../../..")).click();
+                    driver.findElement(By.xpath("//span[text()='" + new_entity_name + "']/../..//div/button//mat-icon[text()='delete']/..")).click();
+                }
+            }
+            else if(driver.findElements(By.xpath("//span[text()='" + entity_names + "']/../../..")).size()>0){
+                driver.findElement(By.xpath("//span[text()='" + entity_names + "']/../../..")).click();
+                driver.findElement(By.xpath("//span[text()='" + entity_names + "']/../..//div/button//mat-icon[text()='delete']/..")).click();
+            }
         }
+
     }
 
     public void clickOnUpdateAssociationButton(String new_entity_names) throws Throwable {

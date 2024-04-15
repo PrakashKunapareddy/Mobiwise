@@ -7,6 +7,8 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.io.BufferedReader;
@@ -66,6 +68,8 @@ public class PropertiesSideBar {
     private By imageCompressionImagePicker = By.xpath("//span[text()='Image Compression']/../../button[@role='switch']");
     private By fileCompressiontoggle = By.xpath("//span[text()='File Compression']/../../button[@role='switch']");
     private By uploadTypeDropDown = By.xpath("//mat-label[text()='Upload Type']/../../../following-sibling::div//div/following-sibling::div");
+    private By selectAPIDropdown = By.xpath("//mat-label[text()='Select API']/../../../following-sibling::div//div/following-sibling::div");
+    private By responseParameterDropdown = By.xpath("//mat-label[text()='Response Parameter']/../../../following-sibling::div//div/following-sibling::div");
     private By navbarDisplayiconDropdown = By.xpath("//mat-label[text()='Display Icon']/../../../following-sibling::div//div/following-sibling::div");
     private By allowedImageType = By.xpath("//mat-label[text()='Allowed Image Types']//parent::label//parent::div/../following-sibling::div/mat-select/div/div/following-sibling::div");
     private By allowedVideoType = By.xpath("//mat-label[text()='Allowed Video Types']//parent::label//parent::div/../following-sibling::div/mat-select/div/div/following-sibling::div");
@@ -588,6 +592,7 @@ public class PropertiesSideBar {
     }
 
     public void dropdownSourcedropdownManual(String values, String component) throws Throwable {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(120));
         String[] Component = component.split(",");
         String[] value = values.split(",");
         for (int c = 0; c <= Component.length - 1; c++) {
@@ -599,7 +604,7 @@ public class PropertiesSideBar {
                     driver.findElement(By.xpath("//mat-option[@role='option']/span[text()='" + options[0] + "']")).click();
                     if (options[0].equals("Manual")) {
                         for (int o = 1; o <= options.length - 1; o++) {
-                            Thread.sleep(700);
+                            wait.until(ExpectedConditions.presenceOfElementLocated(manualdataLables));
                             driver.findElement(manualdataLables).sendKeys(options[o]);
                             if (driver.findElement(manualdataLables).getAttribute("value").length() > 0) {
                                 driver.findElement(addValueButton).click();
@@ -608,6 +613,21 @@ public class PropertiesSideBar {
                         driver.findElement(saveValueButton).click();
                     }
                     if (options[0].equals("API")) {
+                        wait.until(ExpectedConditions.presenceOfElementLocated(selectAPIDropdown));
+                        driver.findElement(selectAPIDropdown).click();
+                        if (driver.findElements(By.xpath("//mat-option[@role='option']/span[text()='" + options[1] + "']")).size() > 0) {
+                            driver.findElement(By.xpath("//mat-option[@role='option']/span[text()='" + options[1] + "']")).click();
+                            wait.until(ExpectedConditions.presenceOfElementLocated(responseParameterDropdown));
+                            driver.findElement(responseParameterDropdown).click();
+                            if (driver.findElements(By.xpath("//mat-option[@role='option']/span[text()='" + options[2] + "']")).size() > 0) {
+                                driver.findElement(By.xpath("//mat-option[@role='option']/span[text()='" + options[2] + "']")).click();
+                                Thread.sleep(2000);
+                                driver.findElement(By.xpath("//span[text()='Save API Details']/..")).click();
+                            }
+                        } else {
+                            Thread.sleep(3000);
+                            driver.findElement(selectAPIDropdown).click();
+                        }
 
                     }
                 }
