@@ -27,9 +27,9 @@ public class CreateProjectSteps {
         createProject.enterProjectnameProjectdescription(project_name, project_description, error_message,error_message_image);
     }
 
-    @And("Clicked on save button or Enter in keyboard {string} {string}")
-    public void clickedOnSaveButtonOrEnterInKeyboard(String project_name,String error_message) throws Throwable {
-        createProject.clickSaveButton(project_name,error_message);
+    @And("Clicked on save button or Enter in keyboard {string}")
+    public void clickedOnSaveButtonOrEnterInKeyboard(String error_message) throws Throwable {
+        createProject.clickSaveButton(error_message);
     }
 
     @Then("Validate new project module {string}")
@@ -37,9 +37,9 @@ public class CreateProjectSteps {
         createProject.checkCreatedProject(project_name);
     }
 
-    @Then("Edit Created Project name {string} {string} {string}")
-    public void editCreatedProjectName(String project_name, String new_project_name,String error_message) throws Throwable {
-        createProject.editProjectName(project_name, new_project_name,error_message);
+    @Then("Edit Created Project name {string} {string} {string} {string} {string}")
+    public void editCreatedProjectName(String project_name, String new_project_name, String error_message,String new_project_description,String error_message_image) throws Throwable {
+        createProject.editProjectName( project_name,  new_project_name,  error_message, new_project_description, error_message_image);
     }
 
 
@@ -49,19 +49,19 @@ public class CreateProjectSteps {
 
     }
 
-    @Then("Click on Delete Icon and Click on No button or ESC on Keyboard {string}")
-    public void clickOnDeleteIconAndClickOnCancelButtonOrESCOnKeyboard(String new_project_name) throws Throwable {
-        createProject.deleteProjectNo(new_project_name);
+    @Then("Click on Delete Icon and Click on No button or ESC on Keyboard {string} {string}")
+    public void clickOnDeleteIconAndClickOnCancelButtonOrESCOnKeyboard(String new_project_name,String project_name) throws Throwable {
+        createProject.deleteProjectNo(new_project_name, project_name);
     }
 
     @And("Edit Created Project description {string} {string} {string} {string} {string}")
     public void editCreatedProjectDescriptionProject_descriptionNew_project_description(String project_name, String new_project_name,String new_project_description,String error_message,String error_message_image) throws Throwable {
-        createProject.editProjectDescription(project_name,new_project_name, new_project_description,error_message,error_message_image);
+
     }
 
-    @Then("Click on Delete Icon and Click on Yes button or ESC on Keyboard {string}")
-    public void clickOnDeleteIconAndClickOnYesButtonOrESCOnKeyboardNew_project_name(String new_project_name) throws Throwable {
-        createProject.deleteProjectYes(new_project_name);
+    @Then("Click on Delete Icon and Click on Yes button or ESC on Keyboard {string} {string}")
+    public void clickOnDeleteIconAndClickOnYesButtonOrESCOnKeyboardNew_project_name(String new_project_name,String project_name) throws Throwable {
+        createProject.deleteProjectYes(new_project_name, project_name);
 
     }
 }

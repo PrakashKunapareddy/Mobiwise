@@ -26,14 +26,15 @@ public class PublishModule {
     PropertiesSideBar addProperties = new PropertiesSideBar(WebdriverInitializer.getDriver());
     DataList dataList = new DataList(WebdriverInitializer.getDriver());
     CreateAProject createAProject = new CreateAProject(WebdriverInitializer.getDriver());
-
-    private By Mobileapp = By.xpath("//div[text()=' Demo Application 314 ']");
+    MobileAppBuilderPagesAddComponents mob = new MobileAppBuilderPagesAddComponents(WebdriverInitializer.getDriver());
     private By page3 = By.xpath("//span[text()='Page3']");
     private By DataListOnScreenBuilder = By.xpath("//div[contains(@class,'mobile-canvas-container')]//div[contains(@class,'mobile-canvas ng-star-inserted')]//div//div[contains(@class,'cdk-drop-list')]//lib-widget-filter/div");
 
     public void clickonmobileappandpage() throws InterruptedException {
         Thread.sleep(6000);
-        driver.findElement(Mobileapp).click();
+//        mob.ApplicationName.add("Demo Mobile 993");
+        String name = mob.ApplicationName.get(mob.ApplicationName.size() - 1);
+        driver.findElement(By.xpath("//div[text()=' " + name + " ']")).click();
         Thread.sleep(5000);
         driver.findElement(page3).click();
     }

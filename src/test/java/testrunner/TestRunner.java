@@ -6,7 +6,7 @@ import io.cucumber.testng.CucumberOptions;
 import org.testng.annotations.DataProvider;
 
 @CucumberOptions(
-        features = {"src/test/resources/featurefiles/13 Data_Download_module.feature"},
+        features = {"src/test/resources/featurefiles/02 User_Profile.feature"},
         glue = {"stepdefinitions", "apphooks"},
         plugin = {"pretty",
                 "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",

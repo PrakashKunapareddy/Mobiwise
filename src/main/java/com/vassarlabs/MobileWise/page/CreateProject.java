@@ -62,15 +62,15 @@ public class CreateProject {
     }
 
     public void clickCreateProjectButton() throws Throwable {
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(120));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         if (driver.findElements(createProjectButton).size() > 0) {
-            Thread.sleep(3000);
+            wait.until(ExpectedConditions.elementToBeClickable(createProjectButton));
             driver.findElement(createProjectButton).click();
         } else {
-            Thread.sleep(5000);
+            wait.until(ExpectedConditions.elementToBeClickable(matCreateProjectButton));
             driver.findElement(matCreateProjectButton).click();
         }
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
         wait.until(ExpectedConditions.presenceOfElementLocated(addProjectHeading));
         String AddProjectHeading = "Add Project";
         String addProjectHeadingVerify = driver.findElement(addProjectHeading).getText();
@@ -110,7 +110,8 @@ public class CreateProject {
             driver.findElement(projectDesc).sendKeys(project_description);
             driver.findElement(editLogoButton).sendKeys(invalidlogoPath);
             if (driver.findElements(errorMessageInvalidLogo).size() > 0) {
-                Thread.sleep(3000);
+                WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(120));
+                wait.until(ExpectedConditions.presenceOfElementLocated(errorMessageInvalidLogo));
                 String errormessage = driver.findElement(errorMessageInvalidLogo).getText();
                 Assert.assertEquals(error_message_image, errormessage, "Expected Error Message " + error_message_image + " But Found : " + errormessage);
                 flag6 = true;
@@ -125,14 +126,13 @@ public class CreateProject {
     }
 
     public void clickSaveButton(String error_message) throws Throwable {
-
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        Thread.sleep(4000);
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(120));
+        wait.until(ExpectedConditions.presenceOfElementLocated(saveButton));
         if (driver.findElement(projectName).getAttribute("value").isEmpty() && error_message.contains("This project name already exists!")) {
             notClickSave = false;
         }
         if (flag) {
-            Thread.sleep(5000);
+            wait.until(ExpectedConditions.elementToBeClickable(saveButton));
             if (notClickSave) {
                 driver.findElement(saveButton).click();
                 flag1 = true;
@@ -170,7 +170,9 @@ public class CreateProject {
 
     public void editProjectName(String project_name, String new_project_name, String error_message, String new_project_description, String error_message_image) throws Throwable {
         Thread.sleep(3000);
-        if (driver.findElements(By.xpath("//mat-card-title[text()='" + project_name + "']/parent::mat-card-content/following-sibling::mat-card-actions//button//span[text()='Edit']")).size() > 0 && (project_name != null)) {
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(120));
+        if (flag && driver.findElements(By.xpath("//mat-card-title[text()='" + project_name + "']/parent::mat-card-content/following-sibling::mat-card-actions//button//span[text()='Edit']")).size() > 0 && (project_name != null)) {
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//mat-card-title[text()='" + project_name + "']/parent::mat-card-content/following-sibling::mat-card-actions//button//span[text()='Edit']")));
             driver.findElement(By.xpath("//mat-card-title[text()='" + project_name + "']/parent::mat-card-content/following-sibling::mat-card-actions//button//span[text()='Edit']")).click();
             Thread.sleep(2000);
             String EditProjectHeading = "Edit Project";
@@ -207,7 +209,8 @@ public class CreateProject {
     }
 
     public void editProjectDescription(String project_name, String new_project_name, String new_project_description, String error_message, String error_message_image) throws Throwable {
-        Thread.sleep(2000);
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(120));
+        wait.until(ExpectedConditions.presenceOfElementLocated(projectDesc));
         driver.findElement(projectDesc).clear();
         driver.findElement(projectDesc).sendKeys(new_project_description);
         driver.findElement(editLogoButton).sendKeys(invalidlogoPath);

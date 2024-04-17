@@ -62,7 +62,7 @@ public class MobileAppBuilderPagesAddComponents {
     private boolean flag3 = false;
     private boolean flag4 = false;
     private boolean flagultipleComponents = true;
-
+    ArrayList<String> ApplicationName = new ArrayList<>();
     private boolean componentIsonTheScreenBuilderFlag = false;
 
     CreateMobApplicationWebAppliation createMobAppWebApp = new CreateMobApplicationWebAppliation(WebdriverInitializer.getDriver());
@@ -81,6 +81,8 @@ public class MobileAppBuilderPagesAddComponents {
         Thread.sleep(3000);
         driver.findElement(appNameField).sendKeys(app_name + " " + rand_int);
         driver.findElement(appNameField).sendKeys("  ");
+        String name = driver.findElement(appNameField).getAttribute("value");
+        ApplicationName.add(name);
         if (driver.findElements(hintProjectAvailable).size() > 0) {
             driver.findElement(shortDescField).sendKeys(app_desc + " " + rand_int);
             driver.findElement(editLogo).sendKeys(logoPath);
@@ -107,8 +109,10 @@ public class MobileAppBuilderPagesAddComponents {
                 Assert.assertEquals(suggestion_message, actual_suggestion_message_heading, "Expected Error Message " + suggestion_message + " But Found : " + actual_suggestion_message_heading);
                 Assert.assertEquals(suggestion_message, actual_suggestion_message_body, "Expected Error Message " + suggestion_message + " But Found : " + actual_suggestion_message_body);
                 driver.findElement(headingsDropdown).click();
+                Thread.sleep(3000);
                 driver.findElement(By.xpath("//mat-option[contains(@class,'mat-mdc-option mdc-list-item')]/span[text()='" + headings_dropdown + "']")).click();
                 driver.findElement(bodyDropdown).click();
+                Thread.sleep(3000);
                 driver.findElement(By.xpath("//mat-option[contains(@class,'mat-mdc-option mdc-list-item')]/span[text()='" + body_dropdown + "']")).click();
                 driver.findElement(nextButtonBranding).click();
             } else {

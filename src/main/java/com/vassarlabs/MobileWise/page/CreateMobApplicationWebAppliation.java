@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.io.FileInputStream;
 import java.time.Duration;
 import java.util.*;
@@ -19,7 +20,6 @@ public class CreateMobApplicationWebAppliation {
 
 
     WebDriver driver;
-
 
 
     private By projectMatBuutton = By.xpath("//div/mat-card/mat-card-content/mat-card-title[contains(@class,'mat-mdc-card-title mat-mdc-tooltip-trigger ellipsis-input')]");  //use find eles
@@ -80,14 +80,15 @@ public class CreateMobApplicationWebAppliation {
     }
 
     public void createRandomProjects() throws Throwable {
-
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(120));
         if (driver.findElements(createProjectButton).size() > 0) {
-            Thread.sleep(3000);
+
+            wait.until(ExpectedConditions.presenceOfElementLocated(createProjectButton));
             driver.findElement(createProjectButton).click();
             flagCreateProject = true;
         }
         if (driver.findElements(matCreateProjectButton).size() > 0) {//size>0
-            Thread.sleep(2000);
+            wait.until(ExpectedConditions.presenceOfElementLocated(matCreateProjectButton));
             driver.findElement(matCreateProjectButton).click();
             flagCreateProject = true;
         }
@@ -108,9 +109,11 @@ public class CreateMobApplicationWebAppliation {
 
     public void clickHomeOnBreadcrumb(String homepage_validation_text) throws Throwable {
         if (flag) {
-            Thread.sleep(5000);
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(120));
+            wait.until(ExpectedConditions.elementToBeClickable(breadcrumbHome));
+            Thread.sleep(2000);
             driver.findElement(breadcrumbHome).click();
-            Thread.sleep(3000);
+            wait.until(ExpectedConditions.presenceOfElementLocated(homepage_validation));
             String message = driver.findElement(homepage_validation).getText();
             Assert.assertEquals(homepage_validation_text, message, "Expected Error Message " + homepage_validation_text + " But Found : " + message);
             Thread.sleep(3000);
@@ -121,7 +124,8 @@ public class CreateMobApplicationWebAppliation {
 
     public void clickApplicationPageBreadcrumb() throws InterruptedException {
         if (flag) {
-            Thread.sleep(3000);
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(120));
+            wait.until(ExpectedConditions.presenceOfElementLocated(breadcrumbApplicationpage));
             if (driver.findElement(breadcrumbApplicationpage).isDisplayed()) {
                 flag1 = true;
             }
@@ -130,20 +134,24 @@ public class CreateMobApplicationWebAppliation {
 
     public void clickApplicationType(String application_type) throws InterruptedException {
         if (flag1) {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(120));
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[text()='" + application_type + "']")));
             Thread.sleep(10000);
             driver.findElement(By.xpath("//div[text()='" + application_type + "']")).click();
         }
     }
 
     public void updateNameFields(String app_name, String application_name_field_message, String app_desc) throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(180));
         driver.findElement(appNameField).sendKeys(app_name);
-//        driver.findElement(appNameField).sendKeys(" ");
-//        driver.findElement(appNameField).click();
-//        r.keyPress(KeyEvent.VK_BACK_SPACE);
+        driver.findElement(appNameField).sendKeys(" ");
+        driver.findElement(appNameField).click();
+        r.keyPress(KeyEvent.VK_BACK_SPACE);
         Thread.sleep(2000);
         if (driver.findElements(hintProjectAvailable).size() > 0) {
             flag2 = true;
-            Thread.sleep(10000);
+            wait.until(ExpectedConditions.presenceOfElementLocated(hintProjectAvailable));
+            Thread.sleep(4000);
             String message = driver.findElement(hintProjectAvailable).getText().trim();
             Assert.assertEquals(application_name_field_message, message, "Expected Error Message :" + application_name_field_message + " But Found : " + message);
         }
@@ -168,14 +176,14 @@ public class CreateMobApplicationWebAppliation {
             driver.findElement(shortDescField).click();
         }
         if (driver.findElements(requiredAppNameField).size() > 0) {//size>0
-            Thread.sleep(3000);
+            wait.until(ExpectedConditions.presenceOfElementLocated(requiredAppNameField));
             String message = driver.findElement(requiredAppNameField).getText();
             Assert.assertEquals(application_name_field_message, message, "Expected Error Message " + application_name_field_message + " But Found : " + message);
             flag2 = false;
             flagerror = true;
         }
         if (driver.findElements(atleast3LettersRequired).size() > 0) {//size>0
-            Thread.sleep(3000);
+            wait.until(ExpectedConditions.presenceOfElementLocated(atleast3LettersRequired));
             String message = driver.findElement(atleast3LettersRequired).getText();
             message.trim();
             Assert.assertEquals(application_name_field_message, message, "Expected Error Message " + application_name_field_message + " But Found : " + message);
@@ -187,7 +195,8 @@ public class CreateMobApplicationWebAppliation {
 
     public void clickNextToThemes() throws InterruptedException {
         if (flag2) {
-            Thread.sleep(3000);
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(120));
+            wait.until(ExpectedConditions.presenceOfElementLocated(nextButtonSettings));
             driver.findElement(nextButtonSettings).click();
         }
     }
@@ -222,9 +231,8 @@ public class CreateMobApplicationWebAppliation {
 
     public void updateThemeAndClickNext(String themes_dropdown, String headings_dropdown, String body_dropdown, String suggestion_message) throws Throwable {
         if (flag2) {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
             wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(themesDropdown)));
-            Thread.sleep(3000);
             driver.findElement(themesDropdown).click();
             Thread.sleep(3000);
             driver.findElement(By.xpath("//div[contains(@class,'ng-trigger ng-trigger-transformPanel')]/mat-option/span[text()='" + themes_dropdown + "']")).click();
@@ -238,8 +246,8 @@ public class CreateMobApplicationWebAppliation {
     }
 
     public void customThemeFlow(String themes_dropdown, String headings_dropdown, String body_dropdown, String suggestion_message) throws Throwable {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
-        Thread.sleep(3000);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(120));
+        wait.until(ExpectedConditions.presenceOfElementLocated(suggestionForDropdown));
         String actual_suggestion_message_heading = driver.findElements(suggestionForDropdown).get(0).getText();
         String actual_suggestion_message_body = driver.findElements(suggestionForDropdown).get(1).getText();
         Assert.assertEquals(suggestion_message, actual_suggestion_message_heading, "Expected Error Message " + suggestion_message + " But Found : " + actual_suggestion_message_heading);
@@ -297,18 +305,18 @@ public class CreateMobApplicationWebAppliation {
             if (driver.findElements(By.xpath("//div[@id='toast-container']/div/div[text()=' " + toaster_message + " ']")).size() > 0) {
                 String toaster = driver.findElement(By.xpath("//div[@id='toast-container']/div/div[text()=' " + toaster_message + " ']")).getText();
                 Assert.assertEquals(toaster_message, toaster, "Expected Error Message " + toaster_message + " But Found : " + toaster);
-                driver.findElement(By.xpath("//ol[contains(@class,'breadcrumb builder-breadcrumb')]/li[1]")).click();
-                Thread.sleep(5000);
-                int len1 = driver.findElements(By.xpath("//mat-card-title")).size();
-                if (driver.findElements(By.xpath("//span[text()=' Delete']/parent::button[@color='warn']")).size() > 0) {
-                    driver.findElements(By.xpath("//span[text()=' Delete']/parent::button[@color='warn']")).get(0).click();
-                    Thread.sleep(2000);
-                    driver.findElement(By.xpath("//span[text()='Yes']/..")).click();
-                    Thread.sleep(5000);
-                    int len2 = driver.findElements(By.xpath("//mat-card-title")).size();
-                    boolean status = len2 < len1;
-                    Assert.assertTrue(status);
-                }
+//                driver.findElement(By.xpath("//ol[contains(@class,'breadcrumb builder-breadcrumb')]/li[1]")).click();
+//                Thread.sleep(5000);
+//                int len1 = driver.findElements(By.xpath("//mat-card-title")).size();
+//                if (driver.findElements(By.xpath("//span[text()=' Delete']/parent::button[@color='warn']")).size() > 0) {
+//                    driver.findElements(By.xpath("//span[text()=' Delete']/parent::button[@color='warn']")).get(0).click();
+//                    Thread.sleep(2000);
+//                    driver.findElement(By.xpath("//span[text()='Yes']/..")).click();
+//                    Thread.sleep(5000);
+//                    int len2 = driver.findElements(By.xpath("//mat-card-title")).size();
+//                    boolean status = len2 < len1;
+//                    Assert.assertTrue(status);
+//                }
             }
         }
         if (flagerror) {

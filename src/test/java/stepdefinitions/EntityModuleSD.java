@@ -7,6 +7,9 @@ import io.cucumber.java.en.And;
 public class EntityModuleSD {
     EntityModule entityModule = new EntityModule(WebdriverInitializer.getDriver());
 
+    public EntityModuleSD() throws Throwable {
+    }
+
     @And("Click on the Mobile Application and Click On Entity Module Click on Add Entity button")
     public void clickOnTheMobileApplicationAndClickOnEntityModuleClickOnAddEntityButton() throws Throwable{
         entityModule.clickOnEntityModule();

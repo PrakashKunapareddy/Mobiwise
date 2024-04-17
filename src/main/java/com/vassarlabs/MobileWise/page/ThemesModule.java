@@ -48,7 +48,7 @@ public class ThemesModule {
         this.driver = driver;
     }
 
-    //Verify the Breadcrumb from Mobile Applicatiom to Home page
+    //Verify the Breadcrumb from Mobile Application to Home page
     public void verifyBreadcrumb(String expected_output) throws Throwable {
         Thread.sleep(3000);
         verifyMobileApplicationNameOnBreadcrumb();
@@ -59,7 +59,7 @@ public class ThemesModule {
     }
 
     public void verifyMobileApplicationNameOnBreadcrumb() throws Throwable {
-        Thread.sleep(5000);
+        Thread.sleep(10000);
         String mobApplicationName = driver.findElement(mobileApplicationName).getText().trim();
         Thread.sleep(3000);
         String text = driver.findElement(mobileAppBreadCrumb).getText().trim();

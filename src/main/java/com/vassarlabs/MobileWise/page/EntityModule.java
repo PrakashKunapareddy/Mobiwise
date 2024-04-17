@@ -12,11 +12,11 @@ import java.time.Duration;
 public class EntityModule {
     WebDriver driver;
 
-    public EntityModule(WebDriver driver) {
+    public EntityModule(WebDriver driver) throws Throwable {
         this.driver = driver;
     }
 
-    private By Mobileapp = By.xpath("//div[text()=' Demo Application 314 ']");
+
     private By entityModule = By.xpath("//div[@class='smidemenu-container']/ul/li[3]");
     private By addNewEntity = By.xpath("//span[text()=' Add Entity ']/..");
     private By addEntityPopUpHeading = By.xpath("//span[text()='Add Entity']");
@@ -28,11 +28,15 @@ public class EntityModule {
     private By matpanelTitle = By.xpath("//mat-panel-title[contains(@class,'mat-expansion-panel-header-title')]/span");
     boolean entityCreatedFlag = false;
     boolean editedEntityFlag = false;
+    MobileAppBuilderPagesAddComponents mob = new MobileAppBuilderPagesAddComponents(WebdriverInitializer.getDriver());
+
 
     public void clickOnEntityModule() throws Throwable {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(120));
-        wait.until(ExpectedConditions.elementToBeClickable(Mobileapp));
-        driver.findElement(Mobileapp).click();
+        Thread.sleep(5000);
+        mob.ApplicationName.add("Demo Mobile 993");
+        String name = mob.ApplicationName.get(mob.ApplicationName.size() - 1);
+        driver.findElement(By.xpath("//div[text()=' " + name + " ']")).click();
         wait.until(ExpectedConditions.presenceOfElementLocated(entityModule));
         driver.findElement(entityModule).click();
     }

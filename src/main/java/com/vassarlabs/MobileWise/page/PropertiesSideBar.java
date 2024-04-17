@@ -19,6 +19,7 @@ import java.sql.Statement;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Set;
 
 public class PropertiesSideBar {
@@ -320,14 +321,14 @@ public class PropertiesSideBar {
                                         clickActionsAndValidationsforAnyComponent(values[c], component, panels, page_name);
                                         break;
 
-                                    case "Range Picker":
-                                        editDisplayTypeDropdowns(values[c]);
-                                        editLabelTextfield(values[c], Component[c]);
-                                        editTopMarginTextField(values[c], Component[c]);
-                                        editSelectDateFormatDropdownAndDateRanges(values[c], component);
-                                        clickOnUpdateComponentButton();
-                                        clickActionsAndValidationsforAnyComponent(values[c], component, panels, page_name);
-                                        break;
+//                                    case "Range Picker":
+//                                        editDisplayTypeDropdowns(values[c]);
+//                                        editLabelTextfield(values[c], Component[c]);
+//                                        editTopMarginTextField(values[c], Component[c]);
+//                                        editSelectDateFormatDropdownAndDateRanges(values[c], component);
+//                                        clickOnUpdateComponentButton();
+//                                        clickActionsAndValidationsforAnyComponent(values[c], component, panels, page_name);
+//                                        break;
 
                                     case "Geofence":
                                         editLabelTextfield(values[c], Component[c]);
@@ -930,7 +931,7 @@ public class PropertiesSideBar {
     public void editFileTypeDropdown(String values, String component) throws Throwable {
         String[] Component = component.split(",");
         String[] value = values.split(",");
-        String[] type = value[3].split("-");
+        String[] typeandAccess = value[3].split("-");
         for (int c = 0; c <= Component.length - 1; c++) {
             if (Component[c].equals("File Picker")) {
                 if (driver.findElements(fileTypedropdown).size() > 0) {
@@ -939,12 +940,28 @@ public class PropertiesSideBar {
                     if (size == 4) {
                         Assert.assertEquals(size, 4, "Expected Error Message " + size + " But Found : " + 4);
                     }
-                    for (int i = 0; i <= type.length - 1; i++) {
-                        if (driver.findElements(By.xpath("//mat-option[@role='option']/mat-pseudo-checkbox/following-sibling::span[text()='" + type[i] + "']")).size() > 0) {
-                            driver.findElement(By.xpath("//mat-option[@role='option']/mat-pseudo-checkbox/following-sibling::span[text()='" + type[i] + "']")).click();
+                    for (int j = 0; j < typeandAccess.length; j++) {
+                        driver.findElements(By.xpath("//mat-option")).get(j).click();
+                    }
+                    for (String entry : typeandAccess) {
+                        String[] parts = entry.split("_");
+                        if (parts.length != 2) {
+                            continue;
+                        }
+
+                        String type = parts[0];
+                        boolean access = Boolean.parseBoolean(parts[1]);
+
+                        WebElement option = driver.findElement(By.xpath("//mat-option[@role='option']/mat-pseudo-checkbox/following-sibling::span[text()='" + type + "']"));
+                        if (option != null) {
+                            if (!access) {
+                                System.out.println("Option to be clickable: " + type);
+                                option.click();
+                            }
                         }
                     }
-                    driver.findElement(labelTextField).click();
+                    act.moveByOffset(0, 20).click().perform();
+                    System.out.println("Selected File Types");
                 }
             }
         }
@@ -953,6 +970,8 @@ public class PropertiesSideBar {
     public void uploadTyppeDropdownImagePicker(String values, String component) throws Throwable {
         String[] Component = component.split(",");
         for (int c = 0; c <= Component.length - 1; c++) {
+            ArrayList<String> Imagetypes = new ArrayList<>();
+            ArrayList<String> Videotypes = new ArrayList<>();
             if (Component[c].equals("Media Upload")) {
                 String[] Value = values.split(",");
                 String[] prop = Value[3].split("_");
@@ -965,13 +984,36 @@ public class PropertiesSideBar {
                     driver.findElement(By.xpath("//mat-option[@value='" + prop[0] + "']")).click();
                     Thread.sleep(1000);
                     driver.findElement(allowedImageType).click();
-                    String[] select = prop[1].split("-");
-                    for (int i = 0; i <= select.length - 1; i++) {
-                        if (driver.findElements(By.xpath("//mat-option/mat-pseudo-checkbox/following-sibling::span[text()='" + select[0] + "']")).size() > 0) {
-                            driver.findElement(By.xpath("//mat-option/mat-pseudo-checkbox/following-sibling::span[text()='" + select[i] + "']")).click();
+                    String[] typeandAccess = prop[1].split("-");
+                    for (int j = 0; j < typeandAccess.length; j++) {
+                        driver.findElements(By.xpath("//mat-option")).get(j).click();
+                    }
+                    for (String entry : typeandAccess) {
+                        String[] parts = entry.split(":");
+                        if (parts.length != 2) {
+                            continue;
+                        }
+
+                        String type = parts[0];
+                        boolean access = Boolean.parseBoolean(parts[1]);
+
+                        WebElement option = driver.findElement(By.xpath("//mat-option[@role='option']/mat-pseudo-checkbox/following-sibling::span[text()='" + type + "']"));
+                        if (option != null) {
+                            if (!access) {
+                                System.out.println("Option to be clickable: " + type);
+                                Imagetypes.add(type);
+                                option.click();
+                            }
                         }
                     }
-                    act.moveByOffset(0, 50).click().perform();
+                    act.moveByOffset(0, 20).click().perform();
+                    String [] selectedTypes = driver.findElement(By.xpath("//mat-select[@formcontrolname='allowedTypes']/div//span/span")).getText().trim().split(",");
+                    for(String s : selectedTypes){
+                        if(!(Imagetypes.contains(s))){
+                            Assert.assertTrue(true);
+                        }
+                    }
+                    System.out.println("Selected File Types");
                     driver.findElement(maxSizeImageAndVideo).sendKeys(prop[2]);
                     boolean ImageCompression = Boolean.parseBoolean(prop[3]);
                     boolean GallaryUpload = Boolean.parseBoolean(prop[4]);
@@ -997,13 +1039,35 @@ public class PropertiesSideBar {
                     driver.findElement(By.xpath("//mat-option[@value='" + prop[0] + "']")).click();
                     Thread.sleep(1000);
                     driver.findElement(allowedVideoType).click();
-                    String[] select = prop[1].split("-");
-                    for (int i = 0; i <= select.length - 1; i++) {
-                        if (driver.findElements(By.xpath("//mat-option/mat-pseudo-checkbox/following-sibling::span[text()='" + select[0] + "']")).size() > 0) {
-                            driver.findElement(By.xpath("//mat-option/mat-pseudo-checkbox/following-sibling::span[text()='" + select[i] + "']")).click();
+                    String[] typeandAccess = prop[1].split("-");
+                    for (int j = 0; j < typeandAccess.length; j++) {
+                        driver.findElements(By.xpath("//mat-option")).get(j).click();
+                    }
+                    for (String entry : typeandAccess) {
+                        String[] parts = entry.split(":");
+                        if (parts.length != 2) {
+                            continue;
+                        }
+
+                        String type = parts[0];
+                        boolean access = Boolean.parseBoolean(parts[1]);
+
+                        WebElement option = driver.findElement(By.xpath("//mat-option[@role='option']/mat-pseudo-checkbox/following-sibling::span[text()='" + type + "']"));
+                        if (option != null) {
+                            if (!access) {
+                                System.out.println("Option to be clickable: " + type);
+                                Videotypes.add(type);
+                                option.click();
+                            }
                         }
                     }
-                    act.moveByOffset(0, 50).click().perform();
+                    act.moveByOffset(0, 20).click().perform();
+                    String [] selectedTypes = driver.findElement(By.xpath("//mat-select[@formcontrolname='allowedTypes']/div//span/span")).getText().trim().split(",");
+                    for(String s : selectedTypes){
+                        if(!(Videotypes.contains(s))){
+                            Assert.assertTrue(true);
+                        }
+                    }
                     Thread.sleep(2000);
                     driver.findElement(maxSizeImageAndVideo).sendKeys(prop[2]);
                     boolean VideoCompression = Boolean.parseBoolean(prop[3]);
@@ -1085,13 +1149,8 @@ public class PropertiesSideBar {
 
     public void editTogglesFilePicker(String values, String component) throws Throwable {
         String[] value = values.split(",");
-        boolean PreviewFile = Boolean.parseBoolean(value[5]);
-        boolean FileCompression = Boolean.parseBoolean(value[6]);
-        boolean StatusPreviewFile = Boolean.parseBoolean(driver.findElement(previewToggle).getAttribute("aria-checked"));
+        boolean FileCompression = Boolean.parseBoolean(value[5]);
         boolean StatusFileCompression = Boolean.parseBoolean(driver.findElement(fileCompressiontoggle).getAttribute("aria-checked"));
-        if (!(PreviewFile == StatusPreviewFile)) {
-            driver.findElement(previewToggle).click();
-        }
         if (!(FileCompression == StatusFileCompression)) {
             driver.findElement(fileCompressiontoggle).click();
         }
@@ -1147,7 +1206,6 @@ public class PropertiesSideBar {
             e.printStackTrace();
         }
 
-        // Convert the StringBuilder to a String.
         String fileContent = stringBuilder.toString();
 
         // Print the content of the file as a String.

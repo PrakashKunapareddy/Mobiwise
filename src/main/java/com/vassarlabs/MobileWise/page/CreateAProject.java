@@ -158,6 +158,7 @@ public class CreateAProject {
                 }
                 if (pagesRotate[j].equals("Page1")) {
                     if (driver.findElements(navbarComponentNavtitle).size() > 0) {
+                        Thread.sleep(3000);
                         driver.findElement(navbarComponentNavIcon1).click();
                         driver.findElement(navbarComponentNavIcon1).click();
                         driver.findElement(navbarDisplayiconDropdown).click();
@@ -242,9 +243,10 @@ public class CreateAProject {
     }
 
     public void clickOnPublishButton() throws Throwable {
-        Thread.sleep(7000);
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(60));
+        wait.until(ExpectedConditions.elementToBeClickable(publishModule));
         driver.findElement(publishModule).click();
-        Thread.sleep(2000);
+        wait.until(ExpectedConditions.elementToBeClickable(publishMobileApp));
         driver.findElement(publishMobileApp).click();
         driver.findElement(publishPopUpNo).click();
         Thread.sleep(2000);
@@ -276,8 +278,8 @@ public class CreateAProject {
         Assert.assertEquals(mess[4], message3, "Expected Error Message " + mess[4] + " But Found : " + message3);
         Assert.assertEquals(text, message4, "Expected Error Message " + text + " But Found : " + message4);
         Thread.sleep(3000);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMinutes(15));
-        wait.until(ExpectedConditions.elementToBeClickable(downloadApkButton));
+        WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofMinutes(15));
+        wait1.until(ExpectedConditions.elementToBeClickable(downloadApkButton));
         String AppName = driver.findElement(mobileAppHeadingInNavBar).getText().trim() + ".apk";
         if (driver.findElements(publishApplicationCreatedSuccessfully).size() > 0) {
             String text1 = driver.findElement(publishApplicationCreatedSuccessfully).getText().trim();

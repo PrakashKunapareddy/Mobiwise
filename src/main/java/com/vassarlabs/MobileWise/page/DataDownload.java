@@ -1,5 +1,6 @@
 package com.vassarlabs.MobileWise.page;
 
+import com.vassarlabs.MobileWise.driver.WebdriverInitializer;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -12,7 +13,7 @@ public class DataDownload {
     private By errorMessageDataDownload = By.xpath("//div[text()=' There is no data to download! ']");
     private By dateFrom = By.xpath("//mat-label[text()='Date From']/../../../following-sibling::div//button[@aria-label='Open calendar']");
     private By dateTo = By.xpath("//mat-label[text()='Date To']/../../../following-sibling::div//button[@aria-label='Open calendar']");
-    private By Mobileapp = By.xpath("//div[text()=' Demo Application 314 ']");
+
     private By dataDownloadModule = By.xpath("//div[@class='smidemenu-container']/ul/li[8]");
     private By yearInCalnder = By.xpath("//div[@class='mat-calendar-controls']/button[@class='mat-calendar-period-button mdc-button mat-mdc-button mat-unthemed mat-mdc-button-base']");
     private By yearInRange = By.xpath("//div[@class='mat-calendar-controls']/button[@class='mat-calendar-period-button mdc-button mat-mdc-button mat-unthemed mat-mdc-button-base']//span//span");
@@ -20,16 +21,17 @@ public class DataDownload {
     private By nextYears = By.xpath("//div[@class='mat-calendar-controls']/button[@class='mat-calendar-next-button mdc-icon-button mat-mdc-icon-button mat-unthemed mat-mdc-button-base']");
     private By fromDateValues = By.xpath("//input[@formcontrolname='fromDate']");
     private By toDateValues = By.xpath("//input[@formcontrolname='toDate']");
-
+    MobileAppBuilderPagesAddComponents mob = new MobileAppBuilderPagesAddComponents(WebdriverInitializer.getDriver());
     boolean flag = false;
 
-    public DataDownload(WebDriver driver) {
+    public DataDownload(WebDriver driver) throws Throwable {
         this.driver = driver;
     }
 
     public void clickOnMobileAppAndClickOnDataDownloadModule() throws Throwable {
         Thread.sleep(5000);
-        driver.findElement(Mobileapp).click();
+        String name = mob.ApplicationName.get(mob.ApplicationName.size() - 1);
+        driver.findElement(By.xpath("//div[text()=' " + name + " ']")).click();
         Thread.sleep(5000);
         driver.findElement(dataDownloadModule).click();
     }

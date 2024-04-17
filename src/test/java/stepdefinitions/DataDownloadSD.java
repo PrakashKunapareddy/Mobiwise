@@ -6,6 +6,10 @@ import io.cucumber.java.en.And;
 
 public class DataDownloadSD {
     DataDownload datadownload = new DataDownload(WebdriverInitializer.getDriver());
+
+    public DataDownloadSD() throws Throwable {
+    }
+
     @And("Click on the Mobile Application and Click On Data Download Module")
     public void clickOnTheMobileApplicationAndClickOnDataDownloadModule() throws Throwable {
         datadownload.clickOnMobileAppAndClickOnDataDownloadModule();
