@@ -78,21 +78,22 @@ public class MobileAppBuilderPagesAddComponents {
     }
 
     public void addRandomProjects(String app_name, String application_name_field_message, String app_desc, String themes_dropdown, String headings_dropdown, String body_dropdown, String suggestion_message) throws Throwable {
-        Thread.sleep(3000);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(220));
+        wait.until(ExpectedConditions.presenceOfElementLocated(appNameField));
         driver.findElement(appNameField).sendKeys(app_name + " " + rand_int);
         driver.findElement(appNameField).sendKeys("  ");
         String name = driver.findElement(appNameField).getAttribute("value");
         ApplicationName.add(name);
         if (driver.findElements(hintProjectAvailable).size() > 0) {
             driver.findElement(shortDescField).sendKeys(app_desc + " " + rand_int);
-            driver.findElement(editLogo).sendKeys(logoPath);
+//            driver.findElement(editLogo).sendKeys(logoPath);
             driver.findElement(nextButtonSettings).click();
             flag3 = true;
         } else {
             driver.findElement(appNameField).sendKeys(app_name + rand_int + "" + rand_int);
             if (driver.findElements(hintProjectAvailable).size() > 0) {
                 driver.findElement(shortDescField).sendKeys(app_desc + " " + rand_int);
-                driver.findElement(editLogo).sendKeys(logoPath);
+//                driver.findElement(editLogo).sendKeys(logoPath);
                 driver.findElement(nextButtonSettings).click();
                 flag3 = true;
             }
@@ -125,10 +126,10 @@ public class MobileAppBuilderPagesAddComponents {
     public void clickOnLandingPageAndClickOnAddComponentsButton(String work_page) throws Throwable {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         String[] pageRotate = work_page.split(",");
-        Thread.sleep(5000);
+        Thread.sleep(7000);
         driver.findElement(By.xpath("//mat-expansion-panel-header[contains(@class,'mat-expansion-panel-header mat-focus-indicator')]/span/mat-panel-title/span[text()='" + pageRotate[0] + "']")).click();
         if (driver.findElements(addComponentButton).size() > 0) {
-            Thread.sleep(4000);
+            Thread.sleep(6000);
             driver.findElement(addComponentButton).click();
 //            Point startPoint = driver.findElement(landingPanel).getLocation();
 //            int xOffset = 500;

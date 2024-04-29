@@ -4,7 +4,7 @@ Feature: Login Functionality for MobiWise SuperAdmin Login
   SuperAdmin should be able to login into the account
   and can access the account related features of SuperAdmin
 
-  Scenario Outline: Successful Login with valid username and password
+  Scenario Outline:  Login Functionality with valid/invalid username and password
     Given Entered a valid <username> <password>
     When  Clicked on the sign in button
     And  Validate login <expected_output>

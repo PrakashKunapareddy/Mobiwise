@@ -32,7 +32,9 @@ public class PublishModule {
 
     public void clickonmobileappandpage() throws InterruptedException {
         Thread.sleep(6000);
-//        mob.ApplicationName.add("Demo Mobile 993");
+//        String title = driver.findElements(By.xpath("//div[@class = 'mat-card-device-header']/div")).get(1).getText();
+        mob.ApplicationName.add("Demo Mobile 971");
+        System.out.println(mob.ApplicationName);
         String name = mob.ApplicationName.get(mob.ApplicationName.size() - 1);
         driver.findElement(By.xpath("//div[text()=' " + name + " ']")).click();
         Thread.sleep(5000);

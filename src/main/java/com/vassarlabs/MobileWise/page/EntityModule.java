@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.time.Duration;
+import java.util.ArrayList;
 
 public class EntityModule {
     WebDriver driver;
@@ -19,11 +20,15 @@ public class EntityModule {
 
     private By entityModule = By.xpath("//div[@class='smidemenu-container']/ul/li[3]");
     private By addNewEntity = By.xpath("//span[text()=' Add Entity ']/..");
+    private By deleteEntityPopupHeading = By.xpath("//span[text()='Delete Entity']");
+    private By deletePopupConfirmMessage = By.xpath("//h6[text()='Are you sure to delete?']");
+    private By deletePopupYesButton = By.xpath("//span[text()='Yes']/..");
     private By addEntityPopUpHeading = By.xpath("//span[text()='Add Entity']");
     private By editEntityPopUpHeading = By.xpath("//span[text()='Edit Entity']");
     private By addEntityTextField = By.xpath("//input[@placeholder='Entity Name']");
     private By addEntityCancelButton = By.xpath("//span[text()='Cancel']/..");
     private By addEntitySaveButton = By.xpath("//span[text()='Save']/..");
+    private By errorMessageForMappedPagesExists = By.xpath("//div[@class='row']/div[contains(@class,'text-center')]/span/b/following-sibling::b");
     private By addedEntityName = By.xpath("//span[text()='New Enity']");
     private By matpanelTitle = By.xpath("//mat-panel-title[contains(@class,'mat-expansion-panel-header-title')]/span");
     boolean entityCreatedFlag = false;
@@ -34,7 +39,7 @@ public class EntityModule {
     public void clickOnEntityModule() throws Throwable {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(120));
         Thread.sleep(5000);
-        mob.ApplicationName.add("Demo Mobile 993");
+        mob.ApplicationName.add("Demo Mobile 971");
         String name = mob.ApplicationName.get(mob.ApplicationName.size() - 1);
         driver.findElement(By.xpath("//div[text()=' " + name + " ']")).click();
         wait.until(ExpectedConditions.presenceOfElementLocated(entityModule));
@@ -130,22 +135,6 @@ public class EntityModule {
         }
     }
 
-    public void validateDeleteFucntionality(String new_entity_name,String entity_names) throws Throwable {
-        if (editedEntityFlag && entityCreatedFlag) {
-            Thread.sleep(2000);
-            if(driver.findElements(By.xpath("//span[text()='" + new_entity_name + "']/../../..")).size()>0) {
-                if(!(new_entity_name.equals("User Details"))) {
-                    driver.findElement(By.xpath("//span[text()='" + new_entity_name + "']/../../..")).click();
-                    driver.findElement(By.xpath("//span[text()='" + new_entity_name + "']/../..//div/button//mat-icon[text()='delete']/..")).click();
-                }
-            }
-            else if(driver.findElements(By.xpath("//span[text()='" + entity_names + "']/../../..")).size()>0){
-                driver.findElement(By.xpath("//span[text()='" + entity_names + "']/../../..")).click();
-                driver.findElement(By.xpath("//span[text()='" + entity_names + "']/../..//div/button//mat-icon[text()='delete']/..")).click();
-            }
-        }
-
-    }
 
     public void clickOnUpdateAssociationButton(String new_entity_names) throws Throwable {
         String[] new_entity_name = new_entity_names.split(",");
@@ -236,6 +225,90 @@ public class EntityModule {
                 driver.findElement(By.xpath("//span[text()='" + entity_name[e] + "']/../../../following-sibling::div/div/button/span[text()=' Update Association ']/..")).click();
             }
         }
+    }
+
+    public void validateDeleteFucntionality(String new_entity_name, String entity_names) throws Throwable {
+        String[] entity_name = entity_names.split(",");
+        for (int i = 0; i < entity_name.length; i++) {
+            if (editedEntityFlag && entityCreatedFlag) {
+                Thread.sleep(2000);
+                if (driver.findElements(By.xpath("//span[text()='" + new_entity_name + "']/../../..")).size() > 0) {
+                    if (!(new_entity_name.equals("User Details"))) {
+                        ArrayList<String> pagesMapped = new ArrayList<>();
+                        boolean flag = false;
+                        driver.findElement(By.xpath("//span[text()='" + new_entity_name + "']/../../..")).click();
+                        driver.findElement(By.xpath("//span[text()='" + new_entity_name + "']/../../..")).click();
+                        Thread.sleep(2000);
+                        driver.findElement(By.xpath("//span[text()='" + new_entity_name + "']/../../../..//mat-panel-title/span[text()='Mapped Pages']")).click();
+
+
+                        int countOfPages = driver.findElements(By.xpath("//span[text()='" + new_entity_name + "']/../../../..//mat-panel-title/span[text()='Mapped Pages']/../../../../div//mat-list//span/span/span/span")).size();
+                        if (countOfPages > 0) {
+                            for (int j = 0; j < countOfPages; j++) {
+                                String pages = driver.findElements(By.xpath("//span[text()='" + new_entity_name + "']/../../../..//mat-panel-title/span[text()='Mapped Pages']/../../../../div//mat-list//span/span/span/span")).get(j).getText().trim();
+                                pagesMapped.add(pages);
+                            }
+                            flag = true;
+                        }
+                        driver.findElement(By.xpath("//span[text()='" + new_entity_name + "']/../../..")).click();
+                        driver.findElement(By.xpath("//span[text()='" + new_entity_name + "']/../../..")).click();
+                        driver.findElement(By.xpath("//span[text()='" + new_entity_name + "']/../..//div/button//mat-icon[text()='delete']/..")).click();
+                        Thread.sleep(2000);
+                        String deletePopupHeadingVerify = driver.findElement(deleteEntityPopupHeading).getText().trim();
+                        Assert.assertEquals(deletePopupHeadingVerify, "Delete Entity", "Expected Error Message " + "Delete Entity" + " But Found : " + deletePopupHeadingVerify);
+                        Thread.sleep(2000);
+                        if (flag) {
+                            if (driver.findElements(errorMessageForMappedPagesExists).size() > 0) {
+                                String[] pagesInMessage = driver.findElement(errorMessageForMappedPagesExists).getText().trim().split(",");
+                                for (int p = 0; p < pagesInMessage.length; p++) {
+                                    if (pagesMapped.contains(pagesInMessage[p].trim())){
+                                        Assert.assertTrue(true);
+                                    }
+                                }
+                            }
+                        }
+                        String validationMesssage = driver.findElement(deletePopupConfirmMessage).getText().trim();
+                        Assert.assertEquals(validationMesssage, "Are you sure to delete?", "Expected Error Message " + "Are you sure to delete?" + " But Found : " + validationMesssage);
+                        Thread.sleep(2000);
+                        driver.findElement(deletePopupYesButton).click();
+                    }
+                } else if (driver.findElements(By.xpath("//span[text()='" + entity_name[i] + "']/../../..")).size() > 0) {
+                    ArrayList<String> pagesMapped = new ArrayList<>();
+                    boolean flag = false;
+                    driver.findElement(By.xpath("//span[text()='" + entity_name[i] + "']/../../..")).click();
+                    driver.findElement(By.xpath("//span[text()='" + entity_name[i] + "']/../../../..//mat-panel-title/span[text()='Mapped Pages']")).click();
+                    int countOfPages = driver.findElements(By.xpath("//span[text()='" + entity_name[i] + "']/../../../..//mat-panel-title/span[text()='Mapped Pages']/../../../../div//mat-list//span/span/span/span")).size();
+                    if (countOfPages > 0) {
+                        for (int j = 0; j < countOfPages; j++) {
+                            String pages = driver.findElements(By.xpath("//span[text()='" + entity_name[i] + "']/../../../..//mat-panel-title/span[text()='Mapped Pages']/../../../../div//mat-list//span/span/span/span")).get(j).getText().trim();
+                            pagesMapped.add(pages);
+                        }
+                        flag = true;
+                    }
+                    driver.findElement(By.xpath("//span[text()='" + entity_name[i] + "']/../../..")).click();
+                    driver.findElement(By.xpath("//span[text()='" + entity_name[i] + "']/../..//div/button//mat-icon[text()='delete']/..")).click();
+                    Thread.sleep(2000);
+                    String deletePopupHeadingVerify = driver.findElement(deleteEntityPopupHeading).getText().trim();
+                    Assert.assertEquals(deletePopupHeadingVerify, "Delete Entity", "Expected Error Message " + "Delete Entity" + " But Found : " + deletePopupHeadingVerify);
+                    Thread.sleep(2000);
+                    if (flag) {
+                        if (driver.findElements(errorMessageForMappedPagesExists).size() > 0) {
+                            String[] pagesInMessage = driver.findElement(errorMessageForMappedPagesExists).getText().trim().split(",");
+                            for (int p = 0; p < pagesInMessage.length; p++) {
+                                if (pagesMapped.contains(pagesInMessage[p].trim())){
+                                    Assert.assertTrue(true);
+                                }
+                            }
+                        }
+                    }
+                    String validationMesssage = driver.findElement(deletePopupConfirmMessage).getText().trim();
+                    Assert.assertEquals(validationMesssage, "Are you sure to delete?", "Expected Error Message " + "Are you sure to delete?" + " But Found : " + validationMesssage);
+                    Thread.sleep(2000);
+                    driver.findElement(deletePopupYesButton).click();
+                }
+            }
+        }
+
     }
 
 }

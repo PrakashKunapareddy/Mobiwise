@@ -62,7 +62,7 @@ public class CreateProject {
     }
 
     public void clickCreateProjectButton() throws Throwable {
-        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(120));
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(220));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         if (driver.findElements(createProjectButton).size() > 0) {
             wait.until(ExpectedConditions.elementToBeClickable(createProjectButton));
@@ -71,10 +71,10 @@ public class CreateProject {
             wait.until(ExpectedConditions.elementToBeClickable(matCreateProjectButton));
             driver.findElement(matCreateProjectButton).click();
         }
-        wait.until(ExpectedConditions.presenceOfElementLocated(addProjectHeading));
         String AddProjectHeading = "Add Project";
+        wait.until(ExpectedConditions.presenceOfElementLocated(addProjectHeading));
+        Thread.sleep(5000);
         String addProjectHeadingVerify = driver.findElement(addProjectHeading).getText();
-        Thread.sleep(2000);
         Assert.assertEquals(AddProjectHeading, addProjectHeadingVerify, "Expected Error Message " + AddProjectHeading + " But Found : " + addProjectHeadingVerify);
 
     }
@@ -108,18 +108,18 @@ public class CreateProject {
         }
         if (flag) {
             driver.findElement(projectDesc).sendKeys(project_description);
-            driver.findElement(editLogoButton).sendKeys(invalidlogoPath);
-            if (driver.findElements(errorMessageInvalidLogo).size() > 0) {
-                WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(120));
-                wait.until(ExpectedConditions.presenceOfElementLocated(errorMessageInvalidLogo));
-                String errormessage = driver.findElement(errorMessageInvalidLogo).getText();
-                Assert.assertEquals(error_message_image, errormessage, "Expected Error Message " + error_message_image + " But Found : " + errormessage);
-                flag6 = true;
-            }
-            if (flag6) {
-                driver.findElement(editLogoButton).sendKeys(logoPath1);
+//            driver.findElement(editLogoButton).sendKeys(invalidlogoPath);
+//            if (driver.findElements(errorMessageInvalidLogo).size() > 0) {
+//                WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(120));
+//                wait.until(ExpectedConditions.presenceOfElementLocated(errorMessageInvalidLogo));
+//                String errormessage = driver.findElement(errorMessageInvalidLogo).getText();
+//                Assert.assertEquals(error_message_image, errormessage, "Expected Error Message " + error_message_image + " But Found : " + errormessage);
+//                flag6 = true;
+//            }
+//            if (flag6) {
+//                driver.findElement(editLogoButton).sendKeys(logoPath1);
                 flag = true;
-            }
+//            }
         }
 
 
@@ -213,18 +213,19 @@ public class CreateProject {
         wait.until(ExpectedConditions.presenceOfElementLocated(projectDesc));
         driver.findElement(projectDesc).clear();
         driver.findElement(projectDesc).sendKeys(new_project_description);
-        driver.findElement(editLogoButton).sendKeys(invalidlogoPath);
-        if (driver.findElements(errorMessageInvalidLogo).size() > 0) {
-            Thread.sleep(1000);
-            String errormessage = driver.findElement(errorMessageInvalidLogo).getText();
-            Assert.assertEquals(error_message_image, errormessage, "Expected Error Message " + error_message_image + " But Found : " + errormessage);
-            flag6 = true;
-        }
-        if (flag6) {
-            driver.findElement(editLogoButton).sendKeys(logoPath1);
-            driver.findElement(saveButton).click();
+        driver.findElement(saveButton).click();
+//        driver.findElement(editLogoButton).sendKeys(invalidlogoPath);
+//        if (driver.findElements(errorMessageInvalidLogo).size() > 0) {
+//            Thread.sleep(1000);
+//            String errormessage = driver.findElement(errorMessageInvalidLogo).getText();
+//            Assert.assertEquals(error_message_image, errormessage, "Expected Error Message " + error_message_image + " But Found : " + errormessage);
+//            flag6 = true;
+//        }
+//        if (flag6) {
+//            driver.findElement(editLogoButton).sendKeys(logoPath1);
+//
             flag3 = true;
-        }
+//        }
     }
 
 

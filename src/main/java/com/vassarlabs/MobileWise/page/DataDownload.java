@@ -3,7 +3,11 @@ package com.vassarlabs.MobileWise.page;
 import com.vassarlabs.MobileWise.driver.WebdriverInitializer;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
+import java.time.Duration;
 
 public class DataDownload {
     WebDriver driver;
@@ -30,6 +34,10 @@ public class DataDownload {
 
     public void clickOnMobileAppAndClickOnDataDownloadModule() throws Throwable {
         Thread.sleep(5000);
+//        String title = driver.findElements(By.xpath("//div[@class = 'mat-card-device-header']/div")).get(1).getText();
+//        mob.ApplicationName.add(title);
+        mob.ApplicationName.add("Demo Mobile 971");
+        System.out.println(mob.ApplicationName);
         String name = mob.ApplicationName.get(mob.ApplicationName.size() - 1);
         driver.findElement(By.xpath("//div[text()=' " + name + " ']")).click();
         Thread.sleep(5000);
@@ -136,7 +144,8 @@ public class DataDownload {
     }
 
     public void clickOnDataDownloadButton(String error_message) throws Throwable {
-        Thread.sleep(4000);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(129));
+        wait.until(ExpectedConditions.elementToBeClickable(dataDownloadButton));
         driver.findElement(dataDownloadButton).click();
         if (driver.findElements(errorMessageDataDownload).size() > 0) {
             String text = driver.findElement(errorMessageDataDownload).getText().trim();

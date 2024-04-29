@@ -14,9 +14,9 @@ Feature: Data Download Module functionality in Mobile App Builder in Mobile-wise
 
     Examples:
       | username | password     | expected_output | entity       | submission_type             | error_message                   |
-      | "dummy"  | "1234567890" | "Projects"      | "UserEntity" | "Custom,2024/3/6-2025/12/8" | "There is no data to download!" |
-      | "dummy"  | "1234567890" | "Projects"      | "UserEntity" | "Today"                     | "There is no data to download!" |
-      | "dummy"  | "1234567890" | "Projects"      | "UserEntity" | "Last Month"                | "There is no data to download!" |
-      | "dummy"  | "1234567890" | "Projects"      | "UserEntity" | "Last Week"                 | "There is no data to download!" |
+      | "dummy"  | "1234567890" | "Projects"      | "Userentity" | "Custom,2024/3/6-2025/12/8" | "There is no data to download!" |
+      | "dummy"  | "1234567890" | "Projects"      | "Userentity" | "Today"                     | "There is no data to download!" |
+      | "dummy"  | "1234567890" | "Projects"      | "Userentity" | "Last Month"                | "There is no data to download!" |
+      | "dummy"  | "1234567890" | "Projects"      | "Userentity" | "Last Week"                 | "There is no data to download!" |
 
 

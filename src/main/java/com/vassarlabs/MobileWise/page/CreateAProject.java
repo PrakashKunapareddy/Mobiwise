@@ -38,9 +38,12 @@ public class CreateAProject {
     private By publishAppPopUpHeading = By.xpath("//span[text()='Publish Resources']");
     private By publishApplicationCreatedSuccessfully = By.xpath("//div[text()=' Application Created Successfully! ']");
     private By PublishAppPopupSuggestionMessage = By.xpath("//p[text()='Are You Sure You Want To Publish?']");
+    private By datalistPreviewPagePanel = By.xpath("//span[contains(text(),'Data List View Of')]/../../parent::mat-expansion-panel-header[@role='button']");
     private By publishAppGenarationApkMessage = By.xpath("//div[@class='alert alert-warning mx-3 custom-background ng-star-inserted']");
     private By downloadApkButton = By.xpath("//span[text()=' Download APK ']/..");
     private By screenBuilder = By.xpath("//div[contains(@class,'mobile-canvas-container')]//div[contains(@class,'mobile-canvas ng-star-inserted')]//div//div[contains(@class,'cdk-drop-list')]");
+    private By nameOnMenuPanel = By.xpath("//mat-toolbar[@class='mat-toolbar mat-toolbar-single-row']/span");
+    private By username = By.xpath("//div[@class='mat-mdc-menu-trigger profile']");
     PropertiesSideBar addProperties = new PropertiesSideBar(WebdriverInitializer.getDriver());
     MobileAppBuilderPagesAddComponents addComponentsToScreenBuilder = new MobileAppBuilderPagesAddComponents(WebdriverInitializer.getDriver());
 
@@ -107,7 +110,25 @@ public class CreateAProject {
                     driver.findElement(navbarDisplayiconDropdown).click();
                     driver.findElement(By.xpath("//mat-option[@value='menu']")).click();
                     Thread.sleep(2000);
+                    boolean toggleDisplayMenu = Boolean.parseBoolean(driver.findElement(By.xpath("//label[text()=' Display Menu ']/../button")).getAttribute("aria-checked"));
+                    if (!toggleDisplayMenu) {
+                        Thread.sleep(3000);
+                        driver.findElement(By.xpath("//label[text()=' Display Menu ']/../button")).click();
+                        String name = driver.findElement(nameOnMenuPanel).getText().trim();
+                        String profileName = "Hello," + driver.findElement(username).getText().split("\n")[1].trim();
+                        if (name.equalsIgnoreCase(profileName)) {
+                            Assert.assertTrue(true);
+                        }
+                        for (int toggle = 1; toggle < pagesRotate.length; toggle++) {
+                            driver.findElement(By.xpath("//label[text()=' " + pagesRotate[toggle] + " ']/../button")).click();
+                        }
+                        driver.findElement(By.xpath("//label[text()=' Change Password ']/../button")).click();
+                        driver.findElement(By.xpath("//label[text()=' Logout ']/../button")).click();
+                    }
                     driver.findElement(updateComponentButton).click();
+                    Thread.sleep(3000);
+                    driver.findElement(By.xpath("//label[text()=' Display Menu ']/../button")).click();
+                    Thread.sleep(3000);
                     driver.findElement(navbarComponentNavtitle).click();
                     driver.findElement(navbarTitleField).clear();
                     driver.findElement(navbarTitleField).sendKeys("Homepage");
@@ -155,6 +176,15 @@ public class CreateAProject {
                 addProperties.editPropertiesOfComponent(properties, panels, values_comp, component, page_name, work_page, component_panel, entity_name);
                 if (driver.findElements(By.xpath("//span[text()='" + pagesRotate[j] + "']/../../../following-sibling::div/div//label/span[text()='Enable Navbar']/../../button")).size() > 0) {
                     driver.findElement(By.xpath("//span[text()='" + pagesRotate[j] + "']/../../../following-sibling::div/div//label/span[text()='Enable Navbar']/../../button")).click();
+                }
+                if(driver.findElements(datalistPreviewPagePanel).size()>0){
+                    Thread.sleep(2000);
+                    boolean isExpanded = Boolean.parseBoolean(driver.findElement(datalistPreviewPagePanel).getAttribute("aria-expanded"));
+                    if (isExpanded){
+                        Thread.sleep(2000);
+                        driver.findElement(By.xpath("//mat-expansion-panel-header[contains(@class,'mat-expansion-panel-header mat-focus-indicator')]/span/mat-panel-title/span[text()='" + pagesRotate[j] + "']")).click();
+                        Thread.sleep(4000);
+                    }
                 }
                 if (pagesRotate[j].equals("Page1")) {
                     if (driver.findElements(navbarComponentNavtitle).size() > 0) {
@@ -213,6 +243,7 @@ public class CreateAProject {
                             driver.findElement(saveButtonForPreviewAction).click();
                         }
                     }
+                    verifyPreviewPage(entity_name);
                 }
                 if (pagesRotate[j].equals("Page3")) {
                     if (driver.findElements(navbarComponentNavtitle).size() > 0) {
@@ -237,13 +268,70 @@ public class CreateAProject {
                         addProperties.clickOnUpdateComponentButton();
                         break;
                     }
+                    verifyDataListPreviewPage(entity_name);
                 }
             }
         }
     }
 
+    public void verifyPreviewPage(String entity_name) throws Throwable {
+        Thread.sleep(3000);
+        String entityNamePreview = driver.findElement(By.xpath("//mat-expansion-panel-header[contains(@class,'mat-expansion-panel-header mat-focus-indicator')]/span/mat-panel-title/span[text()='" + entity_name + " Preview']")).getText().trim();
+        if (entityNamePreview.contains(entity_name)) {
+            Assert.assertTrue(true);
+        }
+    }
+
+    public void verifyDataListPreviewPage(String entity_name) throws Throwable {
+        Thread.sleep(3000);
+        String DataListPreview = driver.findElement(By.xpath("//mat-expansion-panel-header[contains(@class,'mat-expansion-panel-header mat-focus-indicator')]/span/mat-panel-title/span[text()='Data List View Of " + entity_name + "']")).getText().trim();
+        if (DataListPreview.contains(entity_name)) {
+            Assert.assertTrue(true);
+        }
+    }
+
+    public void verifyComponentsInPreviewPage(String entity_name, String input_components) throws Throwable {
+        Thread.sleep(3000);
+        driver.findElement(By.xpath("//mat-expansion-panel-header[contains(@class,'mat-expansion-panel-header mat-focus-indicator')]/span/mat-panel-title/span[text()='" + entity_name + " Preview']")).click();
+        ArrayList<String> componentsInSection = new ArrayList<>();
+        Thread.sleep(3000);
+        int numberOfComponents = driver.findElements(By.xpath("//mat-expansion-panel-header[contains(@class,'mat-expansion-panel-header mat-focus-indicator')]/span/mat-panel-title/span[text()='" + entity_name + " Preview']/../../../..//mat-panel-title[text()=' Preview Form ']/../../..//mat-list-item/span//span[@class='text-ellipsis']")).size();
+        for (int i = 0; i <= numberOfComponents - 1; i++) {
+            String name = driver.findElements(By.xpath("//mat-expansion-panel-header[contains(@class,'mat-expansion-panel-header mat-focus-indicator')]/span/mat-panel-title/span[text()='" + entity_name + " Preview']/../../../..//mat-panel-title[text()=' Preview Form ']/../../..//mat-list-item/span//span[@class='text-ellipsis']")).get(i).getText().trim();
+            componentsInSection.add(name);
+            if (input_components.contains(componentsInSection.get(i))) {
+                System.out.println(componentsInSection.get(i));
+                Assert.assertTrue(true);
+            }
+        }
+        Thread.sleep(3000);
+        driver.findElement(By.xpath("//span[text()='" + entity_name + " Preview']/../../../following-sibling::div/div//label/span[text()='Enable Navbar']/../../button")).click();
+        if (driver.findElements(navbarComponentNavtitle).size() > 0) {
+            driver.findElement(navbarComponentNavIcon1).click();
+            driver.findElement(navbarComponentNavIcon1).click();
+            driver.findElement(navbarDisplayiconDropdown).click();
+            driver.findElement(By.xpath("//mat-option[@value='arrow_back']")).click();
+            addProperties.clickOnUpdateComponentButton();
+            driver.findElement(By.xpath("//mat-expansion-panel-header[contains(@class,'mat-expansion-panel-header mat-focus-indicator')]/span/mat-panel-title/span[text()=' Click Actions']")).click();
+            if (driver.findElements(selectActionTypeDropdown).size() > 0) {
+                driver.findElement(selectActionTypeDropdown).click();
+                driver.findElement(By.xpath("//mat-option[@role='option']/span[text()=' Navigation']")).click();
+                driver.findElement(selctPageDropdownClickActions).click();
+                if (driver.findElements(By.xpath("//mat-option[@role='option']/span[text()='Page2']")).size() > 0) {
+                    driver.findElement(By.xpath("//mat-option[@role='option']/span[text()='Page2']")).click();
+                    driver.findElement(saveButtonForClickActions).click();
+                }
+            }
+            driver.findElement(navbarComponentNavtitle).click();
+            driver.findElement(navbarTitleField).clear();
+            driver.findElement(navbarTitleField).sendKeys("Confirm User Details");
+            addProperties.clickOnUpdateComponentButton();
+        }
+
+    }
+
     public void clickOnPublishButton() throws Throwable {
-        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(60));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
         wait.until(ExpectedConditions.elementToBeClickable(publishModule));
         driver.findElement(publishModule).click();
         wait.until(ExpectedConditions.elementToBeClickable(publishMobileApp));

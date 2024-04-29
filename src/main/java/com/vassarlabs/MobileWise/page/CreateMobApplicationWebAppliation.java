@@ -151,7 +151,7 @@ public class CreateMobApplicationWebAppliation {
         if (driver.findElements(hintProjectAvailable).size() > 0) {
             flag2 = true;
             wait.until(ExpectedConditions.presenceOfElementLocated(hintProjectAvailable));
-            Thread.sleep(4000);
+            Thread.sleep(8000);
             String message = driver.findElement(hintProjectAvailable).getText().trim();
             Assert.assertEquals(application_name_field_message, message, "Expected Error Message :" + application_name_field_message + " But Found : " + message);
         }
@@ -171,7 +171,7 @@ public class CreateMobApplicationWebAppliation {
                 String[] shortDescLen = driver.findElement(By.xpath("//mat-hint[contains(text(),'Characters Max')]")).getText().trim().split("/");
                 Assert.assertEquals(shortDescLen[0], len, "Expected Error Message " + shortDescLen[0] + " But Found : " + len);
             }
-            driver.findElement(editLogo).sendKeys(logoPath);
+//            driver.findElement(editLogo).sendKeys(logoPath);
         } else {
             driver.findElement(shortDescField).click();
         }
@@ -184,6 +184,7 @@ public class CreateMobApplicationWebAppliation {
         }
         if (driver.findElements(atleast3LettersRequired).size() > 0) {//size>0
             wait.until(ExpectedConditions.presenceOfElementLocated(atleast3LettersRequired));
+            Thread.sleep(3000);
             String message = driver.findElement(atleast3LettersRequired).getText();
             message.trim();
             Assert.assertEquals(application_name_field_message, message, "Expected Error Message " + application_name_field_message + " But Found : " + message);

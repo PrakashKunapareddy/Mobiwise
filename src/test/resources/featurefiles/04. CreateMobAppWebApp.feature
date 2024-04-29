@@ -1,8 +1,7 @@
 Feature: Adding Mobile Application And Web Application for Created Project In MobileWise
 
 
-  Scenario Outline: Create Mobile And Web Applications
-
+  Scenario Outline: Create Mobile And Web Appli
     Given Entered a valid <username> <password>
     When  Clicked on the sign in button
     And  Validate login <expected_output>

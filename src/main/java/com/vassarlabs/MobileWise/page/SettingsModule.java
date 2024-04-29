@@ -51,7 +51,7 @@ public class SettingsModule {
         driver.findElement(nameTextField).sendKeys(new_mobile_name);
         driver.findElement(descriptionTextField).clear();
         driver.findElement(descriptionTextField).sendKeys(description);
-        driver.findElement(logoUpdate).sendKeys("D:\\MobileWise\\Logo\\Logoimage.jpg");
+//        driver.findElement(logoUpdate).sendKeys("D:\\MobileWise\\Logo\\Logoimage.jpg");
         String text = driver.findElement(nameTextField).getAttribute("value").trim();
         Assert.assertEquals(text, new_mobile_name, "Expected Error Message " + new_mobile_name + " But Found : " + text);
         String text1 = driver.findElement(descriptionCount).getText().trim().split("/")[0];

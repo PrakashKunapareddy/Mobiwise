@@ -241,7 +241,6 @@ public class PropertiesSideBar {
                                         if (var) {
                                             createNavigationForDataListPage();
                                         }
-                                        clickOnUpdateComponentButton();
                                         break;
 
                                     case "Radio Button":
@@ -789,7 +788,7 @@ public class PropertiesSideBar {
 
     public void editImageForImageComponent() throws Throwable {
         if (driver.findElements(editbuttonForImageUpload).size() > 0) {
-            driver.findElement(editbuttonForImageUpload).sendKeys("D:\\MobileWise\\Logo\\add-user-icon.webp");
+//            driver.findElement(editbuttonForImageUpload).sendKeys("D:\\MobileWise\\Logo\\add-user-icon.webp");
         }
     }
 
@@ -913,6 +912,7 @@ public class PropertiesSideBar {
                     Assert.assertEquals(text, message, "Expected Error Message " + text + " But Found : " + message);
                 }
             }
+            break;
         }
 
     }
@@ -1374,6 +1374,8 @@ public class PropertiesSideBar {
                 driver.findElement(navbarTitleField).clear();
                 driver.findElement(navbarTitleField).sendKeys("Data List Preview");
                 clickOnUpdateComponentButton();
+                Thread.sleep(3000);
+                driver.findElement(By.xpath("//mat-expansion-panel-header[contains(@class,'mat-expansion-panel-header mat-focus-indicator')]/span/mat-panel-title/span[text()='Page3']")).click();
             }
         }
     }
